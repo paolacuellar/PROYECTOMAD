@@ -29,21 +29,22 @@ namespace MAD_Pantallas
         /// </summary>
         private void InitializeComponent()
         {
-            this.PeryDed = new System.Windows.Forms.Button();
+            this.SueldoConsulta = new System.Windows.Forms.Button();
             this.NominaConsulta = new System.Windows.Forms.Button();
             this.perfil = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.Salir2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // PeryDed
+            // SueldoConsulta
             // 
-            this.PeryDed.Location = new System.Drawing.Point(14, 173);
-            this.PeryDed.Name = "PeryDed";
-            this.PeryDed.Size = new System.Drawing.Size(287, 40);
-            this.PeryDed.TabIndex = 14;
-            this.PeryDed.Text = "Consultar Sueldo";
-            this.PeryDed.UseVisualStyleBackColor = true;
+            this.SueldoConsulta.Location = new System.Drawing.Point(14, 173);
+            this.SueldoConsulta.Name = "SueldoConsulta";
+            this.SueldoConsulta.Size = new System.Drawing.Size(287, 40);
+            this.SueldoConsulta.TabIndex = 14;
+            this.SueldoConsulta.Text = "Consultar Sueldo";
+            this.SueldoConsulta.UseVisualStyleBackColor = true;
+            this.SueldoConsulta.Click += new System.EventHandler(this.SueldoConsulta_Click);
             // 
             // NominaConsulta
             // 
@@ -62,6 +63,7 @@ namespace MAD_Pantallas
             this.perfil.TabIndex = 9;
             this.perfil.Text = "Ver perfil";
             this.perfil.UseVisualStyleBackColor = true;
+            this.perfil.Click += new System.EventHandler(this.perfil_Click);
             // 
             // label1
             // 
@@ -87,7 +89,7 @@ namespace MAD_Pantallas
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(313, 448);
             this.Controls.Add(this.Salir2);
-            this.Controls.Add(this.PeryDed);
+            this.Controls.Add(this.SueldoConsulta);
             this.Controls.Add(this.NominaConsulta);
             this.Controls.Add(this.perfil);
             this.Controls.Add(this.label1);
@@ -99,7 +101,7 @@ namespace MAD_Pantallas
         }
 
         #endregion
-        private System.Windows.Forms.Button PeryDed;
+        private System.Windows.Forms.Button SueldoConsulta;
         private System.Windows.Forms.Button NominaConsulta;
         private System.Windows.Forms.Button perfil;
         private System.Windows.Forms.Label label1;

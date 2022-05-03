@@ -16,5 +16,69 @@ namespace MAD_Pantallas
         {
             InitializeComponent();
         }
+
+        //Boton para entrar a la pantalla de editar perfil
+        private void perfil_Click(object sender, EventArgs e)
+        {
+            Form4 frm = new Form4();
+
+            this.Hide();
+            frm.ShowDialog();
+            this.Show();
+        }
+
+        //Boton para entrar a la pantalla de Consultar Nomina
+        private void NominaConsulta_Click(object sender, EventArgs e)
+        {
+            Form5 frm = new Form5();
+
+            this.Hide();
+            frm.ShowDialog();
+            this.Show();
+        }
+
+        //Boton para entrar a la pantalla de Gestion de empleados
+        private void EmpleadosGestion_Click(object sender, EventArgs e)
+        {
+            Form7 frm = new Form7();
+
+            this.Hide();
+            frm.ShowDialog();
+            this.Show();
+        }
+
+        //Boton para entrar a la pantalla de Gestion de departamentos
+        private void DepartamentosGestion_Click(object sender, EventArgs e)
+        {
+            Form8 frm = new Form8();
+
+            this.Hide();
+            frm.ShowDialog();
+            this.Show();
+        }
+
+        //Boton para entrar a la pantalla de Gestion de puestos
+        private void PuestosGestion_Click(object sender, EventArgs e)
+        {
+            Form9 frm = new Form9();
+
+            this.Hide();
+            frm.ShowDialog();
+            this.Show();
+        }
+
+        //Boton para entrar a la pantalla de Percepciones y Deducciones
+        private void PeryDed_Click(object sender, EventArgs e)
+        {
+            Form6 frm = new Form6();
+
+            this.Hide();
+            frm.ShowDialog();
+            this.Show();
+        }
+
+        //Boton para entrar a la pantalla de Organigrama, aun no hay pantalla. todo bn.
+
+
     }
 }

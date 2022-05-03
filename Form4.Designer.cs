@@ -352,6 +352,7 @@ namespace MAD_Pantallas
             this.Regresar1.TabIndex = 36;
             this.Regresar1.Text = "Regresar a Pagina Principal";
             this.Regresar1.UseVisualStyleBackColor = true;
+            this.Regresar1.Click += new System.EventHandler(this.Regresar1_Click);
             // 
             // button2
             // 

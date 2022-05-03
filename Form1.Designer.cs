@@ -44,6 +44,7 @@ namespace MAD_Pantallas
             this.Verificarcuenta.TabIndex = 0;
             this.Verificarcuenta.Text = "Iniciar sesión";
             this.Verificarcuenta.UseVisualStyleBackColor = true;
+            this.Verificarcuenta.Click += new System.EventHandler(this.Verificarcuenta_Click);
             // 
             // label1
             // 

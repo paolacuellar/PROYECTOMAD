@@ -16,5 +16,14 @@ namespace MAD_Pantallas
         {
             InitializeComponent();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form2 frm = new Form2();
+
+            this.Hide();
+            frm.ShowDialog();
+            this.Show();
+        }
     }
 }

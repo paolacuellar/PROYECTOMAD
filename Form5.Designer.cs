@@ -153,6 +153,7 @@ namespace MAD_Pantallas
             this.button2.TabIndex = 12;
             this.button2.Text = "Regresar a Pagina Principal";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 

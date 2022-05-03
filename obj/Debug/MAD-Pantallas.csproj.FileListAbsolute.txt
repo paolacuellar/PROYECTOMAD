@@ -27,3 +27,22 @@ C:\Users\PaolaAlejandra\source\repos\MAD-Pantallas Completas\obj\Debug\MAD-Panta
 C:\Users\PaolaAlejandra\source\repos\MAD-Pantallas Completas\obj\Debug\MAD-Pantallas.csproj.CoreCompileInputs.cache
 C:\Users\PaolaAlejandra\source\repos\MAD-Pantallas Completas\obj\Debug\MAD-Pantallas.exe
 C:\Users\PaolaAlejandra\source\repos\MAD-Pantallas Completas\obj\Debug\MAD-Pantallas.pdb
+C:\Users\ArelyLara\Documents\GitHub\PROYECTOMAD\bin\Debug\MAD-Pantallas.exe.config
+C:\Users\ArelyLara\Documents\GitHub\PROYECTOMAD\bin\Debug\MAD-Pantallas.exe
+C:\Users\ArelyLara\Documents\GitHub\PROYECTOMAD\bin\Debug\MAD-Pantallas.pdb
+C:\Users\ArelyLara\Documents\GitHub\PROYECTOMAD\obj\Debug\MAD-Pantallas.csprojAssemblyReference.cache
+C:\Users\ArelyLara\Documents\GitHub\PROYECTOMAD\obj\Debug\MAD_Pantallas.Form1.resources
+C:\Users\ArelyLara\Documents\GitHub\PROYECTOMAD\obj\Debug\MAD_Pantallas.Form10.resources
+C:\Users\ArelyLara\Documents\GitHub\PROYECTOMAD\obj\Debug\MAD_Pantallas.Form2.resources
+C:\Users\ArelyLara\Documents\GitHub\PROYECTOMAD\obj\Debug\MAD_Pantallas.Form3.resources
+C:\Users\ArelyLara\Documents\GitHub\PROYECTOMAD\obj\Debug\MAD_Pantallas.Form4.resources
+C:\Users\ArelyLara\Documents\GitHub\PROYECTOMAD\obj\Debug\MAD_Pantallas.Form5.resources
+C:\Users\ArelyLara\Documents\GitHub\PROYECTOMAD\obj\Debug\MAD_Pantallas.Form6.resources
+C:\Users\ArelyLara\Documents\GitHub\PROYECTOMAD\obj\Debug\MAD_Pantallas.Form7.resources
+C:\Users\ArelyLara\Documents\GitHub\PROYECTOMAD\obj\Debug\MAD_Pantallas.Form8.resources
+C:\Users\ArelyLara\Documents\GitHub\PROYECTOMAD\obj\Debug\MAD_Pantallas.Form9.resources
+C:\Users\ArelyLara\Documents\GitHub\PROYECTOMAD\obj\Debug\MAD_Pantallas.Properties.Resources.resources
+C:\Users\ArelyLara\Documents\GitHub\PROYECTOMAD\obj\Debug\MAD-Pantallas.csproj.GenerateResource.cache
+C:\Users\ArelyLara\Documents\GitHub\PROYECTOMAD\obj\Debug\MAD-Pantallas.csproj.CoreCompileInputs.cache
+C:\Users\ArelyLara\Documents\GitHub\PROYECTOMAD\obj\Debug\MAD-Pantallas.exe
+C:\Users\ArelyLara\Documents\GitHub\PROYECTOMAD\obj\Debug\MAD-Pantallas.pdb

@@ -57,6 +57,7 @@ namespace MAD_Pantallas
             this.perfil.TabIndex = 1;
             this.perfil.Text = "Ver perfil";
             this.perfil.UseVisualStyleBackColor = true;
+            this.perfil.Click += new System.EventHandler(this.perfil_Click);
             // 
             // NominaConsulta
             // 
@@ -66,6 +67,7 @@ namespace MAD_Pantallas
             this.NominaConsulta.TabIndex = 2;
             this.NominaConsulta.Text = "Consultar Nómina";
             this.NominaConsulta.UseVisualStyleBackColor = true;
+            this.NominaConsulta.Click += new System.EventHandler(this.NominaConsulta_Click);
             // 
             // EmpleadosGestion
             // 
@@ -75,6 +77,7 @@ namespace MAD_Pantallas
             this.EmpleadosGestion.TabIndex = 3;
             this.EmpleadosGestion.Text = "Gestión de Empleados";
             this.EmpleadosGestion.UseVisualStyleBackColor = true;
+            this.EmpleadosGestion.Click += new System.EventHandler(this.EmpleadosGestion_Click);
             // 
             // DepartamentosGestion
             // 
@@ -84,6 +87,7 @@ namespace MAD_Pantallas
             this.DepartamentosGestion.TabIndex = 4;
             this.DepartamentosGestion.Text = "Gestión de Departamentos";
             this.DepartamentosGestion.UseVisualStyleBackColor = true;
+            this.DepartamentosGestion.Click += new System.EventHandler(this.DepartamentosGestion_Click);
             // 
             // PeryDed
             // 
@@ -93,6 +97,7 @@ namespace MAD_Pantallas
             this.PeryDed.TabIndex = 6;
             this.PeryDed.Text = "Percepciones y Deducciones";
             this.PeryDed.UseVisualStyleBackColor = true;
+            this.PeryDed.Click += new System.EventHandler(this.PeryDed_Click);
             // 
             // PuestosGestion
             // 
@@ -102,6 +107,7 @@ namespace MAD_Pantallas
             this.PuestosGestion.TabIndex = 5;
             this.PuestosGestion.Text = "Gestión de Puestos";
             this.PuestosGestion.UseVisualStyleBackColor = true;
+            this.PuestosGestion.Click += new System.EventHandler(this.PuestosGestion_Click);
             // 
             // Organigrama
             // 
