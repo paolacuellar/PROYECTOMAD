@@ -1,0 +1,191 @@
+CREATE DATABASE PROYECTOMAD
+GO
+
+USE PROYECTOMAD
+
+
+IF OBJECT_ID('Empresa') IS NOT NULL
+	DROP TABLE Empresa;
+
+CREATE TABLE Empresa (
+	NumEmpresa TINYINT NOT NULL PRIMARY KEY IDENTITY(1,1), 
+	RFC VARCHAR(25) NOT NULL, 
+	Nombre VARCHAR(255) NOT NULL, 
+	Email VARCHAR(25), 
+	Telefono VARCHAR(15), 
+	Razon_social VARCHAR(255) NOT NULL, 
+	Fecha_Operaciones DATE NOT NULL
+);
+
+
+IF OBJECT_ID('Empleado') IS NOT NULL
+	DROP TABLE Empleado;
+
+CREATE TABLE Empleado (
+	CveEmpleado INT NOT NULL PRIMARY KEY IDENTITY(1000000,1), 
+	Contrasenia VARCHAR(25) NOT NULL, 
+	CURP VARCHAR(25) NOT NULL UNIQUE /*FK*/, 
+	Fecha_contratacion TIMESTAMP NOT NULL, 
+	Rol VARCHAR(50) DEFAULT 'EM' NOT NULL, 
+	Estado BIT DEFAULT 1 NOT NULL, 
+	NumEmpresa TINYINT NOT NULL /*FK*/, 
+	ID_Departamento TINYINT NOT NULL /*FK*/, 
+	ID_Puesto TINYINT NOT NULL/*FK*/, 
+	Fecha_POcupacion DATE NOT NULL,
+);
+
+
+IF OBJECT_ID('DatosPersonales') IS NOT NULL
+	DROP TABLE DatosPersonales;
+
+CREATE TABLE DatosPersonales (
+	CURP VARCHAR(25) PRIMARY KEY NOT NULL, 
+	Nombre VARCHAR(255) NOT NULL,  
+	A_Paterno VARCHAR(25) NOT NULL, 
+	A_Materno VARCHAR(25), 
+	Fecha_nacimiento DATE NOT NULL, 
+	Email VARCHAR(25), 
+	RFC VARCHAR(25),  
+	NumSeguro_Social INT
+);
+
+
+IF OBJECT_ID('Domicilio') IS NOT NULL
+	DROP TABLE Domicilio;
+
+CREATE TABLE Domicilio (
+	CodigoDomicilio TINYINT NOT NULL PRIMARY KEY IDENTITY(1,1), 
+	calle VARCHAR(25) NOT NULL, 
+	numero INT NOT NULL, 
+	colonia VARCHAR(25) NOT NULL, 
+	municipio VARCHAR(25) NOT NULL, 
+	estado VARCHAR(25) NOT NULL, 
+	codigo_postal INT NOT NULL,
+	CveEmpleado INT NOT NULL /*FK*/
+);
+
+
+IF OBJECT_ID('Telefono') IS NOT NULL
+	DROP TABLE Telefono;
+
+CREATE TABLE Telefono (
+	ID_Telefono TINYINT NOT NULL PRIMARY KEY IDENTITY(1,1), 
+	Telefono VARCHAR(18) NOT NULL, 
+	CveEmpleado INT NOT NULL /*FK*/
+);
+
+
+IF OBJECT_ID('Departamento') IS NOT NULL
+	DROP TABLE Departamento;
+
+CREATE TABLE Departamento (
+	ID_Departamento TINYINT NOT NULL PRIMARY KEY IDENTITY(1,1), 
+	Nombre VARCHAR (25) NOT NULL, 
+	Sueldo_Base DECIMAL NOT NULL
+);
+
+
+IF OBJECT_ID('Puesto') IS NOT NULL
+	DROP TABLE Puesto;
+
+CREATE TABLE Puesto (
+	ID_Puesto TINYINT NOT NULL PRIMARY KEY IDENTITY(1,1), 
+	Nombre VARCHAR(25) NOT NULL, 
+	Nivel_Salarial DECIMAL(10,1) NOT NULL
+);
+
+
+IF OBJECT_ID('Nomina') IS NOT NULL
+	DROP TABLE Nomina;
+
+CREATE TABLE Nomina (
+	ID_Nomina INT NOT NULL PRIMARY KEY IDENTITY(1000000,1), 
+	CveEmpleado INT NOT NULL, /*FK*/
+	Salario_Diario DECIMAL(18,2) NOT NULL, 
+	Sueldo_Base DECIMAL(18,2) NOT NULL, 
+	Sueldo_Bruto DECIMAL(18,2) NOT NULL, 
+	Sueldo_Neto DECIMAL(18,2) NOT NULL
+);
+
+
+IF OBJECT_ID('Percepcion') IS NOT NULL
+	DROP TABLE Percepcion;
+
+CREATE TABLE Percepcion(
+	ID_Percepcion INT PRIMARY KEY NOT NULL, 
+	Motivo VARCHAR(255) NOT NULL, 
+	Tipo CHAR NOT NULL DEFAULT 'B', 
+	Cantidad DECIMAL(10,2) NOT NULL, 
+	Es_porcentaje BIT DEFAULT 0 NOT NULL
+);
+
+
+IF OBJECT_ID('Deduccion') IS NOT NULL
+	DROP TABLE Deduccion
+
+CREATE TABLE Deduccion (
+	ID_Deduccion INT PRIMARY KEY NOT NULL, 
+	Motivo VARCHAR(255) NOT NULL, 
+	Tipo CHAR NOT NULL DEFAULT 'B', 
+	Cantidad DECIMAL(10,2) NOT NULL, 
+	Es_porcentaje BIT DEFAULT 0 NOT NULL
+);
+
+
+IF OBJECT_ID('Asign_Empleado_Percepcion') IS NOT NULL
+	DROP TABLE Asign_Empleado_Percepcion
+
+CREATE TABLE Asign_Empleado_Percepcion (
+	ID_APercepcion INT PRIMARY KEY NOT NULL, 
+	CveEmpleado INT NOT NULL /*FK*/, 
+	ID_Percepcion INT NOT NULL /*FK*/, 
+	Fecha DATE NOT NULL, 
+	Cantidad DECIMAL(10,2) NOT NULL,
+
+	CONSTRAINT FK_EMPLEADO_PERCEPCION
+	FOREIGN KEY(CveEmpleado) REFERENCES Empleado(CveEmpleado),
+	CONSTRAINT FK_PERCEPCION
+	FOREIGN KEY(ID_Percepcion) REFERENCES Percepcion(ID_Percepcion)
+);
+
+
+IF OBJECT_ID('Asign_Empleado_Deduccion') IS NOT NULL
+	DROP TABLE Asign_Empleado_Deduccion
+
+CREATE TABLE Asign_Empleado_Deduccion (
+	ID_ADeduccion INT PRIMARY KEY NOT NULL, 
+	CveEmpleado INT NOT NULL /*FK*/, 
+	ID_Deduccion INT NOT NULL /*FK*/, 
+	Fecha DATE NOT NULL, 
+	Cantidad DECIMAL(10,2) NOT NULL
+
+	CONSTRAINT FK_EMPLEADO_DEDUCCION
+	FOREIGN KEY(CveEmpleado) REFERENCES Empleado(CveEmpleado),
+	CONSTRAINT FK_DEDUCCION
+	FOREIGN KEY(ID_Deduccion) REFERENCES Deduccion(ID_Deduccion)
+); 
+
+
+ALTER TABLE Empleado
+		ADD CONSTRAINT FK_EMPLEADO_DATOS
+		FOREIGN KEY(CURP) REFERENCES DatosPersonales(CURP),
+		CONSTRAINT FK_EMPLEADO_EMPRESA
+		FOREIGN KEY(NumEmpresa) REFERENCES Empresa(NumEmpresa),
+		CONSTRAINT FK_EMPLEADO_DEPARTAMENTO
+		FOREIGN KEY(ID_Departamento) REFERENCES Departamento(ID_Departamento),
+		CONSTRAINT FK_EMPLEADO_PUESTO
+		FOREIGN KEY(ID_Puesto) REFERENCES Puesto(ID_Puesto);
+
+--Exec SP_HELP Empleado
+
+ALTER TABLE Telefono
+		ADD CONSTRAINT FK_TELEFONO_EMPLEADO
+		FOREIGN KEY(CveEmpleado) REFERENCES Empleado(CveEmpleado);
+
+ALTER TABLE Domicilio
+		ADD CONSTRAINT FK_DOMICILIO_EMPLEADO
+		FOREIGN KEY(CveEmpleado) REFERENCES Empleado(CveEmpleado);
+
+ALTER TABLE Nomina
+		ADD CONSTRAINT FK_NOMINA_EMPLEADO
+		FOREIGN KEY(CveEmpleado) REFERENCES Empleado(CveEmpleado);

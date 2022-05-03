@@ -1,0 +1,29 @@
+C:\Users\ArelyLara\source\repos\MAD-Pantallas\bin\Debug\MAD-Pantallas.exe.config
+C:\Users\ArelyLara\source\repos\MAD-Pantallas\bin\Debug\MAD-Pantallas.exe
+C:\Users\ArelyLara\source\repos\MAD-Pantallas\bin\Debug\MAD-Pantallas.pdb
+C:\Users\ArelyLara\source\repos\MAD-Pantallas\obj\Debug\MAD-Pantallas.csprojAssemblyReference.cache
+C:\Users\ArelyLara\source\repos\MAD-Pantallas\obj\Debug\MAD_Pantallas.Form1.resources
+C:\Users\ArelyLara\source\repos\MAD-Pantallas\obj\Debug\MAD_Pantallas.Properties.Resources.resources
+C:\Users\ArelyLara\source\repos\MAD-Pantallas\obj\Debug\MAD-Pantallas.csproj.GenerateResource.cache
+C:\Users\ArelyLara\source\repos\MAD-Pantallas\obj\Debug\MAD-Pantallas.csproj.CoreCompileInputs.cache
+C:\Users\ArelyLara\source\repos\MAD-Pantallas\obj\Debug\MAD-Pantallas.exe
+C:\Users\ArelyLara\source\repos\MAD-Pantallas\obj\Debug\MAD-Pantallas.pdb
+C:\Users\PaolaAlejandra\source\repos\MAD-Pantallas Completas\bin\Debug\MAD-Pantallas.exe.config
+C:\Users\PaolaAlejandra\source\repos\MAD-Pantallas Completas\bin\Debug\MAD-Pantallas.exe
+C:\Users\PaolaAlejandra\source\repos\MAD-Pantallas Completas\bin\Debug\MAD-Pantallas.pdb
+C:\Users\PaolaAlejandra\source\repos\MAD-Pantallas Completas\obj\Debug\MAD-Pantallas.csprojAssemblyReference.cache
+C:\Users\PaolaAlejandra\source\repos\MAD-Pantallas Completas\obj\Debug\MAD_Pantallas.Form1.resources
+C:\Users\PaolaAlejandra\source\repos\MAD-Pantallas Completas\obj\Debug\MAD_Pantallas.Form10.resources
+C:\Users\PaolaAlejandra\source\repos\MAD-Pantallas Completas\obj\Debug\MAD_Pantallas.Form2.resources
+C:\Users\PaolaAlejandra\source\repos\MAD-Pantallas Completas\obj\Debug\MAD_Pantallas.Form3.resources
+C:\Users\PaolaAlejandra\source\repos\MAD-Pantallas Completas\obj\Debug\MAD_Pantallas.Form4.resources
+C:\Users\PaolaAlejandra\source\repos\MAD-Pantallas Completas\obj\Debug\MAD_Pantallas.Form5.resources
+C:\Users\PaolaAlejandra\source\repos\MAD-Pantallas Completas\obj\Debug\MAD_Pantallas.Form6.resources
+C:\Users\PaolaAlejandra\source\repos\MAD-Pantallas Completas\obj\Debug\MAD_Pantallas.Form7.resources
+C:\Users\PaolaAlejandra\source\repos\MAD-Pantallas Completas\obj\Debug\MAD_Pantallas.Form8.resources
+C:\Users\PaolaAlejandra\source\repos\MAD-Pantallas Completas\obj\Debug\MAD_Pantallas.Form9.resources
+C:\Users\PaolaAlejandra\source\repos\MAD-Pantallas Completas\obj\Debug\MAD_Pantallas.Properties.Resources.resources
+C:\Users\PaolaAlejandra\source\repos\MAD-Pantallas Completas\obj\Debug\MAD-Pantallas.csproj.GenerateResource.cache
+C:\Users\PaolaAlejandra\source\repos\MAD-Pantallas Completas\obj\Debug\MAD-Pantallas.csproj.CoreCompileInputs.cache
+C:\Users\PaolaAlejandra\source\repos\MAD-Pantallas Completas\obj\Debug\MAD-Pantallas.exe
+C:\Users\PaolaAlejandra\source\repos\MAD-Pantallas Completas\obj\Debug\MAD-Pantallas.pdb
