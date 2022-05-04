@@ -25,13 +25,13 @@ CREATE TABLE Empleado (
 	CveEmpleado INT NOT NULL PRIMARY KEY IDENTITY(1000000,1), 
 	Contrasenia VARCHAR(25) NOT NULL, 
 	CURP VARCHAR(25) NOT NULL UNIQUE /*FK*/, 
-	Fecha_contratacion TIMESTAMP NOT NULL, 
+	Fecha_contratacion DATE NOT NULL DEFAULT getDate(), 
 	Rol VARCHAR(50) DEFAULT 'EM' NOT NULL, 
 	Estado BIT DEFAULT 1 NOT NULL, 
 	NumEmpresa TINYINT NOT NULL /*FK*/, 
 	ID_Departamento TINYINT NOT NULL /*FK*/, 
 	ID_Puesto TINYINT NOT NULL/*FK*/, 
-	Fecha_POcupacion DATE NOT NULL,
+	Fecha_POcupacion DATE NOT NULL DEFAULT getDate(),
 );
 
 
@@ -112,7 +112,7 @@ IF OBJECT_ID('Percepcion') IS NOT NULL
 	DROP TABLE Percepcion;
 
 CREATE TABLE Percepcion(
-	ID_Percepcion INT PRIMARY KEY NOT NULL, 
+	ID_Percepcion INT PRIMARY KEY NOT NULL IDENTITY(001,1), 
 	Motivo VARCHAR(255) NOT NULL, 
 	Tipo CHAR NOT NULL DEFAULT 'B', 
 	Cantidad DECIMAL(10,2) NOT NULL, 
@@ -124,7 +124,7 @@ IF OBJECT_ID('Deduccion') IS NOT NULL
 	DROP TABLE Deduccion
 
 CREATE TABLE Deduccion (
-	ID_Deduccion INT PRIMARY KEY NOT NULL, 
+	ID_Deduccion INT PRIMARY KEY NOT NULL IDENTITY(001,1), 
 	Motivo VARCHAR(255) NOT NULL, 
 	Tipo CHAR NOT NULL DEFAULT 'B', 
 	Cantidad DECIMAL(10,2) NOT NULL, 
@@ -136,7 +136,7 @@ IF OBJECT_ID('Asign_Empleado_Percepcion') IS NOT NULL
 	DROP TABLE Asign_Empleado_Percepcion
 
 CREATE TABLE Asign_Empleado_Percepcion (
-	ID_APercepcion INT PRIMARY KEY NOT NULL, 
+	ID_APercepcion TINYINT NOT NULL PRIMARY KEY IDENTITY(1,1), 
 	CveEmpleado INT NOT NULL /*FK*/, 
 	ID_Percepcion INT NOT NULL /*FK*/, 
 	Fecha DATE NOT NULL, 
@@ -153,7 +153,7 @@ IF OBJECT_ID('Asign_Empleado_Deduccion') IS NOT NULL
 	DROP TABLE Asign_Empleado_Deduccion
 
 CREATE TABLE Asign_Empleado_Deduccion (
-	ID_ADeduccion INT PRIMARY KEY NOT NULL, 
+	ID_ADeduccion TINYINT NOT NULL PRIMARY KEY IDENTITY(1,1), 
 	CveEmpleado INT NOT NULL /*FK*/, 
 	ID_Deduccion INT NOT NULL /*FK*/, 
 	Fecha DATE NOT NULL, 
