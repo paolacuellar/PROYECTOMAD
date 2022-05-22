@@ -23,9 +23,9 @@ BEGIN
 			-- Ver como mostrar todas las percepciones de ese empleado
 			-- Ver como mostrar todas las deducciones de ese empleado
 	FROM Empleado
-	JOIN Nomina ON Nomina.CveEmpleado=Empleado.CveEmpleado
-	JOIN Departamento ON Departamento.ID_Departamento=Empleado.ID_Departamento
-	JOIN Puesto ON Puesto.ID_Puesto=Empleado.ID_Puesto
+	JOIN Nomina ON Empleado.CveEmpleado=Nomina.CveEmpleado
+	JOIN Departamento ON Empleado.ID_Departamento=Departamento.ID_Departamento
+	JOIN Puesto ON Empleado.ID_Puesto=Puesto.ID_Puesto
 	WHERE Nomina.CveEmpleado=@CveEmpleado AND Nomina.Fecha=@Fecha;
 
 END

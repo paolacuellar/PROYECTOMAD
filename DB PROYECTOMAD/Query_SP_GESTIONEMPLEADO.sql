@@ -144,4 +144,32 @@ BEGIN
 		JOIN Puesto ON Empleado.ID_Puesto=Puesto.ID_Puesto
 		WHERE Empleado.Estado=1;
 	END
+
+	-- Ver la informacion de un empleado en especifico
+	IF @Opcion = 'VIEWE'
+	BEGIN
+		SELECT	Empleado.CveEmpleado,
+				DatosPersonales.CURP,
+				DatosPersonales.Nombre,
+				DatosPersonales.A_Paterno,
+				DatosPersonales.A_Materno,
+				Empleado.Fecha_contratacion,
+				Departamento.Nombre,
+				Puesto.Nombre,
+				Empleado.Fecha_POcupacion,
+				Telefono.Telefono,
+				Domicilio.calle,
+				Domicilio.numero,
+				Domicilio.colonia,
+				Domicilio.codigo_postal,
+				Domicilio.municipio,
+				Domicilio.estado
+		FROM Empleado
+		JOIN DatosPersonales ON Empleado.CveEmpleado=DatosPersonales.CveEmpleado
+		JOIN Telefono ON Empleado.CveEmpleado=Telefono.CveEmpleado
+		JOIN Domicilio ON Empleado.CveEmpleado=Domicilio.CveEmpleado
+		JOIN Departamento ON Empleado.ID_Departamento=Departamento.ID_Departamento
+		JOIN Puesto ON Empleado.ID_Puesto=Puesto.ID_Puesto
+		WHERE Empleado.CveEmpleado=@CveEmpleado;
+	END
 END
