@@ -105,9 +105,9 @@ CREATE TABLE Nomina (
 	ID_Nomina INT NOT NULL PRIMARY KEY IDENTITY(1000000,1), 
 	CveEmpleado INT NOT NULL, /*FK*/
 	Salario_Diario DECIMAL(18,2) NOT NULL, 
-	Sueldo_Base DECIMAL(18,2) NOT NULL, 
 	Sueldo_Bruto DECIMAL(18,2) NOT NULL, 
-	Sueldo_Neto DECIMAL(18,2) NOT NULL
+	Sueldo_Neto DECIMAL(18,2) NOT NULL,
+	Fecha DATE NOT NULL
 );
 
 
@@ -142,8 +142,7 @@ CREATE TABLE Asign_Empleado_Percepcion (
 	ID_APercepcion INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
 	CveEmpleado INT NOT NULL /*FK*/, 
 	ID_Percepcion TINYINT NOT NULL /*FK*/, 
-	Fecha DATE NOT NULL, 
-	Cantidad DECIMAL(10,2) NOT NULL,
+	Fecha DATE NOT NULL
 
 	CONSTRAINT FK_EMPLEADO_PERCEPCION
 	FOREIGN KEY(CveEmpleado) REFERENCES Empleado(CveEmpleado),
@@ -159,8 +158,7 @@ CREATE TABLE Asign_Empleado_Deduccion (
 	ID_ADeduccion INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
 	CveEmpleado INT NOT NULL /*FK*/, 
 	ID_Deduccion TINYINT NOT NULL /*FK*/, 
-	Fecha DATE NOT NULL, 
-	Cantidad DECIMAL(10,2) NOT NULL
+	Fecha DATE NOT NULL
 
 	CONSTRAINT FK_EMPLEADO_DEDUCCION
 	FOREIGN KEY(CveEmpleado) REFERENCES Empleado(CveEmpleado),

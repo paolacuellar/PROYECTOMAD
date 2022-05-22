@@ -26,7 +26,16 @@ CREATE PROCEDURE sp_GestionEmpleado(
 	@ID_Puesto TINYINT = NULL,
 	@Fecha_POcupacion DATE = NULL,
 	@Banco VARCHAR(50) = NULL,
-	@NumCuentaBan INT = NULL
+	@NumCuentaBan INT = NULL,
+	-- Domicilio
+	@calle VARCHAR(25)  = NULL, 
+	@numero INT  = NULL, 
+	@colonia VARCHAR(25)  = NULL, 
+	@municipio VARCHAR(25)  = NULL, 
+	@estadoPais VARCHAR(25)  = NULL, 
+	@codigo_postal INT  = NULL,
+	-- Telefono
+	@Telefono VARCHAR(18) = NULL
 )
 AS
 BEGIN
@@ -57,6 +66,12 @@ BEGIN
 
 			INSERT INTO DatosPersonales(CveEmpleado, CURP, Nombre, A_Paterno, A_Materno, Fecha_nacimiento, Email, RFC, NumSeguro_Social)
 			VALUES (@CveEmpleado, @CURP, @Nombre, @A_Paterno, @A_Materno, @Fecha_nacimiento, @Email, @RFC, @NumSeguro_Social);
+
+			INSERT INTO Domicilio(calle, colonia, municipio, estado, codigo_postal, CveEmpleado)
+			VALUES (@calle, @colonia, @municipio, @estadoPais, @codigo_postal, @CveEmpleado);
+
+			INSERT INTO Telefono( Telefono, CveEmpleado)
+			VALUES (@Telefono, @CveEmpleado);
 		END
 	END
 	
@@ -74,6 +89,20 @@ BEGIN
 	-- Actualizar un empleado
 	IF @Opcion = 'UPDATE'
 	BEGIN
+
+		UPDATE Domicilio
+		SET
+		calle = ISNULL(@calle, calle), 
+		colonia = ISNULL(@colonia, colonia), 
+		municipio = ISNULL(@CURP, municipio), 
+		estado = ISNULL(@municipio, codigo_postal), 
+		codigo_postal = ISNULL(codigo_postal, codigo_postal)
+		WHERE CveEmpleado=@CveEmpleado;
+
+		UPDATE Telefono
+		SET
+		Telefono = ISNULL(@Telefono, Telefono)
+		WHERE CveEmpleado=@CveEmpleado;
 
 		UPDATE DatosPersonales
 		SET 
