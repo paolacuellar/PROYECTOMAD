@@ -331,7 +331,7 @@ namespace MAD_Pantallas
             try
             {
                 conectar();
-                string qry = "sp_Gestiona_Deptos";
+                string qry = "sp_GestionDepartamento";
                 _comandosql = new SqlCommand(qry, _conexion);
                 _comandosql.CommandType = CommandType.StoredProcedure;
                 _comandosql.CommandTimeout = 1200;

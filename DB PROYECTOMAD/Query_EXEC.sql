@@ -20,7 +20,7 @@ EXEC sp_GestionEmpleado 'INSERT','D87634598AA8', 'Terri', 'Duffy', 'Lee', '1974-
 EXEC sp_GestionEmpleado 'DELETE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1000005;
 EXEC sp_GestionEmpleado 'DELETE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1000006;
 
-EXEC sp_GestionEmpleado 'VIEW';
+EXEC sp_GestionEmpleado 'VIEWE', NULL;
 
 EXEC sp_GestionEmpleado 'UPDATE', NULL, NULL, NULL , 'Lee', NULL, NULL, NULL, NULL, 1000005, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL;
 

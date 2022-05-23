@@ -56,15 +56,6 @@ BEGIN
 		FROM Percepcion
 	END
 
-	-- Ver la lista de Percepciones
-	IF @Opcion = 'VIEW'
-	BEGIN
-		SELECT	Motivo,
-				Tipo,
-				Cantidad,
-				Es_porcentaje
-		FROM Percepcion
-	END
 END
 
 
