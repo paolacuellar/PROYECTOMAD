@@ -54,6 +54,7 @@ namespace MAD_Pantallas
             this.NominaConsulta.TabIndex = 10;
             this.NominaConsulta.Text = "Consultar Nómina";
             this.NominaConsulta.UseVisualStyleBackColor = true;
+            this.NominaConsulta.Click += new System.EventHandler(this.NominaConsulta_Click);
             // 
             // perfil
             // 

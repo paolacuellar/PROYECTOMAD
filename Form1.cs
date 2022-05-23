@@ -19,11 +19,42 @@ namespace MAD_Pantallas
 
         private void Verificarcuenta_Click(object sender, EventArgs e)
         {
-            Form2 frm = new Form2();
+            EnlaceDB enlace = new EnlaceDB();
 
-            this.Hide();
-            frm.ShowDialog();
-            this.Show();
+            DataRow usuarioTemp = enlace.Autentificar(EmpleadoNum.Text, EmpleadoPass.Text);
+            errorMsg.Text = "";
+
+            if (usuarioTemp!= null)
+            {
+                Properties.Settings.Default.UserId = Int32.Parse(usuarioTemp["CveEmpleado"].ToString());
+                Properties.Settings.Default.Permission = usuarioTemp["Rol"].ToString();
+
+                if (usuarioTemp["Rol"].ToString() == "EM")
+                {
+                    Form3 frm = new Form3();
+                    this.Hide();
+                    frm.ShowDialog();
+                    this.Show();
+                }
+                else if (usuarioTemp["Rol"].ToString() == "GG")
+                {
+                    Form2 frm = new Form2();
+                    this.Hide();
+                    frm.ShowDialog();
+                    this.Show();
+                }
+                    
+            }
+            else
+            {
+                errorMsg.Text = "Credenciales incorrectas";
+            }
+
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
         }
     }

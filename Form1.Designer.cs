@@ -34,6 +34,7 @@ namespace MAD_Pantallas
             this.EmpleadoNum = new System.Windows.Forms.TextBox();
             this.EmpleadoPass = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.errorMsg = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Verificarcuenta
@@ -78,11 +79,22 @@ namespace MAD_Pantallas
             this.label2.TabIndex = 3;
             this.label2.Text = "Password";
             // 
+            // errorMsg
+            // 
+            this.errorMsg.AutoSize = true;
+            this.errorMsg.Location = new System.Drawing.Point(156, 201);
+            this.errorMsg.Name = "errorMsg";
+            this.errorMsg.Size = new System.Drawing.Size(29, 13);
+            this.errorMsg.TabIndex = 5;
+            this.errorMsg.Text = "Hola";
+            this.errorMsg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(346, 336);
+            this.Controls.Add(this.errorMsg);
             this.Controls.Add(this.EmpleadoPass);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.EmpleadoNum);
@@ -90,6 +102,7 @@ namespace MAD_Pantallas
             this.Controls.Add(this.Verificarcuenta);
             this.Name = "Form1";
             this.Text = "Inicio de Sesion";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -102,6 +115,7 @@ namespace MAD_Pantallas
         private System.Windows.Forms.TextBox EmpleadoNum;
         private System.Windows.Forms.TextBox EmpleadoPass;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label errorMsg;
     }
 }
 

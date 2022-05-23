@@ -206,9 +206,9 @@ namespace MAD_Pantallas
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(31, 459);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(316, 13);
+            this.label10.Size = new System.Drawing.Size(277, 13);
             this.label10.TabIndex = 17;
-            this.label10.Text = "Elegir como se desea aplicar (Departamento, Puesto o Empleado)";
+            this.label10.Text = "Elegir como se desea aplicar (Departamento o Empleado)";
             // 
             // comboBox2
             // 
@@ -254,9 +254,9 @@ namespace MAD_Pantallas
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(775, 459);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(316, 13);
+            this.label11.Size = new System.Drawing.Size(277, 13);
             this.label11.TabIndex = 23;
-            this.label11.Text = "Elegir como se desea aplicar (Departamento, Puesto o Empleado)";
+            this.label11.Text = "Elegir como se desea aplicar (Departamento o Empleado)";
             // 
             // textBox4
             // 

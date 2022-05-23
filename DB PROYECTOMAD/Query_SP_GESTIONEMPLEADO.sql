@@ -67,8 +67,8 @@ BEGIN
 			INSERT INTO DatosPersonales(CveEmpleado, CURP, Nombre, A_Paterno, A_Materno, Fecha_nacimiento, Email, RFC, NumSeguro_Social)
 			VALUES (@CveEmpleado, @CURP, @Nombre, @A_Paterno, @A_Materno, @Fecha_nacimiento, @Email, @RFC, @NumSeguro_Social);
 
-			INSERT INTO Domicilio(calle, colonia, municipio, estado, codigo_postal, CveEmpleado)
-			VALUES (@calle, @colonia, @municipio, @estadoPais, @codigo_postal, @CveEmpleado);
+			INSERT INTO Domicilio(calle, numero, colonia, municipio, estado, codigo_postal, CveEmpleado)
+			VALUES (@calle, @numero, @colonia, @municipio, @estadoPais, @codigo_postal, @CveEmpleado);
 
 			INSERT INTO Telefono( Telefono, CveEmpleado)
 			VALUES (@Telefono, @CveEmpleado);
@@ -78,6 +78,15 @@ BEGIN
 	-- Eliminar un empleado
 	IF @Opcion = 'DELETE'
 	BEGIN
+
+		DELETE DatosPersonales
+		WHERE CveEmpleado=@CveEmpleado;
+
+		DELETE Domicilio
+		WHERE CveEmpleado=@CveEmpleado;
+
+		DELETE Telefono
+		WHERE CveEmpleado=@CveEmpleado;
 		
 		DELETE Empleado
 		WHERE CveEmpleado=@CveEmpleado;
@@ -150,12 +159,18 @@ BEGIN
 	BEGIN
 		SELECT	Empleado.CveEmpleado,
 				DatosPersonales.CURP,
+				DatosPersonales.RFC,
+				DatosPersonales.NumSeguro_Social,
 				DatosPersonales.Nombre,
 				DatosPersonales.A_Paterno,
 				DatosPersonales.A_Materno,
+				DatosPersonales.Fecha_nacimiento,
+				DatosPersonales.Email,
 				Empleado.Fecha_contratacion,
-				Departamento.Nombre,
-				Puesto.Nombre,
+				Departamento.Nombre as Depto,
+				Departamento.Sueldo_Base,
+				Puesto.Nombre as  Puesto,
+				Puesto.Nivel_Salarial,
 				Empleado.Fecha_POcupacion,
 				Telefono.Telefono,
 				Domicilio.calle,

@@ -37,10 +37,8 @@ namespace MAD_Pantallas
             this.listBoxPercepciones = new System.Windows.Forms.ListBox();
             this.listBoxDeducciones = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.DepartamentoSueldo = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.DeptoSueldo = new System.Windows.Forms.Label();
+            this.PuestoSueldo = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -60,6 +58,7 @@ namespace MAD_Pantallas
             this.NominaBuscar.Name = "NominaBuscar";
             this.NominaBuscar.Size = new System.Drawing.Size(200, 20);
             this.NominaBuscar.TabIndex = 1;
+            this.NominaBuscar.ValueChanged += new System.EventHandler(this.NominaBuscar_ValueChanged);
             // 
             // button1
             // 
@@ -113,37 +112,23 @@ namespace MAD_Pantallas
             this.label4.TabIndex = 6;
             this.label4.Text = "Deducciones aplicadas este mes";
             // 
-            // label5
+            // DeptoSueldo
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(15, 383);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(125, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Sueldo de Departamento";
+            this.DeptoSueldo.AutoSize = true;
+            this.DeptoSueldo.Location = new System.Drawing.Point(15, 396);
+            this.DeptoSueldo.Name = "DeptoSueldo";
+            this.DeptoSueldo.Size = new System.Drawing.Size(125, 13);
+            this.DeptoSueldo.TabIndex = 8;
+            this.DeptoSueldo.Text = "Sueldo de Departamento";
             // 
-            // DepartamentoSueldo
+            // PuestoSueldo
             // 
-            this.DepartamentoSueldo.Location = new System.Drawing.Point(15, 399);
-            this.DepartamentoSueldo.Name = "DepartamentoSueldo";
-            this.DepartamentoSueldo.Size = new System.Drawing.Size(100, 20);
-            this.DepartamentoSueldo.TabIndex = 9;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(15, 425);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(91, 13);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Sueldo de Puesto";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(15, 441);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 11;
+            this.PuestoSueldo.AutoSize = true;
+            this.PuestoSueldo.Location = new System.Drawing.Point(15, 425);
+            this.PuestoSueldo.Name = "PuestoSueldo";
+            this.PuestoSueldo.Size = new System.Drawing.Size(91, 13);
+            this.PuestoSueldo.TabIndex = 10;
+            this.PuestoSueldo.Text = "Sueldo de Puesto";
             // 
             // button2
             // 
@@ -171,10 +156,8 @@ namespace MAD_Pantallas
             this.ClientSize = new System.Drawing.Size(371, 520);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.DepartamentoSueldo);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.PuestoSueldo);
+            this.Controls.Add(this.DeptoSueldo);
             this.Controls.Add(this.listBoxDeducciones);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.listBoxPercepciones);
@@ -201,10 +184,8 @@ namespace MAD_Pantallas
         private System.Windows.Forms.ListBox listBoxPercepciones;
         private System.Windows.Forms.ListBox listBoxDeducciones;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox DepartamentoSueldo;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label DeptoSueldo;
+        private System.Windows.Forms.Label PuestoSueldo;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
     }

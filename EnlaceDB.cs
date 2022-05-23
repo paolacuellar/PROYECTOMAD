@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace MAD_Pantallas
 {
-    public class EnlaceDB
+    public partial class EnlaceDB
     {
         static private string _aux { set; get; }
         static private SqlConnection _conexion;
@@ -27,11 +27,12 @@ namespace MAD_Pantallas
             }
         }
 
-        private static void conectar()
+        private  void conectar()
         {
             //string cnn = ConfigurationManager.AppSettings["desarrollo1"];
-            string cnn = ConfigurationManager.ConnectionStrings["SQL_Auth"].ToString();
-            _conexion = new SqlConnection(cnn);
+           String connetionString = @"Data Source=DESKTOP-MFMA6VE\SQLEXPRESS;Initial Catalog=PROYECTOMAD;Integrated Security=True;";
+            //string cnn = ConfigurationManager.ConnectionStrings[connetionString].ToString();
+            _conexion = new SqlConnection(connetionString);
             _conexion.Open();
         }
 
@@ -40,20 +41,21 @@ namespace MAD_Pantallas
             _conexion.Close();
         }
 
-        public bool Autentificar(string us, string ps)
+        public DataRow Autentificar(string us, string ps)
         {
-            bool isValid = false;
+            var msg = "";
+            DataRow temp = null;
             try
             {
                 conectar();
-                string qry = "SP_ValidaUser";
+                string qry = "sp_ValidaUsuario";
                 _comandosql = new SqlCommand(qry, _conexion);
                 _comandosql.CommandType = CommandType.StoredProcedure;
                 _comandosql.CommandTimeout = 9000;
 
-                var parametro1 = _comandosql.Parameters.Add("@u", SqlDbType.Char, 20);
+                var parametro1 = _comandosql.Parameters.Add("@CveEmpleado", SqlDbType.Int, 20);
                 parametro1.Value = us;
-                var parametro2 = _comandosql.Parameters.Add("@p", SqlDbType.Char, 20);
+                var parametro2 = _comandosql.Parameters.Add("@Contrasenia", SqlDbType.VarChar, 25);
                 parametro2.Value = ps;
 
                 _adaptador.SelectCommand = _comandosql;
@@ -61,39 +63,101 @@ namespace MAD_Pantallas
 
                 if(_tabla.Rows.Count > 0)
                 {
-                    isValid = true;
+                    temp = _tabla.Rows[0];
                 }
 
             }
             catch(SqlException e)
             {
-                isValid = false;
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
             finally
             {
                 desconectar();
             }
 
-            return isValid;
+            return temp;
         }
 
-        public DataTable ConsultaTabla(string SP)
+        public DataRow getEmpleadoById(int id)
         {
             var msg = "";
-            DataTable tabla = new DataTable();
+            DataRow empleado = null;
             try
             {
+                _tabla = new DataTable();
                 conectar();
-                string qry = SP;
+                string qry = "sp_GestionEmpleado";
                 _comandosql = new SqlCommand(qry, _conexion);
                 _comandosql.CommandType = CommandType.StoredProcedure;
                 _comandosql.CommandTimeout = 1200;
 
-                var parametro1 = _comandosql.Parameters.Add("@Accion", SqlDbType.Char, 1);
-                parametro1.Value = "*";
+                var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
+                parametro1.Value = "VIEWE";
+
+                _comandosql.Parameters.Add("@CURP", SqlDbType.VarChar, 10);
+                _comandosql.Parameters.Add("@Nombre", SqlDbType.VarChar, 10);
+                _comandosql.Parameters.Add("@A_Paterno", SqlDbType.VarChar, 10);
+                _comandosql.Parameters.Add("@A_Materno", SqlDbType.VarChar, 10);
+                _comandosql.Parameters.Add("@Fecha_nacimiento", SqlDbType.VarChar, 10);
+                _comandosql.Parameters.Add("@Email", SqlDbType.VarChar, 10);
+                _comandosql.Parameters.Add("@RFC", SqlDbType.VarChar, 10);
+                _comandosql.Parameters.Add("@NumSeguro_Social", SqlDbType.VarChar, 10);
+
+                var parametro2 = _comandosql.Parameters.Add("@CveEmpleado", SqlDbType.Int, 10);
+                parametro2.Value = id;
 
                 _adaptador.SelectCommand = _comandosql;
-                _adaptador.Fill(tabla);
+                _adaptador.Fill(_tabla);
+
+                if (_tabla.Rows.Count > 0)
+                {
+                    empleado = _tabla.Rows[0];
+                }
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return empleado;
+        }
+
+        public DataTable getDateP(DateTime date)
+        {
+            var msg = "";
+            try
+            {
+                _tabla = new DataTable();
+                conectar();
+                string qry = "sp_AsignacionPD";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
+                parametro1.Value = "SPxM";
+
+                _comandosql.Parameters.Add("@CveEmpleado", SqlDbType.VarChar, 10);
+                _comandosql.Parameters.Add("@ID_Departamento", SqlDbType.Int, 10);
+                _comandosql.Parameters.Add("@ID_Deduccion", SqlDbType.TinyInt, 10);
+                _comandosql.Parameters.Add("@ID_Percepcion", SqlDbType.TinyInt, 10);
+                _comandosql.Parameters.Add("@ID_ADeduccion", SqlDbType.Int, 10);
+                _comandosql.Parameters.Add("@ID_APercepcion", SqlDbType.Int, 10);
+                
+                var parametro2 = _comandosql.Parameters.Add("@Fecha", SqlDbType.Date, 10);
+                parametro2.Value = date;
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(_tabla);
 
             }
             catch (SqlException e)
@@ -107,7 +171,50 @@ namespace MAD_Pantallas
                 desconectar();
             }
 
-            return tabla;
+            return _tabla;
+        }
+
+        public DataTable getDateD(DateTime date)
+        {
+            var msg = "";
+            try
+            {
+                _tabla = new DataTable();
+                conectar();
+                string qry = "sp_AsignacionPD";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
+                parametro1.Value = "SDxM";
+
+                _comandosql.Parameters.Add("@CveEmpleado", SqlDbType.VarChar, 10);
+                _comandosql.Parameters.Add("@ID_Departamento", SqlDbType.Int, 10);
+                _comandosql.Parameters.Add("@ID_Deduccion", SqlDbType.TinyInt, 10);
+                _comandosql.Parameters.Add("@ID_Percepcion", SqlDbType.TinyInt, 10);
+                _comandosql.Parameters.Add("@ID_ADeduccion", SqlDbType.Int, 10);
+                _comandosql.Parameters.Add("@ID_APercepcion", SqlDbType.Int, 10);
+
+                var parametro2 = _comandosql.Parameters.Add("@Fecha", SqlDbType.Date, 10);
+                parametro2.Value = date;
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(_tabla);
+
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return _tabla;
         }
 
         public DataTable get_Deptos(string opc)

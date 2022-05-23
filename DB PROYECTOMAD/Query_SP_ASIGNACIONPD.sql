@@ -90,5 +90,22 @@ INSERT INTO Asign_Empleado_Deduccion(CveEmpleado, ID_Deduccion, Fecha)
 			END
 		END
 
+		IF @Opcion = 'SPxM'
+		BEGIN
+			SELECT P.ID_Percepcion, P.Motivo, P.Tipo, P.Cantidad, P.Es_porcentaje, AP.CveEmpleado FROM Percepcion P
+			JOIN Asign_Empleado_Percepcion AP
+			ON AP.ID_Percepcion = P.ID_Percepcion
+			WHERE DATEPART(year, AP.Fecha)  =  DATEPART(year, @Fecha) AND  DATEPART(month, AP.Fecha)  =  DATEPART(month, @Fecha)
+		END
+
+		IF @Opcion = 'SDxM'
+		BEGIN
+			SELECT D.ID_Deduccion, D.Motivo, D.Tipo, D.Cantidad, D.Es_porcentaje, AD.CveEmpleado FROM Deduccion D
+			JOIN Asign_Empleado_Deduccion AD
+			ON AD.ID_Deduccion = D.ID_Deduccion
+			WHERE DATEPART(year, AD.Fecha)  =  DATEPART(year, @Fecha) AND  DATEPART(month, AD.Fecha)  =  DATEPART(month, @Fecha)
+		END
+
+
 
 END
