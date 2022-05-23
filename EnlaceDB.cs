@@ -131,7 +131,48 @@ namespace MAD_Pantallas
             return empleado;
         }
 
-        public DataTable getDateP(DateTime date)
+        public DataRow getNominaById(int id)
+        {
+            var msg = "";
+                DataRow empleado = null;
+                try
+                {
+                    _tabla = new DataTable();
+                    conectar();
+                    string qry = "sp_ViewNomina";
+                    _comandosql = new SqlCommand(qry, _conexion);
+                    _comandosql.CommandType = CommandType.StoredProcedure;
+                    _comandosql.CommandTimeout = 1200;
+
+                    var parametro1 = _comandosql.Parameters.Add("@Fecha", SqlDbType.Date, 10);
+                    parametro1.Value = "VIEWE";
+
+                    var parametro2 = _comandosql.Parameters.Add("@CveEmpleado", SqlDbType.Int, 10);
+                    parametro2.Value = id;
+
+                    _adaptador.SelectCommand = _comandosql;
+                    _adaptador.Fill(_tabla);
+
+                    if (_tabla.Rows.Count > 0)
+                    {
+                        empleado = _tabla.Rows[0];
+                    }
+                }
+                catch (SqlException e)
+                {
+                    msg = "Excepción de base de datos: \n";
+                    msg += e.Message;
+                    MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
+                finally
+                {
+                    desconectar();
+                }
+
+            return empleado;
+        }
+
+        public DataTable getPercepcionesByDate(DateTime date)
         {
             var msg = "";
             try
@@ -174,7 +215,7 @@ namespace MAD_Pantallas
             return _tabla;
         }
 
-        public DataTable getDateD(DateTime date)
+        public DataTable getDeduccionesByDate(DateTime date)
         {
             var msg = "";
             try
@@ -198,6 +239,72 @@ namespace MAD_Pantallas
 
                 var parametro2 = _comandosql.Parameters.Add("@Fecha", SqlDbType.Date, 10);
                 parametro2.Value = date;
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(_tabla);
+
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return _tabla;
+        }
+
+        public DataTable getAllP()
+        {
+            var msg = "";
+            try
+            {
+                _tabla = new DataTable();
+                conectar();
+                string qry = "sp_GestionPercepcion";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
+                parametro1.Value = "VIEW";
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(_tabla);
+
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return _tabla;
+        }
+
+        public DataTable getAllD()
+        {
+            var msg = "";
+            try
+            {
+                _tabla = new DataTable();
+                conectar();
+                string qry = "sp_GestionDeduccion";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
+                parametro1.Value = "VIEW";
 
                 _adaptador.SelectCommand = _comandosql;
                 _adaptador.Fill(_tabla);

@@ -34,7 +34,7 @@ namespace MAD_Pantallas
 
 
 
-            DataTable percepciones = enlace.getDateP(NominaBuscar.Value);
+            DataTable percepciones = enlace.getPercepcionesByDate(NominaBuscar.Value);
 
             foreach(DataRow row in percepciones.Rows)
             {
@@ -45,7 +45,7 @@ namespace MAD_Pantallas
                 }
             }
 
-            DataTable deducciones = enlace.getDateD(NominaBuscar.Value);
+            DataTable deducciones = enlace.getDeduccionesByDate(NominaBuscar.Value);
 
             foreach (DataRow row in deducciones.Rows)
             {
@@ -84,7 +84,7 @@ namespace MAD_Pantallas
             int userIdTemp = Properties.Settings.Default.UserId;
             EnlaceDB enlace = new EnlaceDB();
 
-            DataTable percepciones = enlace.getDateP(NominaBuscar.Value);
+            DataTable percepciones = enlace.getPercepcionesByDate(NominaBuscar.Value);
 
             foreach (DataRow row in percepciones.Rows)
             {
@@ -96,7 +96,7 @@ namespace MAD_Pantallas
             }
 
 
-            DataTable deducciones = enlace.getDateD(NominaBuscar.Value);
+            DataTable deducciones = enlace.getDeduccionesByDate(NominaBuscar.Value);
 
             foreach (DataRow row in deducciones.Rows)
             {

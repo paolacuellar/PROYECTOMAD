@@ -36,14 +36,14 @@ namespace MAD_Pantallas
             this.NuevaPerDed = new System.Windows.Forms.TextBox();
             this.MotivoPerDed = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboOp = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxP = new System.Windows.Forms.ListBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.listBoxD = new System.Windows.Forms.ListBox();
             this.label10 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -68,9 +68,10 @@ namespace MAD_Pantallas
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.FechaPer = new System.Windows.Forms.DateTimePicker();
+            this.FechaDed = new System.Windows.Forms.DateTimePicker();
             this.label21 = new System.Windows.Forms.Label();
+            this.Porcentaje = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -133,13 +134,13 @@ namespace MAD_Pantallas
             this.label5.TabIndex = 5;
             this.label5.Text = "Asignar Motivo";
             // 
-            // comboBox1
+            // comboOp
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(31, 57);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(171, 21);
-            this.comboBox1.TabIndex = 7;
+            this.comboOp.FormattingEnabled = true;
+            this.comboOp.Location = new System.Drawing.Point(31, 57);
+            this.comboOp.Name = "comboOp";
+            this.comboOp.Size = new System.Drawing.Size(171, 21);
+            this.comboOp.TabIndex = 7;
             // 
             // label6
             // 
@@ -166,13 +167,13 @@ namespace MAD_Pantallas
             this.label7.TabIndex = 9;
             this.label7.Text = "Asignar Cantidad";
             // 
-            // listBox1
+            // listBoxP
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(263, 22);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(852, 147);
-            this.listBox1.TabIndex = 11;
+            this.listBoxP.FormattingEnabled = true;
+            this.listBoxP.Location = new System.Drawing.Point(263, 22);
+            this.listBoxP.Name = "listBoxP";
+            this.listBoxP.Size = new System.Drawing.Size(852, 147);
+            this.listBoxP.TabIndex = 11;
             // 
             // label8
             // 
@@ -193,13 +194,13 @@ namespace MAD_Pantallas
             this.label9.TabIndex = 14;
             this.label9.Text = "Deducciones ya existentes";
             // 
-            // listBox2
+            // listBoxD
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(263, 197);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(852, 147);
-            this.listBox2.TabIndex = 15;
+            this.listBoxD.FormattingEnabled = true;
+            this.listBoxD.Location = new System.Drawing.Point(263, 197);
+            this.listBoxD.Name = "listBoxD";
+            this.listBoxD.Size = new System.Drawing.Size(852, 147);
+            this.listBoxD.TabIndex = 15;
             // 
             // label10
             // 
@@ -310,7 +311,7 @@ namespace MAD_Pantallas
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(31, 302);
+            this.button1.Location = new System.Drawing.Point(31, 316);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(171, 42);
             this.button1.TabIndex = 30;
@@ -319,7 +320,7 @@ namespace MAD_Pantallas
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(471, 677);
+            this.button2.Location = new System.Drawing.Point(467, 633);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(171, 29);
             this.button2.TabIndex = 31;
@@ -408,19 +409,19 @@ namespace MAD_Pantallas
             this.label20.TabIndex = 40;
             this.label20.Text = "Seleccionar fecha en la que se desea aplicar";
             // 
-            // dateTimePicker1
+            // FechaPer
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(31, 606);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 41;
+            this.FechaPer.Location = new System.Drawing.Point(31, 606);
+            this.FechaPer.Name = "FechaPer";
+            this.FechaPer.Size = new System.Drawing.Size(200, 20);
+            this.FechaPer.TabIndex = 41;
             // 
-            // dateTimePicker2
+            // FechaDed
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(775, 606);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker2.TabIndex = 43;
+            this.FechaDed.Location = new System.Drawing.Point(775, 606);
+            this.FechaDed.Name = "FechaDed";
+            this.FechaDed.Size = new System.Drawing.Size(200, 20);
+            this.FechaDed.TabIndex = 43;
             // 
             // label21
             // 
@@ -431,14 +432,25 @@ namespace MAD_Pantallas
             this.label21.TabIndex = 42;
             this.label21.Text = "Seleccionar fecha en la que se desea aplicar";
             // 
+            // Porcentaje
+            // 
+            this.Porcentaje.AutoSize = true;
+            this.Porcentaje.Location = new System.Drawing.Point(38, 276);
+            this.Porcentaje.Name = "Porcentaje";
+            this.Porcentaje.Size = new System.Drawing.Size(91, 17);
+            this.Porcentaje.TabIndex = 44;
+            this.Porcentaje.Text = "Es porcentaje";
+            this.Porcentaje.UseVisualStyleBackColor = true;
+            // 
             // Form6
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1127, 718);
-            this.Controls.Add(this.dateTimePicker2);
+            this.ClientSize = new System.Drawing.Size(1127, 672);
+            this.Controls.Add(this.Porcentaje);
+            this.Controls.Add(this.FechaDed);
             this.Controls.Add(this.label21);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.FechaPer);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label19);
@@ -463,14 +475,14 @@ namespace MAD_Pantallas
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.listBox2);
+            this.Controls.Add(this.listBoxD);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.listBoxP);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboOp);
             this.Controls.Add(this.MotivoPerDed);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.NuevaPerDed);
@@ -495,14 +507,14 @@ namespace MAD_Pantallas
         private System.Windows.Forms.TextBox NuevaPerDed;
         private System.Windows.Forms.TextBox MotivoPerDed;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboOp;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxP;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ListBox listBoxD;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.TextBox textBox2;
@@ -527,8 +539,9 @@ namespace MAD_Pantallas
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker FechaPer;
+        private System.Windows.Forms.DateTimePicker FechaDed;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.CheckBox Porcentaje;
     }
 }

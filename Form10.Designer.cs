@@ -34,11 +34,11 @@ namespace MAD_Pantallas
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.CSPuesto = new System.Windows.Forms.Label();
+            this.CSDepto = new System.Windows.Forms.Label();
+            this.CSPuestoSueldo = new System.Windows.Forms.Label();
+            this.CSDeptoSueldo = new System.Windows.Forms.Label();
+            this.CSsueldo = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -87,53 +87,53 @@ namespace MAD_Pantallas
             this.label2.TabIndex = 97;
             this.label2.Text = "Puesto:";
             // 
-            // label6
+            // CSPuesto
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(61, 112);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(35, 13);
-            this.label6.TabIndex = 98;
-            this.label6.Text = "label6";
+            this.CSPuesto.AutoSize = true;
+            this.CSPuesto.Location = new System.Drawing.Point(61, 112);
+            this.CSPuesto.Name = "CSPuesto";
+            this.CSPuesto.Size = new System.Drawing.Size(35, 13);
+            this.CSPuesto.TabIndex = 98;
+            this.CSPuesto.Text = "label6";
             // 
-            // label7
+            // CSDepto
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(96, 21);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
-            this.label7.TabIndex = 99;
-            this.label7.Text = "label7";
+            this.CSDepto.AutoSize = true;
+            this.CSDepto.Location = new System.Drawing.Point(96, 21);
+            this.CSDepto.Name = "CSDepto";
+            this.CSDepto.Size = new System.Drawing.Size(35, 13);
+            this.CSDepto.TabIndex = 99;
+            this.CSDepto.Text = "label7";
             // 
-            // label8
+            // CSPuestoSueldo
             // 
-            this.label8.AutoSize = true;
-            this.label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label8.Location = new System.Drawing.Point(18, 72);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(37, 15);
-            this.label8.TabIndex = 100;
-            this.label8.Text = "label8";
+            this.CSPuestoSueldo.AutoSize = true;
+            this.CSPuestoSueldo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CSPuestoSueldo.Location = new System.Drawing.Point(21, 156);
+            this.CSPuestoSueldo.Name = "CSPuestoSueldo";
+            this.CSPuestoSueldo.Size = new System.Drawing.Size(37, 15);
+            this.CSPuestoSueldo.TabIndex = 100;
+            this.CSPuestoSueldo.Text = "label8";
             // 
-            // label9
+            // CSDeptoSueldo
             // 
-            this.label9.AutoSize = true;
-            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label9.Location = new System.Drawing.Point(18, 155);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(37, 15);
-            this.label9.TabIndex = 101;
-            this.label9.Text = "label9";
+            this.CSDeptoSueldo.AutoSize = true;
+            this.CSDeptoSueldo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CSDeptoSueldo.Location = new System.Drawing.Point(21, 69);
+            this.CSDeptoSueldo.Name = "CSDeptoSueldo";
+            this.CSDeptoSueldo.Size = new System.Drawing.Size(37, 15);
+            this.CSDeptoSueldo.TabIndex = 101;
+            this.CSDeptoSueldo.Text = "label9";
             // 
-            // label10
+            // CSsueldo
             // 
-            this.label10.AutoSize = true;
-            this.label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label10.Location = new System.Drawing.Point(18, 235);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(43, 15);
-            this.label10.TabIndex = 102;
-            this.label10.Text = "label10";
+            this.CSsueldo.AutoSize = true;
+            this.CSsueldo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CSsueldo.Location = new System.Drawing.Point(21, 236);
+            this.CSsueldo.Name = "CSsueldo";
+            this.CSsueldo.Size = new System.Drawing.Size(43, 15);
+            this.CSsueldo.TabIndex = 102;
+            this.CSsueldo.Text = "label10";
             // 
             // button2
             // 
@@ -151,11 +151,11 @@ namespace MAD_Pantallas
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(327, 361);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.CSsueldo);
+            this.Controls.Add(this.CSDeptoSueldo);
+            this.Controls.Add(this.CSPuestoSueldo);
+            this.Controls.Add(this.CSDepto);
+            this.Controls.Add(this.CSPuesto);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label5);
@@ -175,11 +175,11 @@ namespace MAD_Pantallas
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label CSPuesto;
+        private System.Windows.Forms.Label CSDepto;
+        private System.Windows.Forms.Label CSPuestoSueldo;
+        private System.Windows.Forms.Label CSDeptoSueldo;
+        private System.Windows.Forms.Label CSsueldo;
         private System.Windows.Forms.Button button2;
     }
 }

@@ -29,16 +29,52 @@ namespace MAD_Pantallas
 
         private void Form6_Load(object sender, EventArgs e)
         {
+            FechaPer.Format = DateTimePickerFormat.Custom;
+            FechaPer.CustomFormat = "MM/yyyy";
+
+            FechaDed.Format = DateTimePickerFormat.Custom;
+            FechaDed.CustomFormat = "MM/yyyy";
+
+            comboOp.Items.Add("Percepcion");
+            comboOp.Items.Add("Deduccion");
+
+            EnlaceDB enlace = new EnlaceDB();
+            DataTable percepciones = enlace.getAllP(); 
+
+            foreach (DataRow row in percepciones.Rows)
+            {
+                //Llenar el list box percepciones
+                listBoxP.Items.Add(row["Motivo"]); 
+            }
+
+            DataTable deducciones = enlace.getAllD();
+
+            foreach (DataRow row in deducciones.Rows)
+            {
+                //Llenar el list box deducciones
+                listBoxD.Items.Add(row["Motivo"]);
+            }
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form2 frm = new Form2();
+            String rol = Properties.Settings.Default.Permission;
 
-            this.Hide();
-            frm.ShowDialog();
-            this.Show();
+            if (rol == "EM")
+            {
+                Form3 frm = new Form3();
+                this.Hide();
+                frm.ShowDialog();
+                this.Show();
+            }
+            else if (rol == "GG")
+            {
+                Form2 frm = new Form2();
+                this.Hide();
+                frm.ShowDialog();
+                this.Show();
+            }
         }
     }
 }

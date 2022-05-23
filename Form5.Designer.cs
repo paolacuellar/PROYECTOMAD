@@ -31,7 +31,6 @@ namespace MAD_Pantallas
         {
             this.label1 = new System.Windows.Forms.Label();
             this.NominaBuscar = new System.Windows.Forms.DateTimePicker();
-            this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.listBoxPercepciones = new System.Windows.Forms.ListBox();
@@ -60,19 +59,10 @@ namespace MAD_Pantallas
             this.NominaBuscar.TabIndex = 1;
             this.NominaBuscar.ValueChanged += new System.EventHandler(this.NominaBuscar_ValueChanged);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(15, 64);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(200, 24);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Buscar Nómina";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 122);
+            this.label2.Location = new System.Drawing.Point(15, 76);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 13);
             this.label2.TabIndex = 3;
@@ -81,7 +71,7 @@ namespace MAD_Pantallas
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 148);
+            this.label3.Location = new System.Drawing.Point(15, 102);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(165, 13);
             this.label3.TabIndex = 4;
@@ -90,7 +80,7 @@ namespace MAD_Pantallas
             // listBoxPercepciones
             // 
             this.listBoxPercepciones.FormattingEnabled = true;
-            this.listBoxPercepciones.Location = new System.Drawing.Point(15, 164);
+            this.listBoxPercepciones.Location = new System.Drawing.Point(15, 118);
             this.listBoxPercepciones.Name = "listBoxPercepciones";
             this.listBoxPercepciones.Size = new System.Drawing.Size(344, 95);
             this.listBoxPercepciones.TabIndex = 5;
@@ -98,7 +88,7 @@ namespace MAD_Pantallas
             // listBoxDeducciones
             // 
             this.listBoxDeducciones.FormattingEnabled = true;
-            this.listBoxDeducciones.Location = new System.Drawing.Point(15, 282);
+            this.listBoxDeducciones.Location = new System.Drawing.Point(15, 236);
             this.listBoxDeducciones.Name = "listBoxDeducciones";
             this.listBoxDeducciones.Size = new System.Drawing.Size(344, 95);
             this.listBoxDeducciones.TabIndex = 7;
@@ -106,7 +96,7 @@ namespace MAD_Pantallas
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 266);
+            this.label4.Location = new System.Drawing.Point(15, 220);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(163, 13);
             this.label4.TabIndex = 6;
@@ -115,7 +105,7 @@ namespace MAD_Pantallas
             // DeptoSueldo
             // 
             this.DeptoSueldo.AutoSize = true;
-            this.DeptoSueldo.Location = new System.Drawing.Point(15, 396);
+            this.DeptoSueldo.Location = new System.Drawing.Point(15, 350);
             this.DeptoSueldo.Name = "DeptoSueldo";
             this.DeptoSueldo.Size = new System.Drawing.Size(125, 13);
             this.DeptoSueldo.TabIndex = 8;
@@ -124,7 +114,7 @@ namespace MAD_Pantallas
             // PuestoSueldo
             // 
             this.PuestoSueldo.AutoSize = true;
-            this.PuestoSueldo.Location = new System.Drawing.Point(15, 425);
+            this.PuestoSueldo.Location = new System.Drawing.Point(15, 379);
             this.PuestoSueldo.Name = "PuestoSueldo";
             this.PuestoSueldo.Size = new System.Drawing.Size(91, 13);
             this.PuestoSueldo.TabIndex = 10;
@@ -163,7 +153,6 @@ namespace MAD_Pantallas
             this.Controls.Add(this.listBoxPercepciones);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.NominaBuscar);
             this.Controls.Add(this.label1);
             this.Name = "Form5";
@@ -178,7 +167,6 @@ namespace MAD_Pantallas
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker NominaBuscar;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ListBox listBoxPercepciones;
