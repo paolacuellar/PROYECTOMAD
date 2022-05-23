@@ -50,7 +50,7 @@ namespace MAD_Pantallas
             this.button1 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxPuestos = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -234,13 +234,13 @@ namespace MAD_Pantallas
             this.label7.TabIndex = 93;
             this.label7.Text = "Agregar nuevo puesto";
             // 
-            // listBox1
+            // listBoxPuestos
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(6, 30);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(334, 407);
-            this.listBox1.TabIndex = 92;
+            this.listBoxPuestos.FormattingEnabled = true;
+            this.listBoxPuestos.Location = new System.Drawing.Point(6, 30);
+            this.listBoxPuestos.Name = "listBoxPuestos";
+            this.listBoxPuestos.Size = new System.Drawing.Size(334, 407);
+            this.listBoxPuestos.TabIndex = 92;
             // 
             // label1
             // 
@@ -277,10 +277,11 @@ namespace MAD_Pantallas
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.listBoxPuestos);
             this.Controls.Add(this.label1);
             this.Name = "Form9";
             this.Text = "Gestión de Puestos";
+            this.Load += new System.EventHandler(this.Form9_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -309,7 +310,7 @@ namespace MAD_Pantallas
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxPuestos;
         private System.Windows.Forms.Label label1;
     }
 }

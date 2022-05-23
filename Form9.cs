@@ -19,11 +19,39 @@ namespace MAD_Pantallas
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form2 frm = new Form2();
+            String rol = Properties.Settings.Default.Permission;
 
-            this.Hide();
-            frm.ShowDialog();
-            this.Show();
+            if (rol == "EM")
+            {
+                Form3 frm = new Form3();
+                this.Hide();
+                frm.ShowDialog();
+                this.Show();
+            }
+            else if (rol == "GG")
+            {
+                Form2 frm = new Form2();
+                this.Hide();
+                frm.ShowDialog();
+                this.Show();
+            }
+        }
+
+        private void Form9_Load(object sender, EventArgs e)
+        {
+            EnlaceDB enlace = new EnlaceDB();
+            DataTable puestos = enlace.getPuestosV();
+
+
+
+            foreach (DataRow row in puestos.Rows)
+            {
+                //Llenar el list box percepciones 
+                listBoxPuestos.Items.Add(new KeyValuePair<string, string>(row["ID_Puesto"].ToString(), row["Nombre"].ToString()));
+                listBoxPuestos.ValueMember = "Key";
+                listBoxPuestos.DisplayMember = "Value";
+
+            }
         }
     }
 }

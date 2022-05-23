@@ -41,6 +41,7 @@ namespace MAD_Pantallas
             _conexion.Close();
         }
 
+        //Verificamos las credenciales del empleado para darle acceso y mostrar el menu correspondiente
         public DataRow Autentificar(string us, string ps)
         {
             var msg = "";
@@ -81,6 +82,7 @@ namespace MAD_Pantallas
             return temp;
         }
 
+        //Buscamos los datos del empleado por ID para poder mostrar la informacion correcta en la ventana de Perfil
         public DataRow getEmpleadoById(int id)
         {
             var msg = "";
@@ -131,6 +133,7 @@ namespace MAD_Pantallas
             return empleado;
         }
 
+        //Obtenemos la nomina del empleado por ID para poder mostrarla 
         public DataRow getNominaById(int id)
         {
             var msg = "";
@@ -172,6 +175,8 @@ namespace MAD_Pantallas
             return empleado;
         }
 
+        //Buscamos las percepciones y las deducciones por fecha para mostrar las que fueron mostradas en cierto mes 
+        //en la ventana de consultar nomina
         public DataTable getPercepcionesByDate(DateTime date)
         {
             var msg = "";
@@ -258,6 +263,8 @@ namespace MAD_Pantallas
             return _tabla;
         }
 
+        //Buscamos todas las percepciones y las deducciones para mostrarlas en los listbox de la ventana de 
+        //gestion de percepciones y deducciones para poder aplicarlas a una nomina
         public DataTable getAllP()
         {
             var msg = "";
@@ -324,6 +331,7 @@ namespace MAD_Pantallas
             return _tabla;
         }
 
+        //Obtenemos la vista de Departamentos, Empleados y Puestos para mostrarlos en los listbox correspondientes en cada ventana
         public DataTable getDeptosV()
         {
             var msg = "";
@@ -358,7 +366,75 @@ namespace MAD_Pantallas
             return tabla;
         }
 
-       /* public DataTable updateDeptos(int id)
+        public DataTable getEmpleadosV()
+        {
+            var msg = "";
+            DataTable tabla = new DataTable();
+            try
+            {
+                conectar();
+                string qry = "sp_GestionEmpleado";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
+                parametro1.Value = "VIEW";
+
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(tabla);
+
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
+        }
+
+        public DataTable getPuestosV()
+        {
+            var msg = "";
+            DataTable tabla = new DataTable();
+            try
+            {
+                conectar();
+                string qry = "sp_GestionPuesto";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
+                parametro1.Value = "VIEW";
+
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(tabla);
+
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
+        }
+
+        /* public DataTable updateDeptos(int id)
         {
 
         }*/

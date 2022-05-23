@@ -30,7 +30,7 @@ namespace MAD_Pantallas
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxemp = new System.Windows.Forms.ListBox();
             this.EmpleadoCorreo = new System.Windows.Forms.TextBox();
             this.EmpleadoTelefono = new System.Windows.Forms.TextBox();
             this.EmpleadoDomicilio = new System.Windows.Forms.TextBox();
@@ -64,20 +64,16 @@ namespace MAD_Pantallas
             this.label7 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button6 = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label25 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -89,13 +85,13 @@ namespace MAD_Pantallas
             this.label1.TabIndex = 0;
             this.label1.Text = "Empleados ya existentes";
             // 
-            // listBox1
+            // listBoxemp
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(4, 25);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(319, 511);
-            this.listBox1.TabIndex = 1;
+            this.listBoxemp.FormattingEnabled = true;
+            this.listBoxemp.Location = new System.Drawing.Point(4, 25);
+            this.listBoxemp.Name = "listBoxemp";
+            this.listBoxemp.Size = new System.Drawing.Size(319, 511);
+            this.listBoxemp.TabIndex = 1;
             // 
             // EmpleadoCorreo
             // 
@@ -367,24 +363,6 @@ namespace MAD_Pantallas
             this.button1.Text = "Agregar";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(405, 244);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(130, 23);
-            this.button3.TabIndex = 58;
-            this.button3.Text = "Mostrar información";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(400, 201);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(140, 13);
-            this.label19.TabIndex = 57;
-            this.label19.Text = "Ingresar clave del empleado";
-            // 
             // label20
             // 
             this.label20.AutoSize = true;
@@ -393,13 +371,6 @@ namespace MAD_Pantallas
             this.label20.Size = new System.Drawing.Size(142, 13);
             this.label20.TabIndex = 56;
             this.label20.Text = "Editar datos de un empleado";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(381, 218);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(179, 20);
-            this.textBox1.TabIndex = 59;
             // 
             // label21
             // 
@@ -421,7 +392,7 @@ namespace MAD_Pantallas
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(388, 291);
+            this.button4.Location = new System.Drawing.Point(390, 213);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(164, 23);
             this.button4.TabIndex = 62;
@@ -430,37 +401,21 @@ namespace MAD_Pantallas
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(388, 466);
+            this.button5.Location = new System.Drawing.Point(388, 392);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(164, 23);
             this.button5.TabIndex = 67;
             this.button5.Text = "Eliminar información";
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(381, 393);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(179, 20);
-            this.textBox2.TabIndex = 66;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(405, 419);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(130, 23);
-            this.button6.TabIndex = 65;
-            this.button6.Text = "Mostrar información";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(400, 376);
+            this.label23.Location = new System.Drawing.Point(385, 376);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(140, 13);
+            this.label23.Size = new System.Drawing.Size(174, 13);
             this.label23.TabIndex = 64;
-            this.label23.Text = "Ingresar clave del empleado";
+            this.label23.Text = "Seleccionar un empleado de la lista";
             // 
             // label24
             // 
@@ -487,24 +442,29 @@ namespace MAD_Pantallas
             this.comboBox2.Size = new System.Drawing.Size(179, 21);
             this.comboBox2.TabIndex = 69;
             // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(385, 195);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(174, 13);
+            this.label25.TabIndex = 70;
+            this.label25.Text = "Seleccionar un empleado de la lista";
+            // 
             // Form7
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1070, 543);
+            this.Controls.Add(this.label25);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.button6);
             this.Controls.Add(this.label23);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label22);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.label19);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label11);
@@ -539,7 +499,7 @@ namespace MAD_Pantallas
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.listBoxemp);
             this.Controls.Add(this.label1);
             this.Name = "Form7";
             this.Text = "Gestión de Empleados";
@@ -552,7 +512,7 @@ namespace MAD_Pantallas
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxemp;
         private System.Windows.Forms.TextBox EmpleadoCorreo;
         private System.Windows.Forms.TextBox EmpleadoTelefono;
         private System.Windows.Forms.TextBox EmpleadoDomicilio;
@@ -586,19 +546,15 @@ namespace MAD_Pantallas
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label25;
     }
 }
