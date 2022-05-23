@@ -48,7 +48,7 @@ namespace MAD_Pantallas
 
             foreach (DataRow row in deptos.Rows)
             {
-                //Llenar el list box percepciones 
+                //Llenar el list box departamentos
                 listBoxDeptos.Items.Add(new KeyValuePair<string, string>(row["ID_Departamento"].ToString(), row["Nombre"].ToString()));
                 listBoxDeptos.ValueMember = "Key";
                 listBoxDeptos.DisplayMember = "Value";
@@ -67,8 +67,19 @@ namespace MAD_Pantallas
         }
         private void listBoxDeptos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //deptoC.Text = listBoxDeptos.SelectedItem["Key"].ToString();
-            //deptoN.Text = listBoxDeptos.SelectedItem["Value"].ToString();
+
+            EnlaceDB enlace = new EnlaceDB();
+
+            String iddeptos = ((KeyValuePair<string, string>)listBoxDeptos.SelectedItem).Key.ToString();
+
+            int idDeptoTemp = Int32.Parse(iddeptos);
+
+            DataRow deptoTem = enlace.getDeptoById(idDeptoTemp);
+
+            deptoN.Text = ((KeyValuePair<string, string>)listBoxDeptos.SelectedItem).Value.ToString();
+            deptoC.Text = deptoTem["ID_Departamento"].ToString();
+            deptoSB.Text = deptoTem["Sueldo Base"].ToString();
+
         }
         
         

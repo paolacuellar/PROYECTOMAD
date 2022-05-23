@@ -133,6 +133,48 @@ namespace MAD_Pantallas
             return empleado;
         }
 
+        //Departamento by id
+        public DataRow getDeptoById(int id)
+        {
+            var msg = "";
+            DataRow depto = null;
+            try
+            {
+                _tabla = new DataTable();
+                conectar();
+                string qry = "sp_GestionDepartamento";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
+                parametro1.Value = "VIEWE";
+
+                var parametro2 = _comandosql.Parameters.Add("@ID_Departamento", SqlDbType.Int, 10);
+                parametro2.Value = id;
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(_tabla);
+
+                if (_tabla.Rows.Count > 0)
+                {
+                    depto = _tabla.Rows[0];
+                }
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return depto;
+        }
+
         //Obtenemos la nomina del empleado por ID para poder mostrarla 
         public DataRow getNominaById(int id)
         {
