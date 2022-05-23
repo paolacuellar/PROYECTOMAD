@@ -57,7 +57,8 @@ BEGIN
 	-- Ver todos los departamentos existentes
 	IF @Opcion = 'VIEW'
 	BEGIN
-		SELECT	Nombre,
+		SELECT	ID_Departamento,
+				Nombre,
 				Sueldo_Base 'Sueldo Base'
 		FROM Departamento
 	END

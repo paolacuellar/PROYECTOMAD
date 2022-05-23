@@ -324,7 +324,7 @@ namespace MAD_Pantallas
             return _tabla;
         }
 
-        public DataTable get_Deptos(string opc)
+        public DataTable getDeptosV()
         {
             var msg = "";
             DataTable tabla = new DataTable();
@@ -336,8 +336,8 @@ namespace MAD_Pantallas
                 _comandosql.CommandType = CommandType.StoredProcedure;
                 _comandosql.CommandTimeout = 1200;
 
-                var parametro1 = _comandosql.Parameters.Add("@pOperacion", SqlDbType.Char, 1);
-                parametro1.Value = opc; /*'x'*/
+                var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
+                parametro1.Value = "VIEW"; 
 
 
                 _adaptador.SelectCommand = _comandosql;
@@ -358,42 +358,9 @@ namespace MAD_Pantallas
             return tabla;
         }
 
-        public bool Add_Deptos(string opc, string depto)
+       /* public DataTable updateDeptos(int id)
         {
-            var msg = "";
-            var add = true;
-            try
-            {
-                conectar();
-                string qry = "sp_Gestiona_Deptos";
-                _comandosql = new SqlCommand(qry, _conexion);
-                _comandosql.CommandType = CommandType.StoredProcedure;
-                _comandosql.CommandTimeout = 1200;
 
-                var parametro1 = _comandosql.Parameters.Add("@Opc", SqlDbType.Char, 1);
-                parametro1.Value = opc;
-                var parametro2 = _comandosql.Parameters.Add("@Nombre", SqlDbType.VarChar, 20);
-                parametro2.Value = depto;
-
-                _adaptador.InsertCommand = _comandosql;
-                
-                _comandosql.ExecuteNonQuery();
-
-            }
-            catch (SqlException e)
-            {
-                add = false;
-                msg = "Excepción de base de datos: \n";
-                msg += e.Message;
-                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-            }
-            finally
-            {
-                desconectar();                
-            }
-
-            return add;
-        }
-
+        }*/
     }
 }
