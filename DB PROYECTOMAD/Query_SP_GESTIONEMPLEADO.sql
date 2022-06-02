@@ -157,7 +157,7 @@ BEGIN
 	-- Ver la informacion de un empleado en especifico
 	IF @Opcion = 'VIEWE'
 	BEGIN
-		SELECT	Empleado.CveEmpleado,
+		SELECT	Empleado.CveEmpleado as Clave,
 				DatosPersonales.CURP,
 				DatosPersonales.RFC,
 				DatosPersonales.NumSeguro_Social,

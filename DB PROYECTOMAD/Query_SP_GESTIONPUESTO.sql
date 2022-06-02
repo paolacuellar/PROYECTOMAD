@@ -30,7 +30,8 @@ BEGIN
 	-- Ver la lista de puestos
 	IF @Opcion = 'VIEW'
 	BEGIN
-		SELECT	Nombre,
+		SELECT	ID_Puesto,
+				Nombre,
 				Nivel_Salarial 'Nivel Salarial'
 		FROM Puesto
 	END

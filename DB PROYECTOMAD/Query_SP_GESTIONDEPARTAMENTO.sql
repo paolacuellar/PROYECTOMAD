@@ -63,4 +63,13 @@ BEGIN
 		FROM Departamento
 	END
 
+	IF @Opcion = 'VIEWE'
+	BEGIN
+		SELECT	ID_Departamento,
+				Nombre,
+				Sueldo_Base 'Sueldo Base'
+		FROM Departamento
+		WHERE ID_Departamento=@ID_Departamento
+	END
+
 END
