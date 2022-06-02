@@ -72,7 +72,9 @@ namespace MAD_Pantallas
             EmpleadoPuesto.Text = String.Concat("Puesto ",empleado["Puesto"].ToString()).ToString();
             EmpleadoOperaciones.Text = String.Concat("Contratación: ", empleado["Fecha_contratacion"].ToString()).ToString();
             EmpleadoDepto.Text = String.Concat("Departamento: ", empleado["Depto"].ToString()).ToString();
-            EmpleadoClave.Text = String.Concat("Clave Empleado: ", empleado["CveEmpleado"].ToString()).ToString();
+            EmpleadoClave.Text = String.Concat("Clave Empleado: ", empleado["Clave"].ToString()).ToString();
+
+            EmpleadoPassword.Text = empleado["Contrasenia"].ToString();
 
         }
 

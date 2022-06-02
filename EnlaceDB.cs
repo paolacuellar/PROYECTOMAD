@@ -30,7 +30,11 @@ namespace MAD_Pantallas
         private  void conectar()
         {
             //string cnn = ConfigurationManager.AppSettings["desarrollo1"];
-           String connetionString = @"Data Source=DESKTOP-MFMA6VE\SQLEXPRESS;Initial Catalog=PROYECTOMAD;Integrated Security=True;";
+
+           //String connetionString = @"Data Source=DESKTOP-MFMA6VE\SQLEXPRESS;Initial Catalog=PROYECTOMAD;Integrated Security=True;"; ARELY
+
+           String connetionString = @"Data Source=DESKTOP-51SJOGN;Initial Catalog=PROYECTOMAD;Integrated Security=True;";
+
             //string cnn = ConfigurationManager.ConnectionStrings[connetionString].ToString();
             _conexion = new SqlConnection(connetionString);
             _conexion.Open();
@@ -99,14 +103,14 @@ namespace MAD_Pantallas
                 var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
                 parametro1.Value = "VIEWE";
 
-                _comandosql.Parameters.Add("@CURP", SqlDbType.VarChar, 10);
-                _comandosql.Parameters.Add("@Nombre", SqlDbType.VarChar, 10);
-                _comandosql.Parameters.Add("@A_Paterno", SqlDbType.VarChar, 10);
-                _comandosql.Parameters.Add("@A_Materno", SqlDbType.VarChar, 10);
+                _comandosql.Parameters.Add("@CURP", SqlDbType.VarChar, 25);
+                _comandosql.Parameters.Add("@Nombre", SqlDbType.VarChar, 255);
+                _comandosql.Parameters.Add("@A_Paterno", SqlDbType.VarChar, 25);
+                _comandosql.Parameters.Add("@A_Materno", SqlDbType.VarChar, 25);
                 _comandosql.Parameters.Add("@Fecha_nacimiento", SqlDbType.VarChar, 10);
-                _comandosql.Parameters.Add("@Email", SqlDbType.VarChar, 10);
-                _comandosql.Parameters.Add("@RFC", SqlDbType.VarChar, 10);
-                _comandosql.Parameters.Add("@NumSeguro_Social", SqlDbType.VarChar, 10);
+                _comandosql.Parameters.Add("@Email", SqlDbType.VarChar, 25);
+                _comandosql.Parameters.Add("@RFC", SqlDbType.VarChar, 25);
+                _comandosql.Parameters.Add("@NumSeguro_Social", SqlDbType.VarChar, 25);
 
                 var parametro2 = _comandosql.Parameters.Add("@CveEmpleado", SqlDbType.Int, 10);
                 parametro2.Value = id;
@@ -527,7 +531,7 @@ namespace MAD_Pantallas
             try
             {
                 conectar();
-                string qry = "sp_GestionEmpleados";
+                string qry = "sp_GestionEmpleado";
                 _comandosql = new SqlCommand(qry, _conexion);
                 _comandosql.CommandType = CommandType.StoredProcedure;
                 _comandosql.CommandTimeout = 1200;
@@ -538,14 +542,15 @@ namespace MAD_Pantallas
                 var parametro2 = _comandosql.Parameters.Add("@CveEmpleado", SqlDbType.Int, 10);
                 parametro2.Value = id;
 
-                var parametro3 = _comandosql.Parameters.Add("@Email", SqlDbType.VarChar, 10);
+                var parametro3 = _comandosql.Parameters.Add("@Email", SqlDbType.VarChar, 25);
                 parametro3.Value = emailT;
 
-                var parametro4 = _comandosql.Parameters.Add("@telefono", SqlDbType.VarChar, 18);
+                var parametro4 = _comandosql.Parameters.Add("@telefono", SqlDbType.VarChar, 25);
                 parametro4.Value = telefonoT;
 
-                var parametro5 = _comandosql.Parameters.Add("@Constrasenia", SqlDbType.VarChar, 25);
+                var parametro5 = _comandosql.Parameters.Add("@Contrasenia", SqlDbType.VarChar, 25);
                 parametro5.Value = contraseniaT;
+           
 
                 int rows = _comandosql.ExecuteNonQuery();
 
@@ -556,7 +561,7 @@ namespace MAD_Pantallas
                 }
                 else
                 {
-                    MessageBox.Show("Se actualizo el departamento!", "Excelente!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Se actualizaron sus datos!", "Excelente!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
             }
@@ -575,7 +580,7 @@ namespace MAD_Pantallas
         }
         //Por Gestion de Gerente
         public bool updateEmpleados(int id, string nombreT, string apellidopT, string apellidomT, string curpT, string nacimientoT, string emailT,
-            string rfcT, string nssT, string bancoT, int numbancariaT, string calleT, int numT, string coloniaT, string estadoT, string telefonoT,
+            string rfcT, string nssT, string bancoT, string numbancariaT, string calleT, int numT, string coloniaT, string estadoT, string telefonoT,
             string contraseniaT, string operacionesT)
         {
             bool seActualizo = true;
@@ -583,7 +588,7 @@ namespace MAD_Pantallas
             try
             {
                 conectar();
-                string qry = "sp_GestionEmpleados";
+                string qry = "sp_GestionEmpleado";
                 _comandosql = new SqlCommand(qry, _conexion);
                 _comandosql.CommandType = CommandType.StoredProcedure;
                 _comandosql.CommandTimeout = 1200;
@@ -594,35 +599,41 @@ namespace MAD_Pantallas
                 var parametro2 = _comandosql.Parameters.Add("@CveEmpleado", SqlDbType.Int, 10);
                 parametro2.Value = id; 
 
-                var parametro3 = _comandosql.Parameters.Add("@Nombre", SqlDbType.VarChar, 10);
+                var parametro3 = _comandosql.Parameters.Add("@Nombre", SqlDbType.VarChar, 25);
                 parametro3.Value = nombreT;
 
-                var parametro4 = _comandosql.Parameters.Add("@A_Paterno", SqlDbType.VarChar, 10);
+                var parametro4 = _comandosql.Parameters.Add("@A_Paterno", SqlDbType.VarChar, 25);
                 parametro4.Value = apellidopT;
 
-                var parametro5 = _comandosql.Parameters.Add("@A_Materno", SqlDbType.VarChar, 10);
+                var parametro5 = _comandosql.Parameters.Add("@A_Materno", SqlDbType.VarChar, 25);
                 parametro5.Value = apellidomT;
 
-                var parametro6 = _comandosql.Parameters.Add("@CURP", SqlDbType.VarChar, 10);
+                var parametro6 = _comandosql.Parameters.Add("@CURP", SqlDbType.VarChar, 25);
                 parametro6.Value = curpT;
 
-                var parametro7 = _comandosql.Parameters.Add("@Fecha_nacimiento", SqlDbType.VarChar, 10);
+                var parametro7 = _comandosql.Parameters.Add("@Fecha_nacimiento", SqlDbType.Date, 10);
                 parametro7.Value = nacimientoT;
 
-                var parametro8 = _comandosql.Parameters.Add("@Email", SqlDbType.VarChar, 10);
+                var parametro8 = _comandosql.Parameters.Add("@Email", SqlDbType.VarChar, 25);
                 parametro8.Value = emailT;
 
-                var parametro9 = _comandosql.Parameters.Add("@RFC", SqlDbType.VarChar, 10);
+                var parametro9 = _comandosql.Parameters.Add("@RFC", SqlDbType.VarChar, 25);
                 parametro9.Value = rfcT;
 
-                var parametro10 = _comandosql.Parameters.Add("@NumSeguro_Social", SqlDbType.VarChar, 10);
-                parametro10.Value = nssT;
+                var parametro10 = _comandosql.Parameters.Add("@NumSeguro_Social", SqlDbType.Int, 10);
+                if(nssT == "")
+                    parametro10.Value = DBNull.Value;
+                else
+                    parametro10.Value = nssT;
 
-                var parametro11 = _comandosql.Parameters.Add("@Banco", SqlDbType.VarChar, 25);
+                var parametro11 = _comandosql.Parameters.Add("@Banco", SqlDbType.VarChar, 50);
                 parametro11.Value = bancoT;
 
                 var parametro12 = _comandosql.Parameters.Add("@NumCuentaBan", SqlDbType.Int, 25);
-                parametro12.Value = numbancariaT;
+                if (nssT == "")
+                    parametro12.Value = DBNull.Value;
+                else
+                    parametro12.Value = numbancariaT;
 
                 var parametro13 = _comandosql.Parameters.Add("@calle", SqlDbType.VarChar, 25);
                 parametro13.Value = calleT;
@@ -639,10 +650,10 @@ namespace MAD_Pantallas
                 var parametro17 = _comandosql.Parameters.Add("@telefono", SqlDbType.VarChar, 18);
                 parametro17.Value = telefonoT;
 
-                var parametro18 = _comandosql.Parameters.Add("@Constrasenia", SqlDbType.VarChar, 25);
+                var parametro18 = _comandosql.Parameters.Add("@Contrasenia", SqlDbType.VarChar, 25);
                 parametro18.Value = contraseniaT;
 
-                var parametro19 = _comandosql.Parameters.Add("@Fecha_contratacion", SqlDbType.VarChar, 25);
+                var parametro19 = _comandosql.Parameters.Add("@Fecha_contratacion", SqlDbType.Date, 25);
                 parametro19.Value = operacionesT;
 
                 int rows = _comandosql.ExecuteNonQuery();

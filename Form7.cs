@@ -20,6 +20,8 @@ namespace MAD_Pantallas
         private void Form7_Load(object sender, EventArgs e)
         {
             resetListBoxEmpleados();
+            getDepartamentos();
+            getPuestos();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -53,7 +55,7 @@ namespace MAD_Pantallas
             DataRow empTem = enlace.getEmpleadoById(idEmpTemp);
 
             EmpleadoNombre.Text = ((KeyValuePair<string, string>)listBoxemp.SelectedItem).Value.ToString();
-            EmpleadoClave.Text = empTem["CveEmpleado"].ToString();
+            EmpleadoClave.Text = empTem["Clave"].ToString();
             EmpleadoApellidoP.Text = empTem["A_Paterno"].ToString();
             EmpleadoApellidoM.Text = empTem["A_Materno"].ToString();
             EmpleadoNacimiento.Text = empTem["Fecha_nacimiento"].ToString();
@@ -70,6 +72,13 @@ namespace MAD_Pantallas
             EmpleadoBanco.Text = empTem["Banco"].ToString();
             EmpleadoCBancaria.Text = empTem["NumCuentaBan"].ToString();
             EmpleadoPassword.Text = empTem["contrasenia"].ToString();
+
+            KeyValuePair<string, string> puestoSeleccionado = new KeyValuePair<string, string>(empTem["id_Puesto"].ToString(), empTem["Puesto"].ToString());
+            cbPuestos.SelectedItem = puestoSeleccionado;
+
+            KeyValuePair<string, string> deptoSeleccionado = new KeyValuePair<string, string>(empTem["id_Depto"].ToString(), empTem["Depto"].ToString());
+            cbDeptos.SelectedItem = deptoSeleccionado;
+
         }
 
         //Actualizar Datos del Empleado
@@ -89,11 +98,11 @@ namespace MAD_Pantallas
             string nacimientoT = EmpleadoNacimiento.Text;
             string emailT = EmpleadoCorreo.Text;
             string rfcT = EmpleadoRFC.Text;
-            string nssT = EmpleadoNSS.Text;
+            string nssT = EmpleadoNSS.Text.ToString();
             string bancoT = EmpleadoBanco.Text;
-            int numbancariaT = Int32.Parse(EmpleadoCBancaria.Text);
+            string numbancariaT = EmpleadoCBancaria.Text.ToString();
             string calleT = EmpleadoCalle.Text;
-            int numT = Int32.Parse(EmpleadoNum.Text); 
+            int numT = Int32.Parse(EmpleadoNum.Text.ToString()); 
             string coloniaT = EmpleadoColonia.Text;
             string estadoT = EmpleadoMunicipio.Text;
             string telefonoT = EmpleadoTelefono.Text;
@@ -117,10 +126,44 @@ namespace MAD_Pantallas
 
             foreach (DataRow row in emp.Rows)
             {
-                //Llenar el list box empleados 
+                //Llenar el list box de empleados 
                 listBoxemp.Items.Add(new KeyValuePair<string, string>(row["Clave"].ToString(), row["Nombre"].ToString()));
                 listBoxemp.ValueMember = "Key";
                 listBoxemp.DisplayMember = "Value";
+
+            }
+        }
+
+        private void getDepartamentos()
+        {
+            EnlaceDB enlace = new EnlaceDB();
+            DataTable depto = enlace.getDeptosV();
+
+            cbDeptos.Items.Clear();
+
+            foreach (DataRow row in depto.Rows)
+            {
+                //Llenar el combo box de departamentos
+                cbDeptos.Items.Add(new KeyValuePair<string, string>(row["ID_Departamento"].ToString(), row["Nombre"].ToString()));
+                cbDeptos.ValueMember = "Key";
+                cbDeptos.DisplayMember = "Value";
+
+            }
+        }
+
+        private void getPuestos()
+        {
+            EnlaceDB enlace = new EnlaceDB();
+            DataTable puesto = enlace.getPuestosV();
+
+            cbPuestos.Items.Clear();
+
+            foreach (DataRow row in puesto.Rows)
+            {
+                //Llenar el combo box de departamentos
+                cbPuestos.Items.Add(new KeyValuePair<string, string>(row["ID_Puesto"].ToString(), row["Nombre"].ToString()));
+                cbPuestos.ValueMember = "Key";
+                cbPuestos.DisplayMember = "Value";
 
             }
         }

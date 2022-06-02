@@ -68,8 +68,8 @@ namespace MAD_Pantallas
             this.button5 = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbDeptos = new System.Windows.Forms.ComboBox();
+            this.cbPuestos = new System.Windows.Forms.ComboBox();
             this.label25 = new System.Windows.Forms.Label();
             this.EmpleadoNacimiento = new System.Windows.Forms.Label();
             this.EmpleadoClave = new System.Windows.Forms.Label();
@@ -412,21 +412,21 @@ namespace MAD_Pantallas
             this.label24.TabIndex = 63;
             this.label24.Text = "Eliminar datos de un empleado";
             // 
-            // comboBox1
+            // cbDeptos
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(852, 200);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(179, 21);
-            this.comboBox1.TabIndex = 68;
+            this.cbDeptos.FormattingEnabled = true;
+            this.cbDeptos.Location = new System.Drawing.Point(852, 200);
+            this.cbDeptos.Name = "cbDeptos";
+            this.cbDeptos.Size = new System.Drawing.Size(179, 21);
+            this.cbDeptos.TabIndex = 68;
             // 
-            // comboBox2
+            // cbPuestos
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(852, 245);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(179, 21);
-            this.comboBox2.TabIndex = 69;
+            this.cbPuestos.FormattingEnabled = true;
+            this.cbPuestos.Location = new System.Drawing.Point(852, 245);
+            this.cbPuestos.Name = "cbPuestos";
+            this.cbPuestos.Size = new System.Drawing.Size(179, 21);
+            this.cbPuestos.TabIndex = 69;
             // 
             // label25
             // 
@@ -515,8 +515,8 @@ namespace MAD_Pantallas
             this.Controls.Add(this.EmpleadoClave);
             this.Controls.Add(this.EmpleadoNacimiento);
             this.Controls.Add(this.label25);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbPuestos);
+            this.Controls.Add(this.cbDeptos);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.label23);
             this.Controls.Add(this.label24);
@@ -605,8 +605,8 @@ namespace MAD_Pantallas
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbDeptos;
+        private System.Windows.Forms.ComboBox cbPuestos;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label EmpleadoNacimiento;
         private System.Windows.Forms.Label EmpleadoClave;
