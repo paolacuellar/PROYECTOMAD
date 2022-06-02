@@ -26,7 +26,7 @@ namespace MAD_Pantallas
 
             foreach (DataRow row in emp.Rows)
             {
-                //Llenar el list box percepciones 
+                //Llenar el list box empleados 
                 listBoxemp.Items.Add(new KeyValuePair<string, string>(row["Clave"].ToString(), row["Nombre"].ToString()));
                 listBoxemp.ValueMember = "Key";
                 listBoxemp.DisplayMember = "Value";
@@ -53,6 +53,33 @@ namespace MAD_Pantallas
                 frm.ShowDialog();
                 this.Show();
             }
+        }
+
+        private void listBoxemp_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            EnlaceDB enlace = new EnlaceDB();
+
+            String idemp = ((KeyValuePair<string, string>)listBoxemp.SelectedItem).Key.ToString();
+
+            int idEmpTemp = Int32.Parse(idemp);
+
+            DataRow empTem = enlace.getEmpleadoById(idEmpTemp);
+
+            EmpleadoNombre.Text = ((KeyValuePair<string, string>)listBoxemp.SelectedItem).Value.ToString();
+            EmpleadoClave.Text = empTem["CveEmpleado"].ToString();
+            EmpleadoApellidoP.Text = empTem["A_Paterno"].ToString();
+            EmpleadoApellidoM.Text = empTem["A_Materno"].ToString();
+            EmpleadoNacimiento.Text = empTem["Fecha_nacimiento"].ToString();
+            EmpleadoCURP.Text = empTem["CURP"].ToString();
+            EmpleadoRFC.Text = empTem["RFC"].ToString();
+            EmpleadoCalle.Text = empTem["calle"].ToString();
+            EmpleadoNum.Text = empTem["numero"].ToString();
+            EmpleadoColonia.Text = empTem["colonia"].ToString();
+            EmpleadoMunicipio.Text = empTem["municipio"].ToString();
+            EmpleadoTelefono.Text = empTem["Telefono"].ToString();
+            EmpleadoCorreo.Text = empTem["Email"].ToString();
+            EmpleadoNSS.Text = empTem["NumSeguro_Social"].ToString();
+            EmpleadoOperaciones.Text = empTem["Fecha_contratacion"].ToString();
         }
     }
 }
