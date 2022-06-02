@@ -41,30 +41,29 @@ namespace MAD_Pantallas
         {
 
 
-            EnlaceDB enlace = new EnlaceDB();
-            DataTable deptos = enlace.getDeptosV();
-
-
-
-            foreach (DataRow row in deptos.Rows)
-            {
-                //Llenar el list box departamentos
-                listBoxDeptos.Items.Add(new KeyValuePair<string, string>(row["ID_Departamento"].ToString(), row["Nombre"].ToString()));
-                listBoxDeptos.ValueMember = "Key";
-                listBoxDeptos.DisplayMember = "Value";
-
-            }
+            resetListBoxDeptos();
         }
 
        
         private void DeptoUpdate_Click(object sender, EventArgs e)
         {
+            ///ACTUALIZAR DEPARTAMENTOS
 
+            EnlaceDB enlace = new EnlaceDB();
+
+            String iddeptos = ((KeyValuePair<string, string>)listBoxDeptos.SelectedItem).Key.ToString();
+            int idDeptoTemp = Int32.Parse(iddeptos);
+
+            string nombreT = deptoN.Text;
+
+            float sueldo_baseT = float.Parse(deptoSB.Text);
+
+            if (enlace.updateDeptos(idDeptoTemp, nombreT, sueldo_baseT))
+            {
+                resetListBoxDeptos();
+            }
         } 
-        private void button1_Click(object sender, EventArgs e)
-        {
 
-        }
         private void listBoxDeptos_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -81,7 +80,28 @@ namespace MAD_Pantallas
             deptoSB.Text = deptoTem["Sueldo Base"].ToString();
 
         }
-        
+
+        private void resetListBoxDeptos()
+        {
+            EnlaceDB enlace = new EnlaceDB();
+            DataTable deptos = enlace.getDeptosV();
+
+            listBoxDeptos.Items.Clear();
+
+
+            foreach (DataRow row in deptos.Rows)
+            {
+                //Llenar el list box departamentos
+                listBoxDeptos.Items.Add(new KeyValuePair<string, string>(row["ID_Departamento"].ToString(), row["Nombre"].ToString()));
+                listBoxDeptos.ValueMember = "Key";
+                listBoxDeptos.DisplayMember = "Value";
+
+            }
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
         
         private void label3_Click(object sender, EventArgs e)
         {

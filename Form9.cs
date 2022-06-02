@@ -53,5 +53,25 @@ namespace MAD_Pantallas
 
             }
         }
+
+        private void listBoxPuestos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            EnlaceDB enlace = new EnlaceDB();
+
+            String idpuestos = ((KeyValuePair<string, string>)listBoxPuestos.SelectedItem).Key.ToString();
+
+            int idPuestoTemp = Int32.Parse(idpuestos);
+
+            DataRow puestoTem = enlace.getPuestoById(idPuestoTemp);
+
+            PuestoN.Text = ((KeyValuePair<string, string>)listBoxPuestos.SelectedItem).Value.ToString();
+            PuestoC.Text = puestoTem["ID_Puesto"].ToString();
+            PuestoSB.Text = puestoTem["Nivel Salarial"].ToString();
+        }
+
+        private void label19_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

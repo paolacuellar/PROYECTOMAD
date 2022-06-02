@@ -175,6 +175,48 @@ namespace MAD_Pantallas
             return depto;
         }
 
+        //Departamento by id
+        public DataRow getPuestoById(int id)
+        {
+            var msg = "";
+            DataRow puesto = null;
+            try
+            {
+                _tabla = new DataTable();
+                conectar();
+                string qry = "sp_GestionPuesto";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
+                parametro1.Value = "VIEWE";
+
+                var parametro2 = _comandosql.Parameters.Add("@ID_Puesto", SqlDbType.Int, 10);
+                parametro2.Value = id;
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(_tabla);
+
+                if (_tabla.Rows.Count > 0)
+                {
+                    puesto = _tabla.Rows[0];
+                }
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return puesto;
+        }
+
         //Obtenemos la nomina del empleado por ID para poder mostrarla 
         public DataRow getNominaById(int id)
         {
@@ -477,10 +519,10 @@ namespace MAD_Pantallas
         }
 
         /*Actualizar Datos de Departamentos*/
-        public DataTable updateDeptos()
+        public bool updateDeptos(int id, string nombreT, float sueldo_baseT)
         {
+            bool seActualizo = true;
             var msg = "";
-            DataTable tabla = new DataTable();
             try
             {
                 conectar();
@@ -492,23 +534,40 @@ namespace MAD_Pantallas
                 var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
                 parametro1.Value = "UPDATE";
 
+                var parametro2 = _comandosql.Parameters.Add("@ID_Departamento", SqlDbType.Int, 10);
+                parametro2.Value = id;
 
-                _adaptador.SelectCommand = _comandosql;
-                _adaptador.Fill(tabla);
+                var parametro3 = _comandosql.Parameters.Add("@Nombre", SqlDbType.VarChar, 25);
+                parametro3.Value = nombreT;
+
+                var parametro4 = _comandosql.Parameters.Add("@Sueldo_Base", SqlDbType.Decimal, 10);
+                parametro4.Value = sueldo_baseT;
+
+                int rows = _comandosql.ExecuteNonQuery();
+
+                if (rows <= 0)
+                {
+                    MessageBox.Show("No se actualizo ninguna fila", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    seActualizo = false;
+                }
+                else
+                {
+                    MessageBox.Show("Se actualizo el departamento!", "Excelente!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
 
             }
             catch (SqlException e)
             {
-                msg = "Excepción de base de datos: \n";
+                msg = "ExcepciÃ³n de base de datos: \n";
                 msg += e.Message;
                 MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                seActualizo = false;
             }
             finally
             {
                 desconectar();
             }
-
-            return tabla;
+            return seActualizo;
         }
     }
 }

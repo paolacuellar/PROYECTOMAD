@@ -36,6 +36,15 @@ BEGIN
 		FROM Puesto
 	END
 
+		-- Ver la lista de puestos
+	IF @Opcion = 'VIEWE'
+	BEGIN
+		SELECT	ID_Puesto,
+				Nombre,
+				Nivel_Salarial 'Nivel Salarial'
+		FROM Puesto
+		WHERE ID_Puesto=@ID_Puesto
+	END
 	-- Actualizar un puesto
 	IF @Opcion = 'UPDATE'
 	BEGIN
