@@ -518,7 +518,104 @@ namespace MAD_Pantallas
             return tabla;
         }
 
-        /*Actualizar Datos de Departamentos*/
+        //Actualizar datos de Empleados//
+
+        public bool updateEmpleados(int id, string nombreT, string apellidopT, string apellidomT, string curpT, string nacimientoT, string emailT,
+            string rfcT, string nssT, string bancoT, int numbancariaT, string calleT, int numT, string coloniaT, string estadoT, string telefonoT,
+            string contraseniaT)
+        {
+            bool seActualizo = true;
+            var msg = "";
+            try
+            {
+                conectar();
+                string qry = "sp_GestionEmpleados";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
+                parametro1.Value = "UPDATE";
+
+                var parametro2 = _comandosql.Parameters.Add("@CveEmpleado", SqlDbType.Int, 10);
+                parametro2.Value = id; 
+
+                var parametro3 = _comandosql.Parameters.Add("@Nombre", SqlDbType.VarChar, 10);
+                parametro3.Value = nombreT;
+
+                var parametro4 = _comandosql.Parameters.Add("@A_Paterno", SqlDbType.VarChar, 10);
+                parametro4.Value = apellidopT;
+
+                var parametro5 = _comandosql.Parameters.Add("@A_Materno", SqlDbType.VarChar, 10);
+                parametro5.Value = apellidomT;
+
+                var parametro6 = _comandosql.Parameters.Add("@CURP", SqlDbType.VarChar, 10);
+                parametro6.Value = curpT;
+
+                var parametro7 = _comandosql.Parameters.Add("@Fecha_nacimiento", SqlDbType.VarChar, 10);
+                parametro7.Value = nacimientoT;
+
+                var parametro8 = _comandosql.Parameters.Add("@Email", SqlDbType.VarChar, 10);
+                parametro8.Value = emailT;
+
+                var parametro9 = _comandosql.Parameters.Add("@RFC", SqlDbType.VarChar, 10);
+                parametro9.Value = rfcT;
+
+                var parametro10 = _comandosql.Parameters.Add("@NumSeguro_Social", SqlDbType.VarChar, 10);
+                parametro10.Value = nssT;
+
+                var parametro11 = _comandosql.Parameters.Add("@Banco", SqlDbType.VarChar, 25);
+                parametro11.Value = bancoT;
+
+                var parametro12 = _comandosql.Parameters.Add("@NumCuentaBan", SqlDbType.Int, 25);
+                parametro12.Value = numbancariaT;
+
+                var parametro13 = _comandosql.Parameters.Add("@calle", SqlDbType.VarChar, 25);
+                parametro13.Value = calleT;
+
+                var parametro14 = _comandosql.Parameters.Add("@numero", SqlDbType.Int, 10);
+                parametro14.Value = numT;
+
+                var parametro15 = _comandosql.Parameters.Add("@colonia", SqlDbType.VarChar, 25);
+                parametro15.Value = coloniaT;
+
+                var parametro16 = _comandosql.Parameters.Add("@estadopais", SqlDbType.VarChar, 25);
+                parametro16.Value = estadoT;
+
+                var parametro17 = _comandosql.Parameters.Add("@telefono", SqlDbType.VarChar, 18);
+                parametro17.Value = telefonoT;
+
+                var parametro18 = _comandosql.Parameters.Add("@Constrasenia", SqlDbType.VarChar, 25);
+                parametro18.Value = contraseniaT;
+
+                int rows = _comandosql.ExecuteNonQuery();
+
+                if (rows <= 0)
+                {
+                    MessageBox.Show("No se actualizo ninguna fila", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    seActualizo = false;
+                }
+                else
+                {
+                    MessageBox.Show("Se actualizo el departamento!", "Excelente!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepcion de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                seActualizo = false;
+            }
+            finally
+            {
+                desconectar();
+            }
+            return seActualizo;
+        }
+
+        //Actualizar datos de Departamentos//
         public bool updateDeptos(int id, string nombreT, float sueldo_baseT)
         {
             bool seActualizo = true;
@@ -558,7 +655,7 @@ namespace MAD_Pantallas
             }
             catch (SqlException e)
             {
-                msg = "ExcepciÃ³n de base de datos: \n";
+                msg = "Excepcion de base de datos: \n";
                 msg += e.Message;
                 MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 seActualizo = false;
@@ -569,5 +666,59 @@ namespace MAD_Pantallas
             }
             return seActualizo;
         }
+
+        //Actualizar datos de puesto//
+        public bool updatePuestos(int id, string nombreT, float nivel_salarialT)
+        {
+            bool seActualizo = true;
+            var msg = "";
+            try
+            {
+                conectar();
+                string qry = "sp_GestionPuesto";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
+                parametro1.Value = "UPDATE";
+
+                var parametro2 = _comandosql.Parameters.Add("@ID_Puesto", SqlDbType.Int, 10);
+                parametro2.Value = id;
+
+                var parametro3 = _comandosql.Parameters.Add("@Nombre", SqlDbType.VarChar, 25);
+                parametro3.Value = nombreT;
+
+                var parametro4 = _comandosql.Parameters.Add("@Nivel_Salarial", SqlDbType.Decimal, 10);
+                parametro4.Value = nivel_salarialT;
+
+                int rows = _comandosql.ExecuteNonQuery();
+
+                if (rows <= 0)
+                {
+                    MessageBox.Show("No se actualizo ninguna fila", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    seActualizo = false;
+                }
+                else
+                {
+                    MessageBox.Show("Se actualizo el puesto!", "Excelente!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepcion de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                seActualizo = false;
+            }
+            finally
+            {
+                desconectar();
+            }
+            return seActualizo;
+        }
+    
+        
     }
 }

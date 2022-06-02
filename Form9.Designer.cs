@@ -36,11 +36,11 @@ namespace MAD_Pantallas
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
+            this.PuestoDelete = new System.Windows.Forms.Button();
             this.label24 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
+            this.PuestoUpdate = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.PuestoAdd = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.listBoxPuestos = new System.Windows.Forms.ListBox();
@@ -110,14 +110,14 @@ namespace MAD_Pantallas
             this.label2.TabIndex = 106;
             this.label2.Text = "Datos del puesto";
             // 
-            // button5
+            // PuestoDelete
             // 
-            this.button5.Location = new System.Drawing.Point(393, 287);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(164, 23);
-            this.button5.TabIndex = 105;
-            this.button5.Text = "Eliminar información";
-            this.button5.UseVisualStyleBackColor = true;
+            this.PuestoDelete.Location = new System.Drawing.Point(393, 287);
+            this.PuestoDelete.Name = "PuestoDelete";
+            this.PuestoDelete.Size = new System.Drawing.Size(164, 23);
+            this.PuestoDelete.TabIndex = 105;
+            this.PuestoDelete.Text = "Eliminar información";
+            this.PuestoDelete.UseVisualStyleBackColor = true;
             // 
             // label24
             // 
@@ -128,14 +128,15 @@ namespace MAD_Pantallas
             this.label24.TabIndex = 101;
             this.label24.Text = "Eliminar datos de un puesto";
             // 
-            // button4
+            // PuestoUpdate
             // 
-            this.button4.Location = new System.Drawing.Point(390, 176);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(164, 23);
-            this.button4.TabIndex = 100;
-            this.button4.Text = "Guardar nueva información";
-            this.button4.UseVisualStyleBackColor = true;
+            this.PuestoUpdate.Location = new System.Drawing.Point(390, 176);
+            this.PuestoUpdate.Name = "PuestoUpdate";
+            this.PuestoUpdate.Size = new System.Drawing.Size(164, 23);
+            this.PuestoUpdate.TabIndex = 100;
+            this.PuestoUpdate.Text = "Guardar nueva información";
+            this.PuestoUpdate.UseVisualStyleBackColor = true;
+            this.PuestoUpdate.Click += new System.EventHandler(this.button4_Click);
             // 
             // label20
             // 
@@ -146,14 +147,14 @@ namespace MAD_Pantallas
             this.label20.TabIndex = 96;
             this.label20.Text = "Editar datos de un puesto";
             // 
-            // button1
+            // PuestoAdd
             // 
-            this.button1.Location = new System.Drawing.Point(435, 86);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 95;
-            this.button1.Text = "Agregar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.PuestoAdd.Location = new System.Drawing.Point(435, 86);
+            this.PuestoAdd.Name = "PuestoAdd";
+            this.PuestoAdd.Size = new System.Drawing.Size(75, 23);
+            this.PuestoAdd.TabIndex = 95;
+            this.PuestoAdd.Text = "Agregar";
+            this.PuestoAdd.UseVisualStyleBackColor = true;
             // 
             // label11
             // 
@@ -234,11 +235,11 @@ namespace MAD_Pantallas
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.PuestoDelete);
             this.Controls.Add(this.label24);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.PuestoUpdate);
             this.Controls.Add(this.label20);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.PuestoAdd);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.listBoxPuestos);
@@ -260,11 +261,11 @@ namespace MAD_Pantallas
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button PuestoDelete;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button PuestoUpdate;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button PuestoAdd;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ListBox listBoxPuestos;

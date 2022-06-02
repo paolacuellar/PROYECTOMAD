@@ -19,20 +19,7 @@ namespace MAD_Pantallas
 
         private void Form7_Load(object sender, EventArgs e)
         {
-            EnlaceDB enlace = new EnlaceDB();
-            DataTable emp = enlace.getEmpleadosV();
-
-
-
-            foreach (DataRow row in emp.Rows)
-            {
-                //Llenar el list box empleados 
-                listBoxemp.Items.Add(new KeyValuePair<string, string>(row["Clave"].ToString(), row["Nombre"].ToString()));
-                listBoxemp.ValueMember = "Key";
-                listBoxemp.DisplayMember = "Value";
-
-            }
-
+            resetListBoxEmpleados();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -80,6 +67,32 @@ namespace MAD_Pantallas
             EmpleadoCorreo.Text = empTem["Email"].ToString();
             EmpleadoNSS.Text = empTem["NumSeguro_Social"].ToString();
             EmpleadoOperaciones.Text = empTem["Fecha_contratacion"].ToString();
+            EmpleadoBanco.Text = empTem["Banco"].ToString();
+            EmpleadoCBancaria.Text = empTem["NumCuentaBan"].ToString();
         }
+
+        //Actualizar Datos del Empleado
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void resetListBoxEmpleados()
+        {
+            EnlaceDB enlace = new EnlaceDB();
+            DataTable emp = enlace.getEmpleadosV();
+
+            listBoxemp.Items.Clear();
+
+            foreach (DataRow row in emp.Rows)
+            {
+                //Llenar el list box empleados 
+                listBoxemp.Items.Add(new KeyValuePair<string, string>(row["Clave"].ToString(), row["Nombre"].ToString()));
+                listBoxemp.ValueMember = "Key";
+                listBoxemp.DisplayMember = "Value";
+
+            }
+        }
+
     }
 }

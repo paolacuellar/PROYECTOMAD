@@ -39,19 +39,7 @@ namespace MAD_Pantallas
 
         private void Form9_Load(object sender, EventArgs e)
         {
-            EnlaceDB enlace = new EnlaceDB();
-            DataTable puestos = enlace.getPuestosV();
-
-
-
-            foreach (DataRow row in puestos.Rows)
-            {
-                //Llenar el list box percepciones 
-                listBoxPuestos.Items.Add(new KeyValuePair<string, string>(row["ID_Puesto"].ToString(), row["Nombre"].ToString()));
-                listBoxPuestos.ValueMember = "Key";
-                listBoxPuestos.DisplayMember = "Value";
-
-            }
+            resetListBoxPuestos();
         }
 
         private void listBoxPuestos_SelectedIndexChanged(object sender, EventArgs e)
@@ -69,9 +57,47 @@ namespace MAD_Pantallas
             PuestoSB.Text = puestoTem["Nivel Salarial"].ToString();
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ///ACTUALIZAR PUESTOS
+
+            EnlaceDB enlace = new EnlaceDB();
+
+            String idPuestos = ((KeyValuePair<string, string>)listBoxPuestos.SelectedItem).Key.ToString();
+            int idPuestoTemp = Int32.Parse(idPuestos);
+
+            string nombreT = PuestoN.Text;
+
+            float nivel_salarialT = float.Parse(PuestoSB.Text);
+
+            if (enlace.updatePuestos(idPuestoTemp, nombreT, nivel_salarialT))
+            {
+                resetListBoxPuestos();
+            }
+        }
+
+        private void resetListBoxPuestos()
+        {
+            EnlaceDB enlace = new EnlaceDB();
+            DataTable puestos = enlace.getPuestosV();
+            
+            listBoxPuestos.Items.Clear();
+
+            foreach (DataRow row in puestos.Rows)
+            {
+                //Llenar el list box percepciones 
+                listBoxPuestos.Items.Add(new KeyValuePair<string, string>(row["ID_Puesto"].ToString(), row["Nombre"].ToString()));
+                listBoxPuestos.ValueMember = "Key";
+                listBoxPuestos.DisplayMember = "Value";
+
+            }
+        }
+
         private void label19_Click(object sender, EventArgs e)
         {
 
         }
+
+
     }
 }

@@ -178,7 +178,10 @@ BEGIN
 				Domicilio.colonia,
 				Domicilio.codigo_postal,
 				Domicilio.municipio,
-				Domicilio.estado
+				Domicilio.estado,
+				Empleado.NumCuentaBan,
+				Empleado.Banco,
+				Empleado.Contrasenia
 		FROM Empleado
 		JOIN DatosPersonales ON Empleado.CveEmpleado=DatosPersonales.CveEmpleado
 		JOIN Telefono ON Empleado.CveEmpleado=Telefono.CveEmpleado

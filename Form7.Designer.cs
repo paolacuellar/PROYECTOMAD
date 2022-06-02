@@ -77,6 +77,8 @@ namespace MAD_Pantallas
             this.EmpleadoNum = new System.Windows.Forms.TextBox();
             this.EmpleadoColonia = new System.Windows.Forms.TextBox();
             this.EmpleadoMunicipio = new System.Windows.Forms.TextBox();
+            this.EmpleadoBanco = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -99,7 +101,7 @@ namespace MAD_Pantallas
             // 
             // EmpleadoCorreo
             // 
-            this.EmpleadoCorreo.Location = new System.Drawing.Point(852, 120);
+            this.EmpleadoCorreo.Location = new System.Drawing.Point(852, 115);
             this.EmpleadoCorreo.Name = "EmpleadoCorreo";
             this.EmpleadoCorreo.Size = new System.Drawing.Size(179, 20);
             this.EmpleadoCorreo.TabIndex = 36;
@@ -156,7 +158,7 @@ namespace MAD_Pantallas
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(852, 104);
+            this.label10.Location = new System.Drawing.Point(852, 99);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(94, 13);
             this.label10.TabIndex = 27;
@@ -227,21 +229,21 @@ namespace MAD_Pantallas
             // 
             // EmpleadoCBancaria
             // 
-            this.EmpleadoCBancaria.Location = new System.Drawing.Point(852, 380);
+            this.EmpleadoCBancaria.Location = new System.Drawing.Point(850, 381);
             this.EmpleadoCBancaria.Name = "EmpleadoCBancaria";
             this.EmpleadoCBancaria.Size = new System.Drawing.Size(179, 20);
             this.EmpleadoCBancaria.TabIndex = 51;
             // 
             // EmpleadoNSS
             // 
-            this.EmpleadoNSS.Location = new System.Drawing.Point(852, 321);
+            this.EmpleadoNSS.Location = new System.Drawing.Point(852, 291);
             this.EmpleadoNSS.Name = "EmpleadoNSS";
             this.EmpleadoNSS.Size = new System.Drawing.Size(179, 20);
             this.EmpleadoNSS.TabIndex = 50;
             // 
             // EmpleadoPassword
             // 
-            this.EmpleadoPassword.Location = new System.Drawing.Point(852, 162);
+            this.EmpleadoPassword.Location = new System.Drawing.Point(852, 157);
             this.EmpleadoPassword.Name = "EmpleadoPassword";
             this.EmpleadoPassword.Size = new System.Drawing.Size(179, 20);
             this.EmpleadoPassword.TabIndex = 46;
@@ -249,7 +251,7 @@ namespace MAD_Pantallas
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(852, 364);
+            this.label12.Location = new System.Drawing.Point(850, 365);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(86, 13);
             this.label12.TabIndex = 44;
@@ -258,7 +260,7 @@ namespace MAD_Pantallas
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(852, 248);
+            this.label13.Location = new System.Drawing.Point(852, 229);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(40, 13);
             this.label13.TabIndex = 43;
@@ -267,7 +269,7 @@ namespace MAD_Pantallas
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(852, 305);
+            this.label14.Location = new System.Drawing.Point(852, 275);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(128, 13);
             this.label14.TabIndex = 42;
@@ -276,7 +278,7 @@ namespace MAD_Pantallas
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(852, 406);
+            this.label15.Location = new System.Drawing.Point(852, 419);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(158, 13);
             this.label15.TabIndex = 41;
@@ -285,7 +287,7 @@ namespace MAD_Pantallas
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(852, 196);
+            this.label16.Location = new System.Drawing.Point(852, 184);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(74, 13);
             this.label16.TabIndex = 40;
@@ -294,7 +296,7 @@ namespace MAD_Pantallas
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(852, 146);
+            this.label17.Location = new System.Drawing.Point(852, 141);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(126, 13);
             this.label17.TabIndex = 39;
@@ -381,6 +383,7 @@ namespace MAD_Pantallas
             this.button4.TabIndex = 62;
             this.button4.Text = "Guardar nueva información";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
@@ -412,7 +415,7 @@ namespace MAD_Pantallas
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(852, 212);
+            this.comboBox1.Location = new System.Drawing.Point(852, 200);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(179, 21);
             this.comboBox1.TabIndex = 68;
@@ -420,7 +423,7 @@ namespace MAD_Pantallas
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(852, 264);
+            this.comboBox2.Location = new System.Drawing.Point(852, 245);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(179, 21);
             this.comboBox2.TabIndex = 69;
@@ -455,7 +458,7 @@ namespace MAD_Pantallas
             // EmpleadoOperaciones
             // 
             this.EmpleadoOperaciones.AutoSize = true;
-            this.EmpleadoOperaciones.Location = new System.Drawing.Point(852, 422);
+            this.EmpleadoOperaciones.Location = new System.Drawing.Point(852, 435);
             this.EmpleadoOperaciones.Name = "EmpleadoOperaciones";
             this.EmpleadoOperaciones.Size = new System.Drawing.Size(158, 13);
             this.EmpleadoOperaciones.TabIndex = 73;
@@ -482,11 +485,29 @@ namespace MAD_Pantallas
             this.EmpleadoMunicipio.Size = new System.Drawing.Size(179, 20);
             this.EmpleadoMunicipio.TabIndex = 76;
             // 
+            // EmpleadoBanco
+            // 
+            this.EmpleadoBanco.Location = new System.Drawing.Point(850, 335);
+            this.EmpleadoBanco.Name = "EmpleadoBanco";
+            this.EmpleadoBanco.Size = new System.Drawing.Size(179, 20);
+            this.EmpleadoBanco.TabIndex = 78;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(850, 319);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(38, 13);
+            this.label19.TabIndex = 77;
+            this.label19.Text = "Banco";
+            // 
             // Form7
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1070, 543);
+            this.Controls.Add(this.EmpleadoBanco);
+            this.Controls.Add(this.label19);
             this.Controls.Add(this.EmpleadoMunicipio);
             this.Controls.Add(this.EmpleadoColonia);
             this.Controls.Add(this.EmpleadoNum);
@@ -593,5 +614,7 @@ namespace MAD_Pantallas
         private System.Windows.Forms.TextBox EmpleadoNum;
         private System.Windows.Forms.TextBox EmpleadoColonia;
         private System.Windows.Forms.TextBox EmpleadoMunicipio;
+        private System.Windows.Forms.TextBox EmpleadoBanco;
+        private System.Windows.Forms.Label label19;
     }
 }
