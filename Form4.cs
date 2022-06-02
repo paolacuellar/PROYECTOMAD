@@ -56,9 +56,9 @@ namespace MAD_Pantallas
 
             DataRow empleado = enlace.getEmpleadoById(userIdTemp);
 
-            EmpleadoNombre.Text = empleado["Nombre"].ToString();
-            EmpleadoApellidoP.Text = empleado["A_Paterno"].ToString();
-            EmpleadoApellidoM.Text = empleado["A_Materno"].ToString();
+            EmpleadoNombre.Text = String.Concat("Nombre(s): ", empleado["Nombre"].ToString()).ToString();
+            EmpleadoApellidoP.Text = String.Concat("Apellido paterno: ", empleado["A_Paterno"].ToString()).ToString();
+            EmpleadoApellidoM.Text = String.Concat("Apellido materno: ", empleado["A_Materno"].ToString()).ToString();
             EmpleadoNacimiento.Text = String.Concat("Fecha de Nacimiento ", empleado["Fecha_nacimiento"].ToString()).ToString();
             EmpleadoCURP.Text = String.Concat("CURP: ", empleado["CURP"].ToString()).ToString();
             EmpleadoRFC.Text = String.Concat("RFC: ", empleado["RFC"].ToString()).ToString(); ;
@@ -76,6 +76,20 @@ namespace MAD_Pantallas
 
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //Actualizar Informacion 
+            int userIdTemp = Properties.Settings.Default.UserId;
+            EnlaceDB enlace = new EnlaceDB();
+
+            int id = userIdTemp;
+            string emailT = EmpleadoCorreo.Text;
+            string telefonoT = EmpleadoTelefono.Text;
+            string contraseniaT = EmpleadoPassword.Text;
+
+            enlace.updateEmpleadoDatos(id, emailT, telefonoT, contraseniaT);
+
+        }
         private void label12_Click(object sender, EventArgs e)
         {
 
@@ -88,13 +102,6 @@ namespace MAD_Pantallas
 
         private void EmpleadoDomicilio_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            //Actualizar Informacion 
-
 
         }
     }

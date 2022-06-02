@@ -519,10 +519,64 @@ namespace MAD_Pantallas
         }
 
         //Actualizar datos de Empleados//
+        //En Empleado
+        public bool updateEmpleadoDatos(int id, string emailT, string telefonoT, string contraseniaT)
+        {
+            bool seActualizo = true;
+            var msg = "";
+            try
+            {
+                conectar();
+                string qry = "sp_GestionEmpleados";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
 
+                var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
+                parametro1.Value = "UPDATE";
+
+                var parametro2 = _comandosql.Parameters.Add("@CveEmpleado", SqlDbType.Int, 10);
+                parametro2.Value = id;
+
+                var parametro3 = _comandosql.Parameters.Add("@Email", SqlDbType.VarChar, 10);
+                parametro3.Value = emailT;
+
+                var parametro4 = _comandosql.Parameters.Add("@telefono", SqlDbType.VarChar, 18);
+                parametro4.Value = telefonoT;
+
+                var parametro5 = _comandosql.Parameters.Add("@Constrasenia", SqlDbType.VarChar, 25);
+                parametro5.Value = contraseniaT;
+
+                int rows = _comandosql.ExecuteNonQuery();
+
+                if (rows <= 0)
+                {
+                    MessageBox.Show("No se actualizo ninguna fila", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    seActualizo = false;
+                }
+                else
+                {
+                    MessageBox.Show("Se actualizo el departamento!", "Excelente!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepcion de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                seActualizo = false;
+            }
+            finally
+            {
+                desconectar();
+            }
+            return seActualizo;
+        }
+        //Por Gestion de Gerente
         public bool updateEmpleados(int id, string nombreT, string apellidopT, string apellidomT, string curpT, string nacimientoT, string emailT,
             string rfcT, string nssT, string bancoT, int numbancariaT, string calleT, int numT, string coloniaT, string estadoT, string telefonoT,
-            string contraseniaT)
+            string contraseniaT, string operacionesT)
         {
             bool seActualizo = true;
             var msg = "";
@@ -587,6 +641,9 @@ namespace MAD_Pantallas
 
                 var parametro18 = _comandosql.Parameters.Add("@Constrasenia", SqlDbType.VarChar, 25);
                 parametro18.Value = contraseniaT;
+
+                var parametro19 = _comandosql.Parameters.Add("@Fecha_contratacion", SqlDbType.VarChar, 25);
+                parametro19.Value = operacionesT;
 
                 int rows = _comandosql.ExecuteNonQuery();
 

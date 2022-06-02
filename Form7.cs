@@ -69,12 +69,43 @@ namespace MAD_Pantallas
             EmpleadoOperaciones.Text = empTem["Fecha_contratacion"].ToString();
             EmpleadoBanco.Text = empTem["Banco"].ToString();
             EmpleadoCBancaria.Text = empTem["NumCuentaBan"].ToString();
+            EmpleadoPassword.Text = empTem["contrasenia"].ToString();
         }
 
         //Actualizar Datos del Empleado
         private void button4_Click(object sender, EventArgs e)
         {
+            ///ACTUALIZAR EMPLEADOS
 
+            EnlaceDB enlace = new EnlaceDB();
+
+            String idemp = ((KeyValuePair<string, string>)listBoxemp.SelectedItem).Key.ToString();
+
+            int id = Int32.Parse(idemp);
+            string nombreT = EmpleadoNombre.Text;
+            string apellidopT = EmpleadoApellidoP.Text;
+            string apellidomT = EmpleadoApellidoM.Text;
+            string curpT = EmpleadoCURP.Text;
+            string nacimientoT = EmpleadoNacimiento.Text;
+            string emailT = EmpleadoCorreo.Text;
+            string rfcT = EmpleadoRFC.Text;
+            string nssT = EmpleadoNSS.Text;
+            string bancoT = EmpleadoBanco.Text;
+            int numbancariaT = Int32.Parse(EmpleadoCBancaria.Text);
+            string calleT = EmpleadoCalle.Text;
+            int numT = Int32.Parse(EmpleadoNum.Text); 
+            string coloniaT = EmpleadoColonia.Text;
+            string estadoT = EmpleadoMunicipio.Text;
+            string telefonoT = EmpleadoTelefono.Text;
+            string contraseniaT = EmpleadoPassword.Text;
+            string operacionesT = EmpleadoOperaciones.Text;
+
+            if (enlace.updateEmpleados(id, nombreT, apellidopT, apellidomT, curpT, nacimientoT, emailT,
+             rfcT, nssT, bancoT, numbancariaT, calleT, numT, coloniaT, estadoT, telefonoT,
+             contraseniaT, operacionesT))
+            {
+                resetListBoxEmpleados();
+            }
         }
 
         private void resetListBoxEmpleados()
