@@ -49,12 +49,12 @@ BEGIN
 			WHERE CURP=@CURP
 		)
 		BEGIN
-			IF NOT EXISTS (SELECT 1 FROM Departamento WHERE ID_Departamento=@ID_Departamento)
+			IF NOT EXISTS (SELECT ID_Departamento FROM Departamento WHERE ID_Departamento=@ID_Departamento)
 			BEGIN
 				RAISERROR(15600,1,1,'Error, el departamento no existe');
 				RETURN;
 			END;
-			IF NOT EXISTS (SELECT 1 FROM Puesto WHERE ID_Puesto=@ID_Puesto)
+			IF NOT EXISTS (SELECT ID_Puesto FROM Puesto WHERE ID_Puesto=@ID_Puesto)
 			BEGIN
 				RAISERROR(15600,1,1,'Error, el puesto no existe');
 				RETURN;
@@ -68,7 +68,7 @@ BEGIN
 			VALUES (@CveEmpleado, @CURP, @Nombre, @A_Paterno, @A_Materno, @Fecha_nacimiento, @Email, @RFC, @NumSeguro_Social);
 
 			INSERT INTO Domicilio(calle, numero, colonia, municipio, estado, codigo_postal, CveEmpleado)
-			VALUES (@calle, @numero, @colonia, @municipio, @estadoPais, @codigo_postal, @CveEmpleado);
+			VALUES (@calle, @numero, @colonia, @municipio, 'Nuevo Leon', @codigo_postal, @CveEmpleado);
 
 			INSERT INTO Telefono( Telefono, CveEmpleado)
 			VALUES (@Telefono, @CveEmpleado);
@@ -103,8 +103,7 @@ BEGIN
 		SET
 		calle = ISNULL(@calle, calle), 
 		colonia = ISNULL(@colonia, colonia), 
-		municipio = ISNULL(@CURP, municipio), 
-		estado = ISNULL(@municipio, codigo_postal), 
+		municipio = ISNULL(@CURP, municipio), 		
 		codigo_postal = ISNULL(codigo_postal, codigo_postal)
 		WHERE CveEmpleado=@CveEmpleado;
 

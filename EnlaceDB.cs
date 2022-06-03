@@ -578,10 +578,11 @@ namespace MAD_Pantallas
             }
             return seActualizo;
         }
+       
         //Por Gestion de Gerente
         public bool updateEmpleados(int id, string nombreT, string apellidopT, string apellidomT, string curpT, string nacimientoT, string emailT,
-            string rfcT, string nssT, string bancoT, string numbancariaT, string calleT, int numT, string coloniaT, string estadoT, string telefonoT,
-            string contraseniaT, string operacionesT)
+            string rfcT, string nssT, string bancoT, string numbancariaT, string calleT, int numT, string coloniaT, string estadoT, int codPostalT,
+            string telefonoT, string contraseniaT, string operacionesT, int idPuesto, int idDepto)
         {
             bool seActualizo = true;
             var msg = "";
@@ -644,17 +645,26 @@ namespace MAD_Pantallas
                 var parametro15 = _comandosql.Parameters.Add("@colonia", SqlDbType.VarChar, 25);
                 parametro15.Value = coloniaT;
 
-                var parametro16 = _comandosql.Parameters.Add("@estadopais", SqlDbType.VarChar, 25);
+                var parametro16 = _comandosql.Parameters.Add("@municipio", SqlDbType.VarChar, 25);
                 parametro16.Value = estadoT;
 
-                var parametro17 = _comandosql.Parameters.Add("@telefono", SqlDbType.VarChar, 18);
-                parametro17.Value = telefonoT;
+                var parametro17 = _comandosql.Parameters.Add("@codigo_postal", SqlDbType.VarChar, 25);
+                parametro17.Value = estadoT;
 
-                var parametro18 = _comandosql.Parameters.Add("@Contrasenia", SqlDbType.VarChar, 25);
-                parametro18.Value = contraseniaT;
+                var parametro18 = _comandosql.Parameters.Add("@telefono", SqlDbType.VarChar, 18);
+                parametro18.Value = telefonoT;
 
-                var parametro19 = _comandosql.Parameters.Add("@Fecha_contratacion", SqlDbType.Date, 25);
-                parametro19.Value = operacionesT;
+                var parametro19 = _comandosql.Parameters.Add("@Contrasenia", SqlDbType.VarChar, 25);
+                parametro19.Value = contraseniaT;
+
+                var parametro20 = _comandosql.Parameters.Add("@Fecha_contratacion", SqlDbType.Date, 25);
+                parametro20.Value = operacionesT;
+
+                var parametro21 = _comandosql.Parameters.Add("@ID_Puesto", SqlDbType.TinyInt);
+                parametro21.Value = idPuesto;
+
+                var parametro22 = _comandosql.Parameters.Add("@ID_Departamento", SqlDbType.TinyInt);
+                parametro22.Value = idDepto;
 
                 int rows = _comandosql.ExecuteNonQuery();
 
@@ -681,6 +691,165 @@ namespace MAD_Pantallas
                 desconectar();
             }
             return seActualizo;
+        }
+
+        public bool insertEmpleado(string nombreT, string apellidopT, string apellidomT, string curpT, string nacimientoT, string emailT,
+            string rfcT, string nssT, string bancoT, string numbancariaT, string calleT, int numT, string coloniaT, string estadoT, 
+            int codPostalT, string telefonoT,string contraseniaT, string operacionesT, int idPuesto, int idDepto)
+        {
+            bool seInserto = true;
+            var msg = "";
+            try
+            {
+                conectar();
+                string qry = "sp_GestionEmpleado";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
+                parametro1.Value = "INSERT";
+
+                var parametro2 = _comandosql.Parameters.Add("@CveEmpleado", SqlDbType.Int, 10);
+                parametro2.Value = DBNull.Value;
+
+                var parametro3 = _comandosql.Parameters.Add("@Nombre", SqlDbType.VarChar, 25);
+                parametro3.Value = nombreT;
+
+                var parametro4 = _comandosql.Parameters.Add("@A_Paterno", SqlDbType.VarChar, 25);
+                parametro4.Value = apellidopT;
+
+                var parametro5 = _comandosql.Parameters.Add("@A_Materno", SqlDbType.VarChar, 25);
+                parametro5.Value = apellidomT;
+
+                var parametro6 = _comandosql.Parameters.Add("@CURP", SqlDbType.VarChar, 25);
+                parametro6.Value = curpT;
+
+                var parametro7 = _comandosql.Parameters.Add("@Fecha_nacimiento", SqlDbType.Date, 10);
+                parametro7.Value = nacimientoT;
+
+                var parametro8 = _comandosql.Parameters.Add("@Email", SqlDbType.VarChar, 25);
+                parametro8.Value = emailT;
+
+                var parametro9 = _comandosql.Parameters.Add("@RFC", SqlDbType.VarChar, 25);
+                parametro9.Value = rfcT;
+
+                var parametro10 = _comandosql.Parameters.Add("@NumSeguro_Social", SqlDbType.Int, 10);
+                if (nssT == "")
+                    parametro10.Value = DBNull.Value;
+                else
+                    parametro10.Value = Int32.Parse(nssT);
+
+                var parametro11 = _comandosql.Parameters.Add("@Banco", SqlDbType.VarChar, 50);
+                parametro11.Value = bancoT;
+
+                var parametro12 = _comandosql.Parameters.Add("@NumCuentaBan", SqlDbType.Int, 25);
+                if (nssT == "")
+                    parametro12.Value = DBNull.Value;
+                else
+                    parametro12.Value = Int32.Parse(numbancariaT);
+
+                var parametro13 = _comandosql.Parameters.Add("@calle", SqlDbType.VarChar, 25);
+                parametro13.Value = calleT;
+
+                var parametro14 = _comandosql.Parameters.Add("@numero", SqlDbType.Int, 10);
+                parametro14.Value = numT;
+
+                var parametro15 = _comandosql.Parameters.Add("@colonia", SqlDbType.VarChar, 25);
+                parametro15.Value = coloniaT;
+
+                var parametro16 = _comandosql.Parameters.Add("@municipio", SqlDbType.VarChar, 25);
+                parametro16.Value = estadoT;
+                
+                var parametro17 = _comandosql.Parameters.Add("@codigo_postal", SqlDbType.Int, 10);
+                parametro17.Value = codPostalT;
+
+                var parametro18 = _comandosql.Parameters.Add("@telefono", SqlDbType.VarChar, 18);
+                parametro18.Value = telefonoT;
+
+                var parametro19 = _comandosql.Parameters.Add("@Contrasenia", SqlDbType.VarChar, 25);
+                parametro19.Value = contraseniaT;
+
+                var parametro20 = _comandosql.Parameters.Add("@Fecha_contratacion", SqlDbType.Date, 25);
+                parametro20.Value = operacionesT;
+
+                var parametro21 = _comandosql.Parameters.Add("@ID_Puesto", SqlDbType.TinyInt);
+                parametro21.Value = idPuesto;
+
+                var parametro22 = _comandosql.Parameters.Add("@ID_Departamento", SqlDbType.TinyInt);
+                parametro22.Value = idDepto;
+
+                int rows = _comandosql.ExecuteNonQuery();
+
+                if (rows <= 0)
+                {
+                    MessageBox.Show("No se inserto el empleado", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    seInserto = false;
+                }
+                else
+                {
+                    MessageBox.Show("Se inserto el empleado!", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepcion de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                seInserto = false;
+            }
+            finally
+            {
+                desconectar();
+            }
+            return seInserto;
+        }
+
+        //En Empleado
+        public bool deleteEmpleado(int id)
+        {
+            bool seElimino = true;
+            var msg = "";
+            try
+            {
+                conectar();
+                string qry = "sp_GestionEmpleado";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
+                parametro1.Value = "DELETE";
+
+                var parametro2 = _comandosql.Parameters.Add("@CveEmpleado", SqlDbType.Int, 10);
+                parametro2.Value = id;
+
+                int rows = _comandosql.ExecuteNonQuery();
+
+                if (rows <= 0)
+                {
+                    MessageBox.Show("No se borro ningun registro", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    seElimino = false;
+                }
+                else
+                {
+                    MessageBox.Show("Se elimino el empleado", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepcion de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                seElimino = false;
+            }
+            finally
+            {
+                desconectar();
+            }
+            return seElimino;
         }
 
         //Actualizar datos de Departamentos//

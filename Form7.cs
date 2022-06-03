@@ -58,19 +58,26 @@ namespace MAD_Pantallas
             EmpleadoClave.Text = empTem["Clave"].ToString();
             EmpleadoApellidoP.Text = empTem["A_Paterno"].ToString();
             EmpleadoApellidoM.Text = empTem["A_Materno"].ToString();
-            EmpleadoNacimiento.Text = empTem["Fecha_nacimiento"].ToString();
+            EmpleadoNacimiento.Value = Convert.ToDateTime(empTem["Fecha_nacimiento"].ToString());
+
             EmpleadoCURP.Text = empTem["CURP"].ToString();
             EmpleadoRFC.Text = empTem["RFC"].ToString();
+
             EmpleadoCalle.Text = empTem["calle"].ToString();
             EmpleadoNum.Text = empTem["numero"].ToString();
             EmpleadoColonia.Text = empTem["colonia"].ToString();
             EmpleadoMunicipio.Text = empTem["municipio"].ToString();
+            EmpleadoCodPostal.Text = empTem["codigo_postal"].ToString();
+
             EmpleadoTelefono.Text = empTem["Telefono"].ToString();
             EmpleadoCorreo.Text = empTem["Email"].ToString();
+
             EmpleadoNSS.Text = empTem["NumSeguro_Social"].ToString();
-            EmpleadoOperaciones.Text = empTem["Fecha_contratacion"].ToString();
+            EmpleadoOperaciones.Value = Convert.ToDateTime(empTem["Fecha_contratacion"].ToString());
+
             EmpleadoBanco.Text = empTem["Banco"].ToString();
             EmpleadoCBancaria.Text = empTem["NumCuentaBan"].ToString();
+
             EmpleadoPassword.Text = empTem["contrasenia"].ToString();
 
             KeyValuePair<string, string> puestoSeleccionado = new KeyValuePair<string, string>(empTem["id_Puesto"].ToString(), empTem["Puesto"].ToString());
@@ -79,6 +86,9 @@ namespace MAD_Pantallas
             KeyValuePair<string, string> deptoSeleccionado = new KeyValuePair<string, string>(empTem["id_Depto"].ToString(), empTem["Depto"].ToString());
             cbDeptos.SelectedItem = deptoSeleccionado;
 
+            btn_Update.Enabled = true;
+            btn_Delete.Enabled = true;
+            btn_Insert.Enabled = false;
         }
 
         //Actualizar Datos del Empleado
@@ -95,7 +105,7 @@ namespace MAD_Pantallas
             string apellidopT = EmpleadoApellidoP.Text;
             string apellidomT = EmpleadoApellidoM.Text;
             string curpT = EmpleadoCURP.Text;
-            string nacimientoT = EmpleadoNacimiento.Text;
+            string nacimientoT = EmpleadoNacimiento.Value.ToString();
             string emailT = EmpleadoCorreo.Text;
             string rfcT = EmpleadoRFC.Text;
             string nssT = EmpleadoNSS.Text.ToString();
@@ -105,15 +115,20 @@ namespace MAD_Pantallas
             int numT = Int32.Parse(EmpleadoNum.Text.ToString()); 
             string coloniaT = EmpleadoColonia.Text;
             string estadoT = EmpleadoMunicipio.Text;
+            int codPostalT = Int32.Parse(EmpleadoCodPostal.Text);
             string telefonoT = EmpleadoTelefono.Text;
             string contraseniaT = EmpleadoPassword.Text;
-            string operacionesT = EmpleadoOperaciones.Text;
+            string operacionesT = EmpleadoOperaciones.Value.ToString();
+
+            int idPuesto = Int32.Parse(((KeyValuePair<string, string>)cbPuestos.SelectedItem).Key.ToString());
+            int idDepto = Int32.Parse(((KeyValuePair<string, string>)cbDeptos.SelectedItem).Key.ToString());
 
             if (enlace.updateEmpleados(id, nombreT, apellidopT, apellidomT, curpT, nacimientoT, emailT,
-             rfcT, nssT, bancoT, numbancariaT, calleT, numT, coloniaT, estadoT, telefonoT,
-             contraseniaT, operacionesT))
+             rfcT, nssT, bancoT, numbancariaT, calleT, numT, coloniaT, estadoT, codPostalT, telefonoT,
+             contraseniaT, operacionesT, idPuesto, idDepto))
             {
                 resetListBoxEmpleados();
+                resetDataEmpleados();
             }
         }
 
@@ -132,6 +147,44 @@ namespace MAD_Pantallas
                 listBoxemp.DisplayMember = "Value";
 
             }
+        }
+
+        private void resetDataEmpleados()
+        {
+            EmpleadoNombre.Text = "";
+            EmpleadoClave.Text = "";
+            EmpleadoApellidoP.Text = "";
+            EmpleadoApellidoM.Text = "";
+            EmpleadoNacimiento.Value = Convert.ToDateTime("01/01/1999");
+
+            EmpleadoCURP.Text = "";
+            EmpleadoRFC.Text = "";
+
+            EmpleadoCalle.Text = "";
+            EmpleadoNum.Text = "";
+            EmpleadoColonia.Text = "";
+            EmpleadoMunicipio.Text = "";
+            EmpleadoCodPostal.Text = "";
+
+            EmpleadoTelefono.Text = "";
+            EmpleadoCorreo.Text = "";
+
+            EmpleadoNSS.Text = "";
+            EmpleadoOperaciones.Value = Convert.ToDateTime("01/01/1999");
+
+            EmpleadoBanco.Text = "";
+            EmpleadoCBancaria.Text = "";
+
+            EmpleadoPassword.Text = "";
+
+            cbPuestos.SelectedIndex = -1;
+
+            cbDeptos.SelectedIndex = -1;
+
+            btn_Update.Enabled = false;
+            btn_Delete.Enabled = false;
+            btn_Insert.Enabled = true;
+
         }
 
         private void getDepartamentos()
@@ -168,5 +221,67 @@ namespace MAD_Pantallas
             }
         }
 
+        //Eliminación de Empleado
+        private void btn_Delete_Click(object sender, EventArgs e)
+        {
+            EnlaceDB enlace = new EnlaceDB();
+
+            String idemp = ((KeyValuePair<string, string>)listBoxemp.SelectedItem).Key.ToString();
+
+            int id = Int32.Parse(idemp);
+
+            DialogResult dialogResult = MessageBox.Show("Esta seguro de eliminar el empleado junto con sus datos", "Some Title"
+                , MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (enlace.deleteEmpleado(id))
+                {
+                    resetListBoxEmpleados();
+                    resetDataEmpleados();
+                }
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //do nothing
+            }
+
+        }
+
+        //Inserción de Empleado
+        private void btn_Insert_Click(object sender, EventArgs e)
+        {
+            EnlaceDB enlace = new EnlaceDB();
+
+            string nombreT = EmpleadoNombre.Text;
+            string apellidopT = EmpleadoApellidoP.Text;
+            string apellidomT = EmpleadoApellidoM.Text;
+            string curpT = EmpleadoCURP.Text;
+            string nacimientoT = EmpleadoNacimiento.Value.ToString();
+            string emailT = EmpleadoCorreo.Text;
+            string rfcT = EmpleadoRFC.Text;
+            string nssT = EmpleadoNSS.Text.ToString();
+            string bancoT = EmpleadoBanco.Text;
+            string numbancariaT = EmpleadoCBancaria.Text.ToString();
+            string calleT = EmpleadoCalle.Text;
+            int numT = Int32.Parse(EmpleadoNum.Text.ToString());
+            string coloniaT = EmpleadoColonia.Text;
+            string estadoT = EmpleadoMunicipio.Text;
+            int codPostalT = Int32.Parse(EmpleadoCodPostal.Text.ToString());
+            string telefonoT = EmpleadoTelefono.Text;
+            string contraseniaT = EmpleadoPassword.Text;
+            string operacionesT = EmpleadoOperaciones.Value.ToString();
+
+            int idPuesto = Int32.Parse(((KeyValuePair<string, string>)cbPuestos.SelectedItem).Key.ToString());
+            int idDepto = Int32.Parse(((KeyValuePair<string, string>)cbDeptos.SelectedItem).Key.ToString());
+
+
+            if (enlace.insertEmpleado(nombreT, apellidopT, apellidomT, curpT, nacimientoT, emailT,
+             rfcT, nssT, bancoT, numbancariaT, calleT, numT, coloniaT, estadoT, codPostalT, telefonoT,
+             contraseniaT, operacionesT, idPuesto, idDepto))
+            {
+                resetListBoxEmpleados();
+                resetDataEmpleados();
+            }
+        }
     }
 }
