@@ -34,7 +34,7 @@ namespace MAD_Pantallas
             this.DeptoUpdate = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.DeptoAdd = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.listBoxDeptos = new System.Windows.Forms.ListBox();
@@ -58,6 +58,7 @@ namespace MAD_Pantallas
             this.DeptoDelete.TabIndex = 82;
             this.DeptoDelete.Text = "Eliminar información";
             this.DeptoDelete.UseVisualStyleBackColor = true;
+            this.DeptoDelete.Click += new System.EventHandler(this.DeptoDelete_Click);
             // 
             // label24
             // 
@@ -97,15 +98,15 @@ namespace MAD_Pantallas
             this.label20.TabIndex = 73;
             this.label20.Text = "Editar datos de un departamento";
             // 
-            // button1
+            // DeptoAdd
             // 
-            this.button1.Location = new System.Drawing.Point(433, 81);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 72;
-            this.button1.Text = "Agregar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.DeptoAdd.Location = new System.Drawing.Point(433, 81);
+            this.DeptoAdd.Name = "DeptoAdd";
+            this.DeptoAdd.Size = new System.Drawing.Size(75, 23);
+            this.DeptoAdd.TabIndex = 72;
+            this.DeptoAdd.Text = "Agregar";
+            this.DeptoAdd.UseVisualStyleBackColor = true;
+            this.DeptoAdd.Click += new System.EventHandler(this.button1_Click);
             // 
             // label11
             // 
@@ -241,7 +242,7 @@ namespace MAD_Pantallas
             this.Controls.Add(this.DeptoUpdate);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label20);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.DeptoAdd);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.listBoxDeptos);
@@ -261,7 +262,7 @@ namespace MAD_Pantallas
         private System.Windows.Forms.Button DeptoUpdate;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button DeptoAdd;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ListBox listBoxDeptos;

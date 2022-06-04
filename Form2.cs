@@ -77,6 +77,16 @@ namespace MAD_Pantallas
             this.Show();
         }
 
+        //Boton para entrar a la pagina de Gestion de nomina
+        private void NominaGestion_Click(object sender, EventArgs e)
+        {
+            Form11 frm = new Form11();
+
+            this.Hide();
+            frm.ShowDialog();
+            this.Show();
+        }
+
         //Boton para entrar a la pantalla de Organigrama, aun no hay pantalla. todo bn.
 
 

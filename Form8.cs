@@ -44,7 +44,20 @@ namespace MAD_Pantallas
             resetListBoxDeptos();
         }
 
-       
+        private void button1_Click(object sender, EventArgs e)
+        {
+            EnlaceDB enlace = new EnlaceDB();
+
+            string nombreT = deptoN.Text;
+            float sueldo_baseT = float.Parse(deptoSB.Text);
+
+            if (enlace.insertDeptos(nombreT, sueldo_baseT))
+            {
+                resetListBoxDeptos();
+                resetDataDeptos();
+            }
+        }
+
         private void DeptoUpdate_Click(object sender, EventArgs e)
         {
             ///ACTUALIZAR DEPARTAMENTOS
@@ -61,6 +74,7 @@ namespace MAD_Pantallas
             if (enlace.updateDeptos(idDeptoTemp, nombreT, sueldo_baseT))
             {
                 resetListBoxDeptos();
+                resetDataDeptos();
             }
         } 
 
@@ -81,6 +95,30 @@ namespace MAD_Pantallas
 
         }
 
+        private void DeptoDelete_Click(object sender, EventArgs e)
+        {
+            EnlaceDB enlace = new EnlaceDB();
+
+            String idemp = ((KeyValuePair<string, string>)listBoxDeptos.SelectedItem).Key.ToString();
+
+            int id = Int32.Parse(idemp);
+
+            DialogResult dialogResult = MessageBox.Show("Esta seguro de eliminar el departamento junto con sus datos", "Some Title"
+                , MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (enlace.deleteDeptos(id))
+                {
+                    resetListBoxDeptos();
+                    resetDataDeptos();
+                }
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //do nothing
+            }
+        }
+
         private void resetListBoxDeptos()
         {
             EnlaceDB enlace = new EnlaceDB();
@@ -98,10 +136,21 @@ namespace MAD_Pantallas
 
             }
         }
-        private void button1_Click(object sender, EventArgs e)
+
+        private void resetDataDeptos()
         {
+            deptoN.Text = "";
+            deptoC.Text = "";
+            deptoSB.Text = "";
+
+
+            DeptoUpdate.Enabled = false;
+            DeptoDelete.Enabled = false;
+            DeptoAdd.Enabled = true;
 
         }
+
+
         
         private void label3_Click(object sender, EventArgs e)
         {
@@ -118,6 +167,6 @@ namespace MAD_Pantallas
 
         }
 
-       
+        
     }
 }

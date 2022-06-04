@@ -38,6 +38,7 @@ namespace MAD_Pantallas
             this.PuestosGestion = new System.Windows.Forms.Button();
             this.Organigrama = new System.Windows.Forms.Button();
             this.Salir1 = new System.Windows.Forms.Button();
+            this.NominaGestion = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -91,7 +92,7 @@ namespace MAD_Pantallas
             // 
             // PeryDed
             // 
-            this.PeryDed.Location = new System.Drawing.Point(12, 172);
+            this.PeryDed.Location = new System.Drawing.Point(248, 233);
             this.PeryDed.Name = "PeryDed";
             this.PeryDed.Size = new System.Drawing.Size(208, 40);
             this.PeryDed.TabIndex = 6;
@@ -127,11 +128,22 @@ namespace MAD_Pantallas
             this.Salir1.Text = "Cerrar Sesión";
             this.Salir1.UseVisualStyleBackColor = true;
             // 
+            // NominaGestion
+            // 
+            this.NominaGestion.Location = new System.Drawing.Point(12, 172);
+            this.NominaGestion.Name = "NominaGestion";
+            this.NominaGestion.Size = new System.Drawing.Size(208, 40);
+            this.NominaGestion.TabIndex = 9;
+            this.NominaGestion.Text = "Percepciones y Deducciones";
+            this.NominaGestion.UseVisualStyleBackColor = true;
+            this.NominaGestion.Click += new System.EventHandler(this.NominaGestion_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(468, 450);
+            this.Controls.Add(this.NominaGestion);
             this.Controls.Add(this.Salir1);
             this.Controls.Add(this.Organigrama);
             this.Controls.Add(this.PeryDed);
@@ -159,5 +171,6 @@ namespace MAD_Pantallas
         private System.Windows.Forms.Button PuestosGestion;
         private System.Windows.Forms.Button Organigrama;
         private System.Windows.Forms.Button Salir1;
+        private System.Windows.Forms.Button NominaGestion;
     }
 }

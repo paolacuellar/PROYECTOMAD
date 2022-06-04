@@ -31,9 +31,9 @@ namespace MAD_Pantallas
         {
             //string cnn = ConfigurationManager.AppSettings["desarrollo1"];
 
-           //String connetionString = @"Data Source=DESKTOP-MFMA6VE\SQLEXPRESS;Initial Catalog=PROYECTOMAD;Integrated Security=True;"; ARELY
+           String connetionString = @"Data Source=DESKTOP-MFMA6VE\SQLEXPRESS;Initial Catalog=PROYECTOMAD;Integrated Security=True;"; //ARELY
 
-           String connetionString = @"Data Source=DESKTOP-51SJOGN;Initial Catalog=PROYECTOMAD;Integrated Security=True;";
+           //String connetionString = @"Data Source=DESKTOP-51SJOGN;Initial Catalog=PROYECTOMAD;Integrated Security=True;"; //KARIM
 
             //string cnn = ConfigurationManager.ConnectionStrings[connetionString].ToString();
             _conexion = new SqlConnection(connetionString);
@@ -523,7 +523,7 @@ namespace MAD_Pantallas
         }
 
         //Actualizar datos de Empleados//
-        //En Empleado
+        //en su perfil//
         public bool updateEmpleadoDatos(int id, string emailT, string telefonoT, string contraseniaT)
         {
             bool seActualizo = true;
@@ -579,7 +579,7 @@ namespace MAD_Pantallas
             return seActualizo;
         }
        
-        //Por Gestion de Gerente
+        //Gestion de Empleados//
         public bool updateEmpleados(int id, string nombreT, string apellidopT, string apellidomT, string curpT, string nacimientoT, string emailT,
             string rfcT, string nssT, string bancoT, string numbancariaT, string calleT, int numT, string coloniaT, string estadoT, int codPostalT,
             string telefonoT, string contraseniaT, string operacionesT, int idPuesto, int idDepto)
@@ -692,7 +692,7 @@ namespace MAD_Pantallas
             }
             return seActualizo;
         }
-
+        
         public bool insertEmpleado(string nombreT, string apellidopT, string apellidomT, string curpT, string nacimientoT, string emailT,
             string rfcT, string nssT, string bancoT, string numbancariaT, string calleT, int numT, string coloniaT, string estadoT, 
             int codPostalT, string telefonoT,string contraseniaT, string operacionesT, int idPuesto, int idDepto)
@@ -806,7 +806,6 @@ namespace MAD_Pantallas
             return seInserto;
         }
 
-        //En Empleado
         public bool deleteEmpleado(int id)
         {
             bool seElimino = true;
@@ -852,7 +851,7 @@ namespace MAD_Pantallas
             return seElimino;
         }
 
-        //Actualizar datos de Departamentos//
+        //Gestion de Departamentos//
         public bool updateDeptos(int id, string nombreT, float sueldo_baseT)
         {
             bool seActualizo = true;
@@ -904,7 +903,155 @@ namespace MAD_Pantallas
             return seActualizo;
         }
 
-        //Actualizar datos de puesto//
+        public bool deleteDeptos(int id)
+        {
+            bool seElimino = true;
+            var msg = "";
+            try
+            {
+                conectar();
+                string qry = "sp_GestionDepartamento";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
+                parametro1.Value = "DELETE";
+
+                var parametro2 = _comandosql.Parameters.Add("@ID_Departamento", SqlDbType.Int, 10);
+                parametro2.Value = id;
+
+                int rows = _comandosql.ExecuteNonQuery();
+
+                if (rows <= 0)
+                {
+                    MessageBox.Show("No se borro ningun registro", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    seElimino = false;
+                }
+                else
+                {
+                    MessageBox.Show("Se elimino el Departamento", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepcion de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                seElimino = false;
+            }
+            finally
+            {
+                desconectar();
+            }
+            return seElimino;
+        }
+
+        public bool insertDeptos(string nombreT, float sueldo_baseT)
+        {
+            bool seInserto = true;
+            var msg = "";
+            try
+            {
+                conectar();
+                string qry = "sp_GestionDepartamento";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
+                parametro1.Value = "INSERT";
+
+                var parametro2 = _comandosql.Parameters.Add("@ID_Departamento", SqlDbType.Int, 10);
+                parametro2.Value = DBNull.Value;
+
+                var parametro3 = _comandosql.Parameters.Add("@Nombre", SqlDbType.VarChar, 25);
+                parametro3.Value = nombreT;
+
+                var parametro4 = _comandosql.Parameters.Add("@Sueldo_Base", SqlDbType.VarChar, 25);
+                parametro4.Value = sueldo_baseT;
+
+                int rows = _comandosql.ExecuteNonQuery();
+
+                if (rows <= 0)
+                {
+                    MessageBox.Show("No se inserto el departamento", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    seInserto = false;
+                }
+                else
+                {
+                    MessageBox.Show("Se inserto el Departamento!", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepcion de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                seInserto = false;
+            }
+            finally
+            {
+                desconectar();
+            }
+            return seInserto;
+        }
+
+        //Gestion de Puestos//
+
+        public bool insertPuestos(string nombreT, float sueldo_baseT)
+        {
+            bool seInserto = true;
+            var msg = "";
+            try
+            {
+                conectar();
+                string qry = "sp_GestionPuesto";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
+                parametro1.Value = "INSERT";
+
+                var parametro2 = _comandosql.Parameters.Add("@ID_Puesto", SqlDbType.Int, 10);
+                parametro2.Value = DBNull.Value;
+
+                var parametro3 = _comandosql.Parameters.Add("@Nombre", SqlDbType.VarChar, 25);
+                parametro3.Value = nombreT;
+
+                var parametro4 = _comandosql.Parameters.Add("@Nivel_Salarial", SqlDbType.VarChar, 25);
+                parametro4.Value = sueldo_baseT;
+
+                int rows = _comandosql.ExecuteNonQuery();
+
+                if (rows <= 0)
+                {
+                    MessageBox.Show("No se inserto el puesto", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    seInserto = false;
+                }
+                else
+                {
+                    MessageBox.Show("Se inserto el Puesto!", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepcion de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                seInserto = false;
+            }
+            finally
+            {
+                desconectar();
+            }
+            return seInserto;
+        }
+
         public bool updatePuestos(int id, string nombreT, float nivel_salarialT)
         {
             bool seActualizo = true;
@@ -955,7 +1102,51 @@ namespace MAD_Pantallas
             }
             return seActualizo;
         }
-    
-        
+
+        public bool deletePuestos(int id)
+        {
+            bool seElimino = true;
+            var msg = "";
+            try
+            {
+                conectar();
+                string qry = "sp_GestionPuesto";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
+                parametro1.Value = "DELETE";
+
+                var parametro2 = _comandosql.Parameters.Add("@ID_Puesto", SqlDbType.Int, 10);
+                parametro2.Value = id;
+
+                int rows = _comandosql.ExecuteNonQuery();
+
+                if (rows <= 0)
+                {
+                    MessageBox.Show("No se borro ningun registro", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    seElimino = false;
+                }
+                else
+                {
+                    MessageBox.Show("Se elimino el Puesto", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepcion de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                seElimino = false;
+            }
+            finally
+            {
+                desconectar();
+            }
+            return seElimino;
+        }
+
     }
 }

@@ -57,6 +57,20 @@ namespace MAD_Pantallas
             PuestoSB.Text = puestoTem["Nivel Salarial"].ToString();
         }
 
+        private void PuestoAdd_Click(object sender, EventArgs e)
+        {
+            EnlaceDB enlace = new EnlaceDB();
+
+            string nombreT = PuestoN.Text;
+            float sueldo_baseT = float.Parse(PuestoSB.Text);
+
+            if (enlace.insertDeptos(nombreT, sueldo_baseT))
+            {
+                resetListBoxPuestos();
+                resetDataPuestos();
+            }
+        }
+
         private void button4_Click(object sender, EventArgs e)
         {
             ///ACTUALIZAR PUESTOS
@@ -75,7 +89,29 @@ namespace MAD_Pantallas
                 resetListBoxPuestos();
             }
         }
+        private void PuestoDelete_Click(object sender, EventArgs e)
+        {
+            EnlaceDB enlace = new EnlaceDB();
 
+            String idemp = ((KeyValuePair<string, string>)listBoxPuestos.SelectedItem).Key.ToString();
+
+            int id = Int32.Parse(idemp);
+
+            DialogResult dialogResult = MessageBox.Show("Esta seguro de eliminar el puesto junto con sus datos", "Some Title"
+                , MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (enlace.deleteDeptos(id))
+                {
+                    resetListBoxPuestos();
+                    resetDataPuestos();
+                }
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //do nothing
+            }
+        }
         private void resetListBoxPuestos()
         {
             EnlaceDB enlace = new EnlaceDB();
@@ -93,11 +129,24 @@ namespace MAD_Pantallas
             }
         }
 
+        private void resetDataPuestos()
+        {
+            PuestoN.Text = "";
+            PuestoC.Text = "";
+            PuestoSB.Text = "";
+
+
+            PuestoUpdate.Enabled = false;
+            PuestoDelete.Enabled = false;
+            PuestoAdd.Enabled = true;
+
+        }
+
         private void label19_Click(object sender, EventArgs e)
         {
 
         }
 
-
+        
     }
 }

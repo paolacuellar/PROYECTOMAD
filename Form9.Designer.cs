@@ -118,6 +118,7 @@ namespace MAD_Pantallas
             this.PuestoDelete.TabIndex = 105;
             this.PuestoDelete.Text = "Eliminar información";
             this.PuestoDelete.UseVisualStyleBackColor = true;
+            this.PuestoDelete.Click += new System.EventHandler(this.PuestoDelete_Click);
             // 
             // label24
             // 
@@ -155,6 +156,7 @@ namespace MAD_Pantallas
             this.PuestoAdd.TabIndex = 95;
             this.PuestoAdd.Text = "Agregar";
             this.PuestoAdd.UseVisualStyleBackColor = true;
+            this.PuestoAdd.Click += new System.EventHandler(this.PuestoAdd_Click);
             // 
             // label11
             // 
