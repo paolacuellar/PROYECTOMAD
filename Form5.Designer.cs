@@ -39,7 +39,7 @@ namespace MAD_Pantallas
             this.DeptoSueldo = new System.Windows.Forms.Label();
             this.PuestoSueldo = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btn_Generar_Recibo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -130,21 +130,22 @@ namespace MAD_Pantallas
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
+            // btn_Generar_Recibo
             // 
-            this.button3.Location = new System.Drawing.Point(15, 484);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(160, 24);
-            this.button3.TabIndex = 13;
-            this.button3.Text = "Generar Recibo";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btn_Generar_Recibo.Location = new System.Drawing.Point(15, 484);
+            this.btn_Generar_Recibo.Name = "btn_Generar_Recibo";
+            this.btn_Generar_Recibo.Size = new System.Drawing.Size(160, 24);
+            this.btn_Generar_Recibo.TabIndex = 13;
+            this.btn_Generar_Recibo.Text = "Generar Recibo";
+            this.btn_Generar_Recibo.UseVisualStyleBackColor = true;
+            this.btn_Generar_Recibo.Click += new System.EventHandler(this.btn_Generar_Recibo_Click);
             // 
             // Form5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(371, 520);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btn_Generar_Recibo);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.PuestoSueldo);
             this.Controls.Add(this.DeptoSueldo);
@@ -175,6 +176,6 @@ namespace MAD_Pantallas
         private System.Windows.Forms.Label DeptoSueldo;
         private System.Windows.Forms.Label PuestoSueldo;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btn_Generar_Recibo;
     }
 }

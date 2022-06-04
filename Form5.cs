@@ -1,4 +1,7 @@
-﻿using System;
+﻿using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace MAD_Pantallas
 {
@@ -36,9 +40,9 @@ namespace MAD_Pantallas
 
             DataTable percepciones = enlace.getPercepcionesByDate(NominaBuscar.Value);
 
-            foreach(DataRow row in percepciones.Rows)
+            foreach (DataRow row in percepciones.Rows)
             {
-                if(row["CveEmpleado"].Equals(userIdTemp))
+                if (row["CveEmpleado"].Equals(userIdTemp))
                 {
                     //Llenar el list box
                     listBoxPercepciones.Items.Add(row["Motivo"]);
@@ -109,6 +113,25 @@ namespace MAD_Pantallas
                     //Llenar el list box
                     listBoxDeducciones.Items.Add(row["Motivo"]);
                 }
+            }
+        }
+
+        private void btn_Generar_Recibo_Click(object sender, EventArgs e)
+        {
+            try{
+                string ubicacion = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\Recibo.pdf";
+                using (PdfWriter pdfWriter = new PdfWriter(ubicacion))
+                using (PdfDocument pdfDocument = new PdfDocument(pdfWriter))
+                using (Document document = new Document(pdfDocument))
+                {
+                    document.Add(new Paragraph("Hello World!"));
+                }
+            }
+            catch (Exception ex){
+                MessageBox.Show("No se puede crear el documento", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);    
+            }
+            finally{
+
             }
         }
     }
