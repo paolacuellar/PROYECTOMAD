@@ -30,18 +30,18 @@ namespace MAD_Pantallas
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.MotivoPerDed = new System.Windows.Forms.TextBox();
+            this.MotivoConcepto = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.comboOp = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.CantidadConcepto = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.listBoxP = new System.Windows.Forms.ListBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.listBoxD = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.Porcentaje = new System.Windows.Forms.CheckBox();
+            this.btnAddConcepto = new System.Windows.Forms.Button();
+            this.esPorcentajeConcepto = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -55,12 +55,12 @@ namespace MAD_Pantallas
             this.label1.Text = "Crear Percepciones y Deducciones";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // MotivoPerDed
+            // MotivoConcepto
             // 
-            this.MotivoPerDed.Location = new System.Drawing.Point(31, 135);
-            this.MotivoPerDed.Name = "MotivoPerDed";
-            this.MotivoPerDed.Size = new System.Drawing.Size(171, 20);
-            this.MotivoPerDed.TabIndex = 6;
+            this.MotivoConcepto.Location = new System.Drawing.Point(31, 135);
+            this.MotivoConcepto.Name = "MotivoConcepto";
+            this.MotivoConcepto.Size = new System.Drawing.Size(171, 20);
+            this.MotivoConcepto.TabIndex = 6;
             // 
             // label5
             // 
@@ -88,12 +88,12 @@ namespace MAD_Pantallas
             this.label6.TabIndex = 8;
             this.label6.Text = "Elegir una opción";
             // 
-            // textBox1
+            // CantidadConcepto
             // 
-            this.textBox1.Location = new System.Drawing.Point(31, 205);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(171, 20);
-            this.textBox1.TabIndex = 10;
+            this.CantidadConcepto.Location = new System.Drawing.Point(31, 205);
+            this.CantidadConcepto.Name = "CantidadConcepto";
+            this.CantidadConcepto.Size = new System.Drawing.Size(171, 20);
+            this.CantidadConcepto.TabIndex = 10;
             // 
             // label7
             // 
@@ -139,24 +139,25 @@ namespace MAD_Pantallas
             this.listBoxD.Size = new System.Drawing.Size(394, 147);
             this.listBoxD.TabIndex = 15;
             // 
-            // button1
+            // btnAddConcepto
             // 
-            this.button1.Location = new System.Drawing.Point(31, 284);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(171, 42);
-            this.button1.TabIndex = 30;
-            this.button1.Text = "Agregar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAddConcepto.Location = new System.Drawing.Point(31, 284);
+            this.btnAddConcepto.Name = "btnAddConcepto";
+            this.btnAddConcepto.Size = new System.Drawing.Size(171, 42);
+            this.btnAddConcepto.TabIndex = 30;
+            this.btnAddConcepto.Text = "Agregar";
+            this.btnAddConcepto.UseVisualStyleBackColor = true;
+            this.btnAddConcepto.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Porcentaje
+            // esPorcentajeConcepto
             // 
-            this.Porcentaje.AutoSize = true;
-            this.Porcentaje.Location = new System.Drawing.Point(34, 236);
-            this.Porcentaje.Name = "Porcentaje";
-            this.Porcentaje.Size = new System.Drawing.Size(91, 17);
-            this.Porcentaje.TabIndex = 44;
-            this.Porcentaje.Text = "Es porcentaje";
-            this.Porcentaje.UseVisualStyleBackColor = true;
+            this.esPorcentajeConcepto.AutoSize = true;
+            this.esPorcentajeConcepto.Location = new System.Drawing.Point(34, 236);
+            this.esPorcentajeConcepto.Name = "esPorcentajeConcepto";
+            this.esPorcentajeConcepto.Size = new System.Drawing.Size(91, 17);
+            this.esPorcentajeConcepto.TabIndex = 44;
+            this.esPorcentajeConcepto.Text = "Es porcentaje";
+            this.esPorcentajeConcepto.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -173,18 +174,18 @@ namespace MAD_Pantallas
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(675, 420);
-            this.Controls.Add(this.Porcentaje);
+            this.Controls.Add(this.esPorcentajeConcepto);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnAddConcepto);
             this.Controls.Add(this.listBoxD);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.listBoxP);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.CantidadConcepto);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.comboOp);
-            this.Controls.Add(this.MotivoPerDed);
+            this.Controls.Add(this.MotivoConcepto);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label1);
             this.Name = "Form6";
@@ -198,18 +199,18 @@ namespace MAD_Pantallas
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox MotivoPerDed;
+        private System.Windows.Forms.TextBox MotivoConcepto;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox comboOp;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox CantidadConcepto;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ListBox listBoxP;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ListBox listBoxD;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.CheckBox Porcentaje;
+        private System.Windows.Forms.Button btnAddConcepto;
+        private System.Windows.Forms.CheckBox esPorcentajeConcepto;
         private System.Windows.Forms.Button button2;
     }
 }

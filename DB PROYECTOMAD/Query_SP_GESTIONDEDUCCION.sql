@@ -49,7 +49,8 @@ BEGIN
 	-- Ver la lista de Deducciones
 	IF @Opcion = 'VIEW'
 	BEGIN
-		SELECT	Motivo,
+		SELECT	ID_Deduccion,
+				Motivo,
 				Tipo,
 				Cantidad,
 				Es_porcentaje

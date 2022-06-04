@@ -28,12 +28,7 @@ namespace MAD_Pantallas
         }
 
         private void Form6_Load(object sender, EventArgs e)
-        {
-            FechaPer.Format = DateTimePickerFormat.Custom;
-            FechaPer.CustomFormat = "MM/yyyy";
-
-            FechaDed.Format = DateTimePickerFormat.Custom;
-            FechaDed.CustomFormat = "MM/yyyy";
+        {          
 
             comboOp.Items.Add("Percepcion");
             comboOp.Items.Add("Deduccion");
@@ -75,6 +70,61 @@ namespace MAD_Pantallas
                 frm.ShowDialog();
                 this.Show();
             }
+        }
+
+        //AGREGAR CONCEPTO
+        private void button1_Click(object sender, EventArgs e)
+        {
+            EnlaceDB enlace = new EnlaceDB();
+
+            string motivo = MotivoConcepto.Text.ToString();
+            float cantidad = float.Parse(CantidadConcepto.Text.ToString());
+            bool esPorcentaje = false;
+            bool seInserto = false;
+
+            if (esPorcentajeConcepto.Checked)
+                esPorcentaje = true;
+
+            if (comboOp.Text.ToString() == "Deduccion")
+                seInserto = enlace.insertDeduccion(motivo, cantidad, esPorcentaje);
+
+
+            if (comboOp.Text.ToString() == "Percepcion")
+                seInserto = enlace.insertPercepcion(motivo, cantidad, esPorcentaje);
+
+            if (seInserto)
+                resetForm();
+        }
+
+        private void resetForm()
+        {
+            comboOp.SelectedIndex = -1;
+
+            EnlaceDB enlace = new EnlaceDB();
+            DataTable percepciones = enlace.getAllP();
+
+            listBoxP.Items.Clear();
+
+            foreach (DataRow row in percepciones.Rows)
+            {
+                //Llenar el list box percepciones
+                listBoxP.Items.Add(row["Motivo"]);
+            }
+
+            listBoxD.Items.Clear();
+
+
+            DataTable deducciones = enlace.getAllD();
+
+            foreach (DataRow row in deducciones.Rows)
+            {
+                //Llenar el list box deducciones
+                listBoxD.Items.Add(row["Motivo"]);
+            }
+
+            MotivoConcepto.Text = "";
+            CantidadConcepto.Text = "";
+            esPorcentajeConcepto.Checked = false;
         }
     }
 }

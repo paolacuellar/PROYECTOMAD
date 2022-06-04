@@ -31,9 +31,9 @@ namespace MAD_Pantallas
         {
             //string cnn = ConfigurationManager.AppSettings["desarrollo1"];
 
-           String connetionString = @"Data Source=DESKTOP-MFMA6VE\SQLEXPRESS;Initial Catalog=PROYECTOMAD;Integrated Security=True;"; //ARELY
+          // String connetionString = @"Data Source=DESKTOP-MFMA6VE\SQLEXPRESS;Initial Catalog=PROYECTOMAD;Integrated Security=True;"; //ARELY
 
-           //String connetionString = @"Data Source=DESKTOP-51SJOGN;Initial Catalog=PROYECTOMAD;Integrated Security=True;"; //KARIM
+           String connetionString = @"Data Source=DESKTOP-51SJOGN;Initial Catalog=PROYECTOMAD;Integrated Security=True;"; //KARIM
 
             //string cnn = ConfigurationManager.ConnectionStrings[connetionString].ToString();
             _conexion = new SqlConnection(connetionString);
@@ -280,12 +280,12 @@ namespace MAD_Pantallas
                 var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
                 parametro1.Value = "SPxM";
 
-                _comandosql.Parameters.Add("@CveEmpleado", SqlDbType.VarChar, 10);
-                _comandosql.Parameters.Add("@ID_Departamento", SqlDbType.Int, 10);
-                _comandosql.Parameters.Add("@ID_Deduccion", SqlDbType.TinyInt, 10);
-                _comandosql.Parameters.Add("@ID_Percepcion", SqlDbType.TinyInt, 10);
-                _comandosql.Parameters.Add("@ID_ADeduccion", SqlDbType.Int, 10);
-                _comandosql.Parameters.Add("@ID_APercepcion", SqlDbType.Int, 10);
+                //_comandosql.Parameters.Add("@CveEmpleado", SqlDbType.VarChar, 10);
+                //_comandosql.Parameters.Add("@ID_Departamento", SqlDbType.Int, 10);
+                //_comandosql.Parameters.Add("@ID_Deduccion", SqlDbType.TinyInt, 10);
+                //_comandosql.Parameters.Add("@ID_Percepcion", SqlDbType.TinyInt, 10);
+                //_comandosql.Parameters.Add("@ID_ADeduccion", SqlDbType.Int, 10);
+                //_comandosql.Parameters.Add("@ID_APercepcion", SqlDbType.Int, 10);
                 
                 var parametro2 = _comandosql.Parameters.Add("@Fecha", SqlDbType.Date, 10);
                 parametro2.Value = date;
@@ -323,12 +323,12 @@ namespace MAD_Pantallas
                 var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
                 parametro1.Value = "SDxM";
 
-                _comandosql.Parameters.Add("@CveEmpleado", SqlDbType.VarChar, 10);
-                _comandosql.Parameters.Add("@ID_Departamento", SqlDbType.Int, 10);
-                _comandosql.Parameters.Add("@ID_Deduccion", SqlDbType.TinyInt, 10);
-                _comandosql.Parameters.Add("@ID_Percepcion", SqlDbType.TinyInt, 10);
-                _comandosql.Parameters.Add("@ID_ADeduccion", SqlDbType.Int, 10);
-                _comandosql.Parameters.Add("@ID_APercepcion", SqlDbType.Int, 10);
+                //_comandosql.Parameters.Add("@CveEmpleado", SqlDbType.VarChar, 10);
+                //_comandosql.Parameters.Add("@ID_Departamento", SqlDbType.Int, 10);
+                //_comandosql.Parameters.Add("@ID_Deduccion", SqlDbType.TinyInt, 10);
+                //_comandosql.Parameters.Add("@ID_Percepcion", SqlDbType.TinyInt, 10);
+                //_comandosql.Parameters.Add("@ID_ADeduccion", SqlDbType.Int, 10);
+                //_comandosql.Parameters.Add("@ID_APercepcion", SqlDbType.Int, 10);
 
                 var parametro2 = _comandosql.Parameters.Add("@Fecha", SqlDbType.Date, 10);
                 parametro2.Value = date;
@@ -417,6 +417,173 @@ namespace MAD_Pantallas
             }
 
             return _tabla;
+        }
+
+        public bool insertPercepcion(string motivo, float cantidad, bool esPorcenaje)
+        {
+            var msg = "";
+            bool seInserto = true;
+            try
+            {
+                conectar();
+                string qry = "sp_GestionPercepcion";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
+                parametro1.Value = "INSERT";
+
+                var parametro2 = _comandosql.Parameters.Add("@Motivo", SqlDbType.VarChar, 255);
+                parametro2.Value = motivo;
+               
+                var parametro3 = _comandosql.Parameters.Add("@Cantidad", SqlDbType.Decimal, 10);
+                parametro3.Value = cantidad;
+
+                var parametro4 = _comandosql.Parameters.Add("@Es_porcentaje", SqlDbType.Bit, 1);
+                parametro4.Value = esPorcenaje;
+
+                int rows = _comandosql.ExecuteNonQuery();
+
+                if (rows <= 0)
+                {
+                    MessageBox.Show("No se inserto la Percepción", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    seInserto = false;
+                }
+                else
+                {
+                    MessageBox.Show("Se inserto la Percepción!", "Excelente!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                seInserto = false;
+            }
+            finally
+            {
+                desconectar();
+            }
+            return seInserto;
+        }
+
+        public bool insertDeduccion(string motivo, float cantidad, bool esPorcenaje)
+        {
+            var msg = "";
+            bool seInserto = true;
+            try
+            {
+                conectar();
+                string qry = "sp_GestionDeduccion";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
+                parametro1.Value = "INSERT";
+
+                var parametro2 = _comandosql.Parameters.Add("@Motivo", SqlDbType.VarChar, 255);
+                parametro2.Value = motivo;
+
+                var parametro3 = _comandosql.Parameters.Add("@Cantidad", SqlDbType.Decimal, 10);
+                parametro3.Value = cantidad;
+
+                var parametro4 = _comandosql.Parameters.Add("@Es_porcentaje", SqlDbType.Bit, 1);
+                parametro4.Value = esPorcenaje;
+
+                int rows = _comandosql.ExecuteNonQuery();
+
+                if (rows <= 0)
+                {
+                    MessageBox.Show("No se inserto la Deduccion", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    seInserto = false;
+                }
+                else
+                {
+                    MessageBox.Show("Se inserto la Deduccion!", "Excelente!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                seInserto = false;
+            }
+            finally
+            {
+                desconectar();
+            }
+            return seInserto;
+        }
+
+        public bool asignarConcepto(string Oper, int idConcepto, string tipoEnte, int idEnte, string fechaAplicacion)
+        {
+            string msg = "";
+            bool seAsigno = true;
+           
+            try
+            {
+                conectar();
+                string qry = "sp_AsignacionPD";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
+                parametro1.Value = Oper;
+
+                var parametro2 = _comandosql.Parameters.Add("@ID_Concepto", SqlDbType.TinyInt, 10);
+                parametro2.Value = idConcepto;
+
+                if (tipoEnte == "E")
+                {
+                    var parametro3 = _comandosql.Parameters.Add("@CveEmpleado", SqlDbType.Int, 10);
+                    parametro3.Value = idEnte;
+                } else if (tipoEnte == "D")
+                {
+                    var parametro3 = _comandosql.Parameters.Add("@ID_Departamento", SqlDbType.TinyInt, 10);
+                    parametro3.Value = idEnte;
+                }
+                else
+                {
+                    MessageBox.Show("Solo se pueden asignar percepciones y deducciones a Empleados/Departamentos", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return false;
+                }
+
+           
+                var parametro4 = _comandosql.Parameters.Add("@Fecha", SqlDbType.Date, 10);
+                parametro4.Value = fechaAplicacion;
+
+                int rows = _comandosql.ExecuteNonQuery();
+
+                if (rows <= 0)
+                {
+                    MessageBox.Show("No se asgno el Concepto", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    seAsigno = false;
+                }
+                else
+                {
+                    MessageBox.Show("Se asgno el Concepto!", "Excelente!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                seAsigno = false;
+            }
+            finally
+            {
+                desconectar();
+            }
+            return seAsigno;
         }
 
         //Obtenemos la vista de Departamentos, Empleados y Puestos para mostrarlos en los listbox correspondientes en cada ventana

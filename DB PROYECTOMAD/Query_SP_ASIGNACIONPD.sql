@@ -8,10 +8,7 @@ CREATE PROCEDURE sp_AsignacionPD(
 	@Opcion VARCHAR(10) = NULL,
 	@CveEmpleado INT = NULL,
 	@ID_Departamento TINYINT = NULL,
-	@ID_Deduccion TINYINT = NULL, 
-	@ID_Percepcion TINYINT = NULL, 
-	@ID_ADeduccion INT = NULL, 
-	@ID_APercepcion INT = NULL, 
+	@ID_Concepto TINYINT = NULL,	 
 	@Fecha DATE = NULL, 
 	@Cantidad DECIMAL(10,2) = NULL
 )
@@ -21,26 +18,26 @@ BEGIN
 -- Asignar todas las deducciones basicas a todos los empleados
 /*DECLARE @FechaA DATE;
 SET @FechaA = DATEDIFF(month, 0, GETDATE()-1)
-SELECT @ID_Deduccion=ID_Deduccion FROM Deduccion WHERE Deduccion.Tipo='B';
+SELECT @ID_Concepto=ID_Deduccion FROM Deduccion WHERE Deduccion.Tipo='B';
 SELECT @CveEmpleado=CveEmpleado FROM Empleado;
 INSERT INTO Asign_Empleado_Deduccion(CveEmpleado, ID_Deduccion, Fecha)
-			VALUES	(@CveEmpleado, @ID_Deduccion, @FechaA);*/
+			VALUES	(@CveEmpleado, @ID_Concepto, @FechaA);*/
 
 -----------------------EMPLEADO------------------------------
 		-- Asignar una deduccion a un empleado
 		IF @Opcion = 'DxE'
 		BEGIN
-			SELECT @ID_Deduccion=ID_Deduccion FROM Deduccion WHERE ID_Deduccion=@ID_Deduccion;
+			SELECT @ID_Concepto=ID_Deduccion FROM Deduccion WHERE ID_Deduccion=@ID_Concepto;
 			INSERT INTO Asign_Empleado_Deduccion(CveEmpleado, ID_Deduccion, Fecha)
-			VALUES	(@CveEmpleado, @ID_Deduccion, @Fecha);
+			VALUES	(@CveEmpleado, @ID_Concepto, @Fecha);
 		END
 
 		-- Asignar una percepcion a un empleado
 		IF @Opcion = 'PxE'
 		BEGIN
-			SELECT @ID_Percepcion=ID_Percepcion FROM Percepcion WHERE ID_Percepcion=@ID_Percepcion;
+			SELECT @ID_Concepto=ID_Percepcion FROM Percepcion WHERE ID_Percepcion=@ID_Concepto;
 			INSERT INTO Asign_Empleado_Percepcion(CveEmpleado, ID_Percepcion, Fecha)
-			VALUES	(@CveEmpleado, @ID_Percepcion, @Fecha);
+			VALUES	(@CveEmpleado, @ID_Concepto, @Fecha);
 		END
 
 -----------------------DEPARTAMENTO------------------------------
@@ -58,9 +55,9 @@ INSERT INTO Asign_Empleado_Deduccion(CveEmpleado, ID_Deduccion, Fecha)
 			BEGIN
 				DECLARE @Empleado INT = (SELECT TOP(1) CveEmpleado FROM #DEmpleadosDepartamento ORDER BY CveEmpleado)
 
-				SELECT @ID_Deduccion=ID_Deduccion FROM Deduccion WHERE ID_Deduccion=@ID_Deduccion;
+				SELECT @ID_Concepto=ID_Deduccion FROM Deduccion WHERE ID_Deduccion=@ID_Concepto;
 				INSERT INTO Asign_Empleado_Deduccion(CveEmpleado, ID_Deduccion, Fecha)
-				VALUES	(@Empleado, @ID_Deduccion, @Fecha);
+				VALUES	(@Empleado, @ID_Concepto, @Fecha);
 
 				DELETE #DEmpleadosDepartamento WHERE CveEmpleado=@Empleado
 				SET @CountE = (SELECT COUNT(CveEmpleado) FROM #DEmpleadosDepartamento);
@@ -81,9 +78,9 @@ INSERT INTO Asign_Empleado_Deduccion(CveEmpleado, ID_Deduccion, Fecha)
 			BEGIN
 				DECLARE @EmpleadoP INT = (SELECT TOP(1) CveEmpleado FROM #PEmpleadosDepartamento ORDER BY CveEmpleado)
 
-				SELECT @ID_Percepcion=ID_Percepcion FROM Percepcion WHERE ID_Percepcion=@ID_Percepcion;
+				SELECT @ID_Concepto=ID_Percepcion FROM Percepcion WHERE ID_Percepcion=@ID_Concepto;
 				INSERT INTO Asign_Empleado_Percepcion(CveEmpleado, ID_Percepcion, Fecha)
-				VALUES	(@EmpleadoP, @ID_Percepcion, @Fecha);
+				VALUES	(@EmpleadoP, @ID_Concepto, @Fecha);
 
 				DELETE #PEmpleadosDepartamento WHERE CveEmpleado=@EmpleadoP
 				SET @CountEP = (SELECT COUNT(CveEmpleado) FROM #PEmpleadosDepartamento);

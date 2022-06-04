@@ -65,3 +65,4 @@ D:\RESPALDO\ESCUELA\Arely\MAD\PROYECTOMAD\obj\Debug\MAD-Pantallas.csproj.Generat
 D:\RESPALDO\ESCUELA\Arely\MAD\PROYECTOMAD\obj\Debug\MAD-Pantallas.csproj.CoreCompileInputs.cache
 D:\RESPALDO\ESCUELA\Arely\MAD\PROYECTOMAD\obj\Debug\MAD-Pantallas.exe
 D:\RESPALDO\ESCUELA\Arely\MAD\PROYECTOMAD\obj\Debug\MAD-Pantallas.pdb
+D:\RESPALDO\ESCUELA\Arely\MAD\PROYECTOMAD\obj\Debug\MAD_Pantallas.Form11.resources

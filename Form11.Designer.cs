@@ -30,7 +30,7 @@ namespace MAD_Pantallas
         private void InitializeComponent()
         {
             this.listBoxP = new System.Windows.Forms.ListBox();
-            this.FechaPer = new System.Windows.Forms.DateTimePicker();
+            this.FechaAplicarConcepto = new System.Windows.Forms.DateTimePicker();
             this.label20 = new System.Windows.Forms.Label();
             this.asignar = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
@@ -51,13 +51,14 @@ namespace MAD_Pantallas
             this.listBoxP.Name = "listBoxP";
             this.listBoxP.Size = new System.Drawing.Size(357, 147);
             this.listBoxP.TabIndex = 0;
+            this.listBoxP.SelectedIndexChanged += new System.EventHandler(this.listBoxP_SelectedIndexChanged);
             // 
-            // FechaPer
+            // FechaAplicarConcepto
             // 
-            this.FechaPer.Location = new System.Drawing.Point(397, 315);
-            this.FechaPer.Name = "FechaPer";
-            this.FechaPer.Size = new System.Drawing.Size(200, 20);
-            this.FechaPer.TabIndex = 54;
+            this.FechaAplicarConcepto.Location = new System.Drawing.Point(397, 315);
+            this.FechaAplicarConcepto.Name = "FechaAplicarConcepto";
+            this.FechaAplicarConcepto.Size = new System.Drawing.Size(200, 20);
+            this.FechaAplicarConcepto.TabIndex = 54;
             // 
             // label20
             // 
@@ -70,12 +71,14 @@ namespace MAD_Pantallas
             // 
             // asignar
             // 
-            this.asignar.Location = new System.Drawing.Point(33, 394);
+            this.asignar.Enabled = false;
+            this.asignar.Location = new System.Drawing.Point(397, 360);
             this.asignar.Name = "asignar";
             this.asignar.Size = new System.Drawing.Size(316, 30);
             this.asignar.TabIndex = 49;
             this.asignar.Text = "Asignar ";
             this.asignar.UseVisualStyleBackColor = true;
+            this.asignar.Click += new System.EventHandler(this.asignar_Click);
             // 
             // label15
             // 
@@ -93,6 +96,7 @@ namespace MAD_Pantallas
             this.listBoxD.Name = "listBoxD";
             this.listBoxD.Size = new System.Drawing.Size(357, 147);
             this.listBoxD.TabIndex = 55;
+            this.listBoxD.SelectedIndexChanged += new System.EventHandler(this.listBoxD_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -128,6 +132,7 @@ namespace MAD_Pantallas
             this.listBoxemp.Name = "listBoxemp";
             this.listBoxemp.Size = new System.Drawing.Size(357, 147);
             this.listBoxemp.TabIndex = 59;
+            this.listBoxemp.SelectedIndexChanged += new System.EventHandler(this.listBoxemp_SelectedIndexChanged);
             // 
             // comboBoxdeptos
             // 
@@ -136,6 +141,7 @@ namespace MAD_Pantallas
             this.comboBoxdeptos.Name = "comboBoxdeptos";
             this.comboBoxdeptos.Size = new System.Drawing.Size(354, 21);
             this.comboBoxdeptos.TabIndex = 60;
+            this.comboBoxdeptos.SelectedIndexChanged += new System.EventHandler(this.comboBoxdeptos_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -148,7 +154,7 @@ namespace MAD_Pantallas
             // 
             // Return
             // 
-            this.Return.Location = new System.Drawing.Point(421, 394);
+            this.Return.Location = new System.Drawing.Point(35, 398);
             this.Return.Name = "Return";
             this.Return.Size = new System.Drawing.Size(316, 30);
             this.Return.TabIndex = 62;
@@ -169,7 +175,7 @@ namespace MAD_Pantallas
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listBoxD);
-            this.Controls.Add(this.FechaPer);
+            this.Controls.Add(this.FechaAplicarConcepto);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.asignar);
             this.Controls.Add(this.label15);
@@ -185,7 +191,7 @@ namespace MAD_Pantallas
         #endregion
 
         private System.Windows.Forms.ListBox listBoxP;
-        private System.Windows.Forms.DateTimePicker FechaPer;
+        private System.Windows.Forms.DateTimePicker FechaAplicarConcepto;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Button asignar;
         private System.Windows.Forms.Label label15;

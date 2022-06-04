@@ -134,7 +134,7 @@ namespace MAD_Pantallas
             this.NominaGestion.Name = "NominaGestion";
             this.NominaGestion.Size = new System.Drawing.Size(208, 40);
             this.NominaGestion.TabIndex = 9;
-            this.NominaGestion.Text = "Percepciones y Deducciones";
+            this.NominaGestion.Text = "Gestión de Nómina";
             this.NominaGestion.UseVisualStyleBackColor = true;
             this.NominaGestion.Click += new System.EventHandler(this.NominaGestion_Click);
             // 

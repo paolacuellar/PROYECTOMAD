@@ -86,6 +86,8 @@ namespace MAD_Pantallas
 
             DataTable percepciones = enlace.getPercepcionesByDate(NominaBuscar.Value);
 
+            listBoxPercepciones.Items.Clear();
+
             foreach (DataRow row in percepciones.Rows)
             {
                 if (row["CveEmpleado"].Equals(userIdTemp))
@@ -95,6 +97,8 @@ namespace MAD_Pantallas
                 }
             }
 
+
+            listBoxDeducciones.Items.Clear();
 
             DataTable deducciones = enlace.getDeduccionesByDate(NominaBuscar.Value);
 
