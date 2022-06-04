@@ -57,7 +57,7 @@ namespace MAD_Pantallas
             // 
             // MotivoPerDed
             // 
-            this.MotivoPerDed.Location = new System.Drawing.Point(31, 146);
+            this.MotivoPerDed.Location = new System.Drawing.Point(31, 135);
             this.MotivoPerDed.Name = "MotivoPerDed";
             this.MotivoPerDed.Size = new System.Drawing.Size(171, 20);
             this.MotivoPerDed.TabIndex = 6;
@@ -65,7 +65,7 @@ namespace MAD_Pantallas
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(31, 130);
+            this.label5.Location = new System.Drawing.Point(31, 119);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(77, 13);
             this.label5.TabIndex = 5;
@@ -74,7 +74,7 @@ namespace MAD_Pantallas
             // comboOp
             // 
             this.comboOp.FormattingEnabled = true;
-            this.comboOp.Location = new System.Drawing.Point(31, 67);
+            this.comboOp.Location = new System.Drawing.Point(31, 74);
             this.comboOp.Name = "comboOp";
             this.comboOp.Size = new System.Drawing.Size(171, 21);
             this.comboOp.TabIndex = 7;
@@ -82,7 +82,7 @@ namespace MAD_Pantallas
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(31, 51);
+            this.label6.Location = new System.Drawing.Point(31, 58);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(89, 13);
             this.label6.TabIndex = 8;
@@ -90,7 +90,7 @@ namespace MAD_Pantallas
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(31, 220);
+            this.textBox1.Location = new System.Drawing.Point(31, 205);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(171, 20);
             this.textBox1.TabIndex = 10;
@@ -98,7 +98,7 @@ namespace MAD_Pantallas
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(31, 204);
+            this.label7.Location = new System.Drawing.Point(31, 189);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(87, 13);
             this.label7.TabIndex = 9;
@@ -141,7 +141,7 @@ namespace MAD_Pantallas
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(31, 302);
+            this.button1.Location = new System.Drawing.Point(31, 284);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(171, 42);
             this.button1.TabIndex = 30;
@@ -151,7 +151,7 @@ namespace MAD_Pantallas
             // Porcentaje
             // 
             this.Porcentaje.AutoSize = true;
-            this.Porcentaje.Location = new System.Drawing.Point(34, 251);
+            this.Porcentaje.Location = new System.Drawing.Point(34, 236);
             this.Porcentaje.Name = "Porcentaje";
             this.Porcentaje.Size = new System.Drawing.Size(91, 17);
             this.Porcentaje.TabIndex = 44;
