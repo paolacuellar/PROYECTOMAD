@@ -1,4 +1,4 @@
-USE PROYECTOMAD
+USE PROYECTOMAD;
 
 IF EXISTS (SELECT 1 FROM sysobjects WHERE name = 'sp_GestionDeduccion' AND type = 'P')
     DROP PROCEDURE sp_GestionDeduccion;

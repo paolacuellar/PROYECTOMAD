@@ -31,9 +31,9 @@ namespace MAD_Pantallas
         {
             //string cnn = ConfigurationManager.AppSettings["desarrollo1"];
 
-          // String connetionString = @"Data Source=DESKTOP-MFMA6VE\SQLEXPRESS;Initial Catalog=PROYECTOMAD;Integrated Security=True;"; //ARELY
+            String connetionString = @"Data Source=DESKTOP-MFMA6VE\SQLEXPRESS;Initial Catalog=PROYECTOMAD;Integrated Security=True;"; //ARELY
 
-           String connetionString = @"Data Source=DESKTOP-51SJOGN;Initial Catalog=PROYECTOMAD;Integrated Security=True;"; //KARIM
+           //String connetionString = @"Data Source=DESKTOP-51SJOGN;Initial Catalog=PROYECTOMAD;Integrated Security=True;"; //KARIM
 
             //string cnn = ConfigurationManager.ConnectionStrings[connetionString].ToString();
             _conexion = new SqlConnection(connetionString);
@@ -221,48 +221,7 @@ namespace MAD_Pantallas
             return puesto;
         }
 
-        //Obtenemos la nomina del empleado por ID para poder mostrarla 
-        public DataRow getNominaById(int id)
-        {
-            var msg = "";
-                DataRow empleado = null;
-                try
-                {
-                    _tabla = new DataTable();
-                    conectar();
-                    string qry = "sp_ViewNomina";
-                    _comandosql = new SqlCommand(qry, _conexion);
-                    _comandosql.CommandType = CommandType.StoredProcedure;
-                    _comandosql.CommandTimeout = 1200;
-
-                    var parametro1 = _comandosql.Parameters.Add("@Fecha", SqlDbType.Date, 10);
-                    parametro1.Value = "VIEWE";
-
-                    var parametro2 = _comandosql.Parameters.Add("@CveEmpleado", SqlDbType.Int, 10);
-                    parametro2.Value = id;
-
-                    _adaptador.SelectCommand = _comandosql;
-                    _adaptador.Fill(_tabla);
-
-                    if (_tabla.Rows.Count > 0)
-                    {
-                        empleado = _tabla.Rows[0];
-                    }
-                }
-                catch (SqlException e)
-                {
-                    msg = "Excepción de base de datos: \n";
-                    msg += e.Message;
-                    MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                }
-                finally
-                {
-                    desconectar();
-                }
-
-            return empleado;
-        }
-
+   
         //Buscamos las percepciones y las deducciones por fecha para mostrar las que fueron mostradas en cierto mes 
         //en la ventana de consultar nomina
         public DataTable getPercepcionesByDate(DateTime date)
@@ -1315,5 +1274,86 @@ namespace MAD_Pantallas
             return seElimino;
         }
 
+        //Calculos de Nomina
+
+        public bool calcularNomina(string date)
+        {
+            bool seCalculo = true;
+            var msg = "";
+            try
+            {
+                conectar();
+                string qry = "sp_CalculoNomina";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Fecha", SqlDbType.DateTime, 10);
+                parametro1.Value = date;               
+
+                int rows = _comandosql.ExecuteNonQuery();
+
+                if (rows <= 0)
+                {
+                    MessageBox.Show("No se calculó la nomina", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    seCalculo = false;
+                }
+                else
+                {
+                    MessageBox.Show("Se calculó la Nomina!", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }                
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepcion de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                seCalculo = false;
+            }
+            finally
+            {
+                desconectar();
+            }
+            return seCalculo;
+        }
+
+        public DataRow getNominaByDate(int idEmpleado, string date)
+        {
+            var msg = "";
+            try
+            {
+                _tabla = new DataTable();
+                conectar();
+                string qry = "sp_ViewNomina";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@CveEmpleado", SqlDbType.Int, 10);
+                parametro1.Value = idEmpleado;
+               
+
+                var parametro2 = _comandosql.Parameters.Add("@Fecha", SqlDbType.Date, 10);
+                parametro2.Value = date;
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(_tabla);
+
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+            if (_tabla.Rows.Count <= 0)
+                return null;
+
+            return _tabla.Rows[0];
+        }
     }
 }

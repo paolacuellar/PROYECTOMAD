@@ -42,6 +42,8 @@ namespace MAD_Pantallas
             this.comboBoxdeptos = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.Return = new System.Windows.Forms.Button();
+            this.btn_Calculo = new System.Windows.Forms.Button();
+            this.fechaCalculo = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // listBoxP
@@ -55,7 +57,7 @@ namespace MAD_Pantallas
             // 
             // FechaAplicarConcepto
             // 
-            this.FechaAplicarConcepto.Location = new System.Drawing.Point(397, 315);
+            this.FechaAplicarConcepto.Location = new System.Drawing.Point(397, 286);
             this.FechaAplicarConcepto.Name = "FechaAplicarConcepto";
             this.FechaAplicarConcepto.Size = new System.Drawing.Size(200, 20);
             this.FechaAplicarConcepto.TabIndex = 54;
@@ -63,7 +65,7 @@ namespace MAD_Pantallas
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(394, 299);
+            this.label20.Location = new System.Drawing.Point(394, 270);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(220, 13);
             this.label20.TabIndex = 53;
@@ -72,9 +74,9 @@ namespace MAD_Pantallas
             // asignar
             // 
             this.asignar.Enabled = false;
-            this.asignar.Location = new System.Drawing.Point(397, 360);
+            this.asignar.Location = new System.Drawing.Point(397, 312);
             this.asignar.Name = "asignar";
-            this.asignar.Size = new System.Drawing.Size(316, 30);
+            this.asignar.Size = new System.Drawing.Size(309, 30);
             this.asignar.TabIndex = 49;
             this.asignar.Text = "Asignar ";
             this.asignar.UseVisualStyleBackColor = true;
@@ -137,7 +139,7 @@ namespace MAD_Pantallas
             // comboBoxdeptos
             // 
             this.comboBoxdeptos.FormattingEnabled = true;
-            this.comboBoxdeptos.Location = new System.Drawing.Point(397, 261);
+            this.comboBoxdeptos.Location = new System.Drawing.Point(397, 232);
             this.comboBoxdeptos.Name = "comboBoxdeptos";
             this.comboBoxdeptos.Size = new System.Drawing.Size(354, 21);
             this.comboBoxdeptos.TabIndex = 60;
@@ -146,7 +148,7 @@ namespace MAD_Pantallas
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(394, 245);
+            this.label4.Location = new System.Drawing.Point(394, 216);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(373, 13);
             this.label4.TabIndex = 61;
@@ -162,11 +164,30 @@ namespace MAD_Pantallas
             this.Return.UseVisualStyleBackColor = true;
             this.Return.Click += new System.EventHandler(this.Return_Click);
             // 
+            // btn_Calculo
+            // 
+            this.btn_Calculo.Location = new System.Drawing.Point(397, 398);
+            this.btn_Calculo.Name = "btn_Calculo";
+            this.btn_Calculo.Size = new System.Drawing.Size(309, 30);
+            this.btn_Calculo.TabIndex = 63;
+            this.btn_Calculo.Text = "Calcular";
+            this.btn_Calculo.UseVisualStyleBackColor = true;
+            this.btn_Calculo.Click += new System.EventHandler(this.btn_Calculo_Click);
+            // 
+            // fechaCalculo
+            // 
+            this.fechaCalculo.Location = new System.Drawing.Point(397, 365);
+            this.fechaCalculo.Name = "fechaCalculo";
+            this.fechaCalculo.Size = new System.Drawing.Size(200, 20);
+            this.fechaCalculo.TabIndex = 64;
+            // 
             // Form11
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(769, 450);
+            this.Controls.Add(this.fechaCalculo);
+            this.Controls.Add(this.btn_Calculo);
             this.Controls.Add(this.Return);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.comboBoxdeptos);
@@ -203,5 +224,7 @@ namespace MAD_Pantallas
         private System.Windows.Forms.ComboBox comboBoxdeptos;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button Return;
+        private System.Windows.Forms.Button btn_Calculo;
+        private System.Windows.Forms.DateTimePicker fechaCalculo;
     }
 }

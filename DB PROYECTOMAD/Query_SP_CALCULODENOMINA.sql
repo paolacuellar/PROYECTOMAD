@@ -1,4 +1,4 @@
-USE PROYECTOMAD
+USE PROYECTOMAD;
 /*Calcular sueldo bruto y neto
 Calcular percepciones
 Agregar al sueldo bruto
@@ -49,9 +49,11 @@ BEGIN
 			DECLARE @Fecha_Ingreso DATE = (SELECT TOP(1) Fecha_contratacion FROM #EmpleadosNomina ORDER BY CveEmpleado)
 
 			-- Calcular Sueldo Bruto
-			SELECT @SueldoBruto = dbo.fn_SueldoBruto(dbo.fn_SalarioDiario(Departamento.Sueldo_Base, Puesto.Nivel_Salarial), dbo.fn_NumDiasTrabajados(@Fecha,@Fecha_Ingreso)) FROM Empleado 
+			SELECT @SueldoBruto = dbo.fn_SueldoBruto(dbo.fn_SalarioDiario(Departamento.Sueldo_Base, Puesto.Nivel_Salarial), 20),
+			 @SalarioDiario = dbo.fn_SalarioDiario(Departamento.Sueldo_Base, Puesto.Nivel_Salarial)  FROM Empleado 
 			JOIN Departamento ON Departamento.ID_Departamento=Empleado.ID_Departamento
-			JOIN Puesto ON Puesto.ID_Puesto=Empleado.ID_Puesto
+			JOIN Puesto ON Puesto.ID_Puesto=Empleado.ID_Puesto;
+						 
 			--WHERE CveEmpleado=@CveEmpleado
 
 			-- En este momento nuestro Sueldo Neto es igual al Sueldo Bruto

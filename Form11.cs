@@ -199,5 +199,12 @@ namespace MAD_Pantallas
 
             return operTemp;
         }
+
+        private void btn_Calculo_Click(object sender, EventArgs e)
+        {
+            EnlaceDB enlace = new EnlaceDB();
+
+            enlace.calcularNomina(fechaCalculo.Value.ToString());
+        }
     }
 }
