@@ -1,4 +1,4 @@
-USE PROYECTOMAD
+USE PROYECTOMAD;
 
 ---------Calculo Salario Diario = sueldo base del Departamento*Nivel de Puesto
 IF OBJECT_ID ('fn_SalarioDiario') IS NOT NULL

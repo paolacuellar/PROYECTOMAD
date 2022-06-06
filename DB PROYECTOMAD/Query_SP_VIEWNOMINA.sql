@@ -19,7 +19,8 @@ BEGIN
 			Puesto.Nivel_Salarial 'Nivel Salarial',
 			Nomina.Salario_Diario 'Salario Diario',
 			Nomina.Sueldo_Bruto 'Sueldo Bruto',
-			Nomina.Sueldo_Neto 'Sueldo Neto'
+			Nomina.Sueldo_Neto 'Sueldo Neto',
+			Nomina.Fecha
 			-- Ver como mostrar todas las percepciones de ese empleado
 			-- Ver como mostrar todas las deducciones de ese empleado
 	FROM Empleado
