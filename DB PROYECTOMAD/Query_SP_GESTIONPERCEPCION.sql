@@ -57,6 +57,17 @@ BEGIN
 		FROM Percepcion
 	END
 
+	-- Ver la lista de Deducciones
+	IF @Opcion = 'VIEWB'
+	BEGIN
+		SELECT	ID_Percepcion,
+				Motivo,
+				Tipo,
+				Cantidad,
+				Es_porcentaje
+		FROM Percepcion
+		WHERE Tipo = 'B'
+	END
 END
 
 

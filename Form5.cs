@@ -65,8 +65,6 @@ namespace MAD_Pantallas
             string print_date = NominaBuscar.Value.Month.ToString();
             print_date += " " + NominaBuscar.Value.Year.ToString();
 
-            DataRow nompdf = enlace.getNominaByDate(userIdTemp, NominaBuscar.Value.ToString());
-
             string id_emp = String.Concat("Empleado No. : ", empleado["Clave"].ToString()).ToString();
             string nombre_emp = "Nombre: " + empleado["Nombre"].ToString() + " " + empleado["A_Paterno"].ToString() + " " + empleado["A_Materno"].ToString();
             string sueldo_base = String.Concat("Sueldo de Puesto: ", empleado["Sueldo_Base"].ToString()).ToString();
@@ -76,53 +74,72 @@ namespace MAD_Pantallas
             DataTable percepciones = enlace.getPercepcionesByDate(NominaBuscar.Value);
             DataTable deducciones = enlace.getDeduccionesByDate(NominaBuscar.Value);
 
+            DataTable percepcionesB = enlace.getAllBasicP();
+            DataTable deduccionesB = enlace.getAllBasicD();
+
             DataRow nomina = enlace.getNominaByDate(userIdTemp, NominaBuscar.Value.ToString());
+
+            if (nomina == null){
+                MessageBox.Show("Aún no se ha calculado la nomina de ese mes", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
 
             string sueldo_bruto = nomina["Sueldo Bruto"].ToString();
             string sueldo_neto = nomina["Sueldo Neto"].ToString();
 
+                string ubicacion = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\Recibo.pdf";
             try
             {
-                string ubicacion = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\Recibo.pdf";
                 using (PdfWriter pdfWriter = new PdfWriter(ubicacion))
                 using (PdfDocument pdfDocument = new PdfDocument(pdfWriter))
                 using (Document document = new Document(pdfDocument))
                 {
                     document.Add(new Paragraph("RECIBO NOMINA"));
-                    document.Add(new Paragraph("Fecha: " + print_date));
-                    document.Add(new Paragraph(id_emp));
+                    document.Add(new Paragraph("\n\tFecha: " + print_date));
+                    document.Add(new Paragraph("\n" + id_emp));
                     document.Add(new Paragraph(nombre_emp));
-                    document.Add(new Paragraph(sueldo_base));
+                    document.Add(new Paragraph("\n" + sueldo_base));
                     document.Add(new Paragraph(nivel_salarial));
                     
-                    if(percepciones.Rows.Count > 0)
-                        document.Add(new Paragraph("PERCEPCIONES APLICADAS"));
+                    if(percepciones.Rows.Count > 0 && percepcionesB.Rows.Count > 0)
+                        document.Add(new Paragraph("\n\tPERCEPCIONES APLICADAS"));
 
-                    foreach (DataRow rowP in percepciones.Rows)
-                    {
+                    foreach (DataRow rowPB in percepcionesB.Rows)
+                            document.Add(new Paragraph(rowPB["Motivo"].ToString() + "\t $" + rowPB["Cantidad"].ToString() + " - BASICA"));
+
+                    foreach (DataRow rowP in percepciones.Rows){
                         if (rowP["CveEmpleado"].Equals(userIdTemp))
                             document.Add(new Paragraph(rowP["Motivo"].ToString() + "\t $" + rowP["Cantidad"].ToString()));
                     }
 
-                    if (deducciones.Rows.Count > 0)
-                        document.Add(new Paragraph("DEDUCCIONES APLICADAS"));
+                    
 
-                    foreach (DataRow rowD in deducciones.Rows)
-                    {
+                    if (deducciones.Rows.Count > 0 && deduccionesB.Rows.Count > 0)
+                        document.Add(new Paragraph("\n\tDEDUCCIONES APLICADAS"));
+
+                    foreach (DataRow rowDB in deduccionesB.Rows)
+                            document.Add(new Paragraph(rowDB["Motivo"].ToString() + "\t $" + rowDB["Cantidad"].ToString() + " - BASICA"));
+
+                    foreach (DataRow rowD in deducciones.Rows){
                         if (rowD["CveEmpleado"].Equals(userIdTemp))
                             document.Add(new Paragraph(rowD["Motivo"].ToString() + "\t $" + rowD["Cantidad"].ToString()));
                     }
 
-                    document.Add(new Paragraph("SUELDO BRUTO \t  $" + sueldo_bruto));
+
+
+                    document.Add(new Paragraph("\n SUELDO BRUTO \t  $" + sueldo_bruto));
                     document.Add(new Paragraph("SUELDO NETO \t  $" + sueldo_neto));
                 }
             }
             catch (Exception ex){
-                MessageBox.Show("No se puede crear el documento", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);    
+                MessageBox.Show("No se puede crear el documento" + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             finally{
 
             }
+            MessageBox.Show(ubicacion, "Se ha generado su recibo en la ruta: ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
 
         private void consul_nomina_Click(object sender, EventArgs e)
@@ -136,12 +153,24 @@ namespace MAD_Pantallas
 
             //Validacion si la nomina no existe
 
+            if(nomina == null){
+                MessageBox.Show("Aún no se ha calculado la nomina de ese mes", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             PuestoSueldo.Text = String.Concat("Sueldo de Puesto: ", empleado["Sueldo_Base"].ToString()).ToString();
             DeptoSueldo.Text = String.Concat("Sueldo de Departamento: ", empleado["Nivel_Salarial"].ToString()).ToString();
 
             string sueldo_neto = nomina["Sueldo Neto"].ToString();
             consul_sueldoneto.Text = String.Concat("Sueldo Neto: ", sueldo_neto).ToString();
 
+
+            listBoxPercepciones.Items.Clear();
+            DataTable percepcionesB = enlace.getAllBasicP();
+
+            foreach (DataRow rowPB in percepcionesB.Rows){
+                    listBoxPercepciones.Items.Add(rowPB["Motivo"].ToString() + " - BASICA");
+            }
 
             DataTable percepciones = enlace.getPercepcionesByDate(NominaBuscar.Value);
 
@@ -152,6 +181,15 @@ namespace MAD_Pantallas
                     //Llenar el list box
                     listBoxPercepciones.Items.Add(row["Motivo"]);
                 }
+            }
+
+
+
+            listBoxDeducciones.Items.Clear();
+            DataTable deduccionesB = enlace.getAllBasicD();
+
+            foreach (DataRow rowDB in deduccionesB.Rows){
+                   listBoxDeducciones.Items.Add(rowDB["Motivo"].ToString() + " - BASICA");
             }
 
             DataTable deducciones = enlace.getDeduccionesByDate(NominaBuscar.Value);

@@ -31,9 +31,9 @@ namespace MAD_Pantallas
         {
             //string cnn = ConfigurationManager.AppSettings["desarrollo1"];
 
-            String connetionString = @"Data Source=DESKTOP-MFMA6VE\SQLEXPRESS;Initial Catalog=PROYECTOMAD;Integrated Security=True;"; //ARELY
+            //String connetionString = @"Data Source=DESKTOP-MFMA6VE\SQLEXPRESS;Initial Catalog=PROYECTOMAD;Integrated Security=True;"; //ARELY
 
-           //String connetionString = @"Data Source=DESKTOP-51SJOGN;Initial Catalog=PROYECTOMAD;Integrated Security=True;"; //KARIM
+            String connetionString = @"Data Source=DESKTOP-51SJOGN;Initial Catalog=PROYECTOMAD;Integrated Security=True;"; //KARIM
 
             //string cnn = ConfigurationManager.ConnectionStrings[connetionString].ToString();
             _conexion = new SqlConnection(connetionString);
@@ -359,6 +359,72 @@ namespace MAD_Pantallas
 
                 var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
                 parametro1.Value = "VIEW";
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(_tabla);
+
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return _tabla;
+        }
+
+        public DataTable getAllBasicP()
+        {
+            var msg = "";
+            try
+            {
+                _tabla = new DataTable();
+                conectar();
+                string qry = "sp_GestionPercepcion";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
+                parametro1.Value = "VIEWB";
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(_tabla);
+
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return _tabla;
+        }
+
+        public DataTable getAllBasicD()
+        {
+            var msg = "";
+            try
+            {
+                _tabla = new DataTable();
+                conectar();
+                string qry = "sp_GestionDeduccion";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
+                parametro1.Value = "VIEWB";
 
                 _adaptador.SelectCommand = _comandosql;
                 _adaptador.Fill(_tabla);

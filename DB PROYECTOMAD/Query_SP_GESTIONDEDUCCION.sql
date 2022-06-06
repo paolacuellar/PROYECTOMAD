@@ -56,4 +56,16 @@ BEGIN
 				Es_porcentaje
 		FROM Deduccion
 	END
+
+	-- Ver la lista de Deducciones
+	IF @Opcion = 'VIEWB'
+	BEGIN
+		SELECT	ID_Deduccion,
+				Motivo,
+				Tipo,
+				Cantidad,
+				Es_porcentaje
+		FROM Deduccion
+		WHERE Tipo = 'B'
+	END
 END

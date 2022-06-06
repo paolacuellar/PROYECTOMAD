@@ -1,4 +1,4 @@
-USE PROYECTOMAD
+USE PROYECTOMAD;
 
 IF EXISTS (SELECT 1 FROM sysobjects WHERE name = 'sp_AsignacionPD' AND type = 'P')
     DROP PROCEDURE sp_AsignacionPD;
@@ -92,7 +92,7 @@ INSERT INTO Asign_Empleado_Deduccion(CveEmpleado, ID_Deduccion, Fecha)
 			SELECT P.ID_Percepcion, P.Motivo, P.Tipo, P.Cantidad, P.Es_porcentaje, AP.CveEmpleado FROM Percepcion P
 			JOIN Asign_Empleado_Percepcion AP
 			ON AP.ID_Percepcion = P.ID_Percepcion
-			WHERE DATEPART(year, AP.Fecha)  =  DATEPART(year, @Fecha) AND  DATEPART(month, AP.Fecha)  =  DATEPART(month, @Fecha)
+			WHERE DATEPART(year, AP.Fecha)  =  DATEPART(year, @Fecha) AND  DATEPART(month, AP.Fecha) = DATEPART(month, @Fecha) 
 		END
 
 		IF @Opcion = 'SDxM'
@@ -102,7 +102,5 @@ INSERT INTO Asign_Empleado_Deduccion(CveEmpleado, ID_Deduccion, Fecha)
 			ON AD.ID_Deduccion = D.ID_Deduccion
 			WHERE DATEPART(year, AD.Fecha)  =  DATEPART(year, @Fecha) AND  DATEPART(month, AD.Fecha)  =  DATEPART(month, @Fecha)
 		END
-
-
-
+			
 END
