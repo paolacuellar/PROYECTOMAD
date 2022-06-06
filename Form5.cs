@@ -24,8 +24,8 @@ namespace MAD_Pantallas
         private void Form5_Load(object sender, EventArgs e)
         {
 
-            NominaBuscar.Format = DateTimePickerFormat.Custom;
-            NominaBuscar.CustomFormat = "MM/yyyy";
+            //NominaBuscar.Format = DateTimePickerFormat.Custom;
+            //NominaBuscar.CustomFormat = "MM/yyyy";
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -76,8 +76,10 @@ namespace MAD_Pantallas
             DataTable percepciones = enlace.getPercepcionesByDate(NominaBuscar.Value);
             DataTable deducciones = enlace.getDeduccionesByDate(NominaBuscar.Value);
 
-            //string sueldo_bruto = "";
-            //string sueldo_neto = "";
+            DataRow nomina = enlace.getNominaByDate(userIdTemp, NominaBuscar.Value.ToString());
+
+            string sueldo_bruto = nomina["Sueldo Bruto"].ToString();
+            string sueldo_neto = nomina["Sueldo Neto"].ToString();
 
             try
             {
@@ -111,8 +113,8 @@ namespace MAD_Pantallas
                             document.Add(new Paragraph(rowD["Motivo"].ToString() + "\t $" + rowD["Cantidad"].ToString()));
                     }
 
-                    document.Add(new Paragraph("SUELDO BRUTO \t  $100"));
-                    document.Add(new Paragraph("SUELDO NETO \t  $101"));
+                    document.Add(new Paragraph("SUELDO BRUTO \t  $" + sueldo_bruto));
+                    document.Add(new Paragraph("SUELDO NETO \t  $" + sueldo_neto));
                 }
             }
             catch (Exception ex){
@@ -130,9 +132,15 @@ namespace MAD_Pantallas
             EnlaceDB enlace = new EnlaceDB();
             DataRow empleado = enlace.getEmpleadoById(userIdTemp);
 
+            DataRow nomina = enlace.getNominaByDate(userIdTemp, NominaBuscar.Value.ToString());
+
+            //Validacion si la nomina no existe
+
             PuestoSueldo.Text = String.Concat("Sueldo de Puesto: ", empleado["Sueldo_Base"].ToString()).ToString();
             DeptoSueldo.Text = String.Concat("Sueldo de Departamento: ", empleado["Nivel_Salarial"].ToString()).ToString();
 
+            string sueldo_neto = nomina["Sueldo Neto"].ToString();
+            consul_sueldoneto.Text = String.Concat("Sueldo Neto: ", sueldo_neto).ToString();
 
 
             DataTable percepciones = enlace.getPercepcionesByDate(NominaBuscar.Value);

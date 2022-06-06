@@ -1,4 +1,4 @@
-USE PROYECTOMAD
+USE PROYECTOMAD;
 
 IF EXISTS (SELECT 1 FROM sysobjects WHERE name = 'sp_ViewNomina' AND type = 'P')
     DROP PROCEDURE sp_ViewNomina;
@@ -26,6 +26,6 @@ BEGIN
 	JOIN Nomina ON Empleado.CveEmpleado=Nomina.CveEmpleado
 	JOIN Departamento ON Empleado.ID_Departamento=Departamento.ID_Departamento
 	JOIN Puesto ON Empleado.ID_Puesto=Puesto.ID_Puesto
-	WHERE Nomina.CveEmpleado=@CveEmpleado AND Nomina.Fecha=@Fecha;
+	WHERE Nomina.CveEmpleado=@CveEmpleado AND MONTH(Nomina.Fecha) = MONTH(@Fecha);
 
 END

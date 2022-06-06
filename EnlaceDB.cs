@@ -1329,12 +1329,13 @@ namespace MAD_Pantallas
                 _comandosql.CommandType = CommandType.StoredProcedure;
                 _comandosql.CommandTimeout = 1200;
 
-                var parametro1 = _comandosql.Parameters.Add("@CveEmpleado", SqlDbType.Int, 10);
-                parametro1.Value = idEmpleado;
+                var parametro1 = _comandosql.Parameters.Add("@Fecha", SqlDbType.Date, 10);
+                parametro1.Value = date;
+
+                var parametro2 = _comandosql.Parameters.Add("@CveEmpleado", SqlDbType.Int, 10);
+                parametro2.Value = idEmpleado;
                
 
-                var parametro2 = _comandosql.Parameters.Add("@Fecha", SqlDbType.Date, 10);
-                parametro2.Value = date;
 
                 _adaptador.SelectCommand = _comandosql;
                 _adaptador.Fill(_tabla);

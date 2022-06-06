@@ -10,6 +10,10 @@ Calcular deducciones basicas
 Agregar al sueldo bruto
 Calcular Neto total*/
 
+--exec sp_CalculoNomina '01/05/2022';
+--select * from Nomina;
+--delete from Nomina;
+
 IF EXISTS (SELECT 1 FROM sysobjects WHERE name = 'sp_CalculoNomina' AND type = 'P')
     DROP PROCEDURE sp_CalculoNomina;
 GO
@@ -60,16 +64,18 @@ BEGIN
 			SELECT @SueldoNeto=@SueldoBruto;
 
 			-- Calcular percepciones
-			SELECT @TotalPercepciones = dbo.fn_SumPD('P', 0, @SueldoBruto, @Fecha, @CveEmpleado) + dbo.fn_SumPD('P', 1, @SueldoBruto, @Fecha, @CveEmpleado) FROM Asign_Empleado_Percepcion
+			SELECT @TotalPercepciones = dbo.fn_SumPD('P', 0, @SueldoBruto, @Fecha, @CveEmpleado) + dbo.fn_SumPD('P', 1, @SueldoBruto, @Fecha, @CveEmpleado) 
+			/*FROM Asign_Empleado_Percepcion
 			JOIN Percepcion ON Percepcion.ID_Percepcion=Asign_Empleado_Percepcion.ID_Percepcion
 			JOIN Empleado ON Empleado.CveEmpleado=Asign_Empleado_Percepcion.CveEmpleado
-			WHERE Empleado.CveEmpleado=@CveEmpleado AND (MONTH(Asign_Empleado_Percepcion.Fecha)=MONTH(@Fecha) AND YEAR(Asign_Empleado_Percepcion.Fecha)=YEAR(@Fecha))
+			WHERE Empleado.CveEmpleado=@CveEmpleado AND (MONTH(Asign_Empleado_Percepcion.Fecha)=MONTH(@Fecha) AND YEAR(Asign_Empleado_Percepcion.Fecha)=YEAR(@Fecha))*/
 
 			-- Calcular deducciones
-			SELECT @TotalDeducciones = dbo.fn_SumPD('D', 0, @SueldoBruto, @Fecha, @CveEmpleado) + dbo.fn_SumPD('D', 1, @SueldoBruto, @Fecha, @CveEmpleado) FROM Asign_Empleado_Deduccion
+			SELECT @TotalDeducciones = dbo.fn_SumPD('D', 0, @SueldoBruto, @Fecha, @CveEmpleado) + dbo.fn_SumPD('D', 1, @SueldoBruto, @Fecha, @CveEmpleado) 
+			/*FROM Asign_Empleado_Deduccion
 			JOIN Deduccion ON Deduccion.ID_Deduccion=Asign_Empleado_Deduccion.ID_Deduccion
 			JOIN Empleado ON Empleado.CveEmpleado=Asign_Empleado_Deduccion.CveEmpleado
-			WHERE Empleado.CveEmpleado=@CveEmpleado AND (MONTH(Asign_Empleado_Deduccion.Fecha)=MONTH(@Fecha) AND YEAR(Asign_Empleado_Deduccion.Fecha)=YEAR(@Fecha))
+			WHERE Empleado.CveEmpleado=@CveEmpleado AND (MONTH(Asign_Empleado_Deduccion.Fecha)=MONTH(@Fecha) AND YEAR(Asign_Empleado_Deduccion.Fecha)=YEAR(@Fecha))*/
 
 			-- Calcular percepciones basicas
 			SELECT @SumPercepcionesBasicas=SUM(Cantidad) FROM Percepcion WHERE Tipo='B'

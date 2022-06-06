@@ -154,21 +154,35 @@ BEGIN
 
 		IF @Es_porcentaje=1 -- El valor es porcentaje
 		BEGIN
-			SELECT @SumPD = SUM(Cantidad) FROM Asign_Empleado_Percepcion 
+			SET @SumPD = (SELECT SUM(Cantidad) FROM Asign_Empleado_Percepcion 
 			JOIN Percepcion ON Percepcion.ID_Percepcion = Asign_Empleado_Percepcion.ID_Percepcion
 			JOIN Empleado ON Empleado.CveEmpleado=Asign_Empleado_Percepcion.CveEmpleado
-			WHERE Percepcion.Es_porcentaje=1 AND (MONTH(Asign_Empleado_Percepcion.Fecha) = MONTH(@Fecha)) AND (YEAR(Asign_Empleado_Percepcion.Fecha) = YEAR(@Fecha)) AND Asign_Empleado_Percepcion.CveEmpleado=@CveEmpleado
+			WHERE Percepcion.Es_porcentaje=1 AND (MONTH(Asign_Empleado_Percepcion.Fecha) = MONTH(@Fecha)) AND (YEAR(Asign_Empleado_Percepcion.Fecha) = YEAR(@Fecha)) AND Asign_Empleado_Percepcion.CveEmpleado=@CveEmpleado)
 
-			SET @ValoraSumPD = @Sueldo_Bruto*(@SumPD/100)
+			IF (@SumPD IS NULL)
+			BEGIN
+				SET @ValoraSumPD = 0
+			END
+			ELSE
+			BEGIN
+				SET @ValoraSumPD = @Sueldo_Bruto*(@SumPD/100)
+			END
 		END
 		ELSE -- El valor es fijo
 		BEGIN
-			SELECT @SumPD = SUM(Cantidad) FROM Asign_Empleado_Percepcion 
+			SET @SumPD = (SELECT SUM(Cantidad) FROM Asign_Empleado_Percepcion 
 			JOIN Percepcion ON Percepcion.ID_Percepcion = Asign_Empleado_Percepcion.ID_Percepcion
 			JOIN Empleado ON Empleado.CveEmpleado=Asign_Empleado_Percepcion.CveEmpleado
-			WHERE Percepcion.Es_porcentaje=0 AND (MONTH(Asign_Empleado_Percepcion.Fecha) = MONTH(@Fecha)) AND (YEAR(Asign_Empleado_Percepcion.Fecha) = YEAR(@Fecha)) AND Asign_Empleado_Percepcion.CveEmpleado=@CveEmpleado
-
-			SET @ValoraSumPD = @SumPD
+			WHERE Percepcion.Es_porcentaje=0 AND (MONTH(Asign_Empleado_Percepcion.Fecha) = MONTH(@Fecha)) AND (YEAR(Asign_Empleado_Percepcion.Fecha) = YEAR(@Fecha)) AND Asign_Empleado_Percepcion.CveEmpleado=@CveEmpleado)
+			
+			IF (@SumPD IS NULL)
+			BEGIN
+				SET @ValoraSumPD = 0
+			END
+			ELSE
+			BEGIN
+				SET @ValoraSumPD = @SumPD
+			END
 		END
 	END
 
@@ -177,21 +191,35 @@ BEGIN
 
 		IF @Es_porcentaje=1 -- El valor es porcentaje
 		BEGIN
-			SELECT @SumPD = SUM(Cantidad) FROM Asign_Empleado_Deduccion 
+			SET @SumPD = (SELECT SUM(Cantidad) FROM Asign_Empleado_Deduccion 
 			JOIN Deduccion ON Deduccion.ID_Deduccion = Asign_Empleado_Deduccion.ID_Deduccion
 			JOIN Empleado ON Empleado.CveEmpleado=Asign_Empleado_Deduccion.CveEmpleado
-			WHERE Deduccion.Es_porcentaje=1 AND (MONTH(Asign_Empleado_Deduccion.Fecha) = MONTH(@Fecha)) AND (YEAR(Asign_Empleado_Deduccion.Fecha) = YEAR(@Fecha)) AND Asign_Empleado_Deduccion.CveEmpleado=@CveEmpleado
+			WHERE Deduccion.Es_porcentaje=1 AND Deduccion.Tipo= 'O' AND (MONTH(Asign_Empleado_Deduccion.Fecha) = MONTH(@Fecha)) AND (YEAR(Asign_Empleado_Deduccion.Fecha) = YEAR(@Fecha)) AND Asign_Empleado_Deduccion.CveEmpleado=@CveEmpleado)
 
+			IF (@SumPD IS NULL)
+			BEGIN
+				SET @ValoraSumPD = 0
+			END
+			ELSE
+			BEGIN
 			SET @ValoraSumPD = @Sueldo_Bruto*(@SumPD/100)
+			END
 		END
 		ELSE -- El valor es fijo
 		BEGIN
-			SELECT @SumPD = SUM(Cantidad) FROM Asign_Empleado_Deduccion 
+			SELECT @SumPD = (SELECT SUM(Cantidad) FROM Asign_Empleado_Deduccion 
 			JOIN Deduccion ON Deduccion.ID_Deduccion = Asign_Empleado_Deduccion.ID_Deduccion
 			JOIN Empleado ON Empleado.CveEmpleado=Asign_Empleado_Deduccion.CveEmpleado
-			WHERE Deduccion.Es_porcentaje=0 AND (MONTH(Asign_Empleado_Deduccion.Fecha) = MONTH(@Fecha)) AND (YEAR(Asign_Empleado_Deduccion.Fecha) = YEAR(@Fecha)) AND Asign_Empleado_Deduccion.CveEmpleado=@CveEmpleado
+			WHERE Deduccion.Es_porcentaje=0 AND Deduccion.Tipo= 'O' AND (MONTH(Asign_Empleado_Deduccion.Fecha) = MONTH(@Fecha)) AND (YEAR(Asign_Empleado_Deduccion.Fecha) = YEAR(@Fecha)) AND Asign_Empleado_Deduccion.CveEmpleado=@CveEmpleado)
 
-			SET @ValoraSumPD = @SumPD
+			IF (@SumPD IS NULL)
+			BEGIN
+				SET @ValoraSumPD = 0
+			END
+			ELSE
+			BEGIN
+				SET @ValoraSumPD = @SumPD
+			END
 		END
 	END
 
