@@ -42,6 +42,7 @@ namespace MAD_Pantallas
             this.btn_Generar_Recibo = new System.Windows.Forms.Button();
             this.consul_nomina = new System.Windows.Forms.Button();
             this.consul_sueldoneto = new System.Windows.Forms.Label();
+            this.consul_sueldobruto = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -116,11 +117,11 @@ namespace MAD_Pantallas
             // PuestoSueldo
             // 
             this.PuestoSueldo.AutoSize = true;
-            this.PuestoSueldo.Location = new System.Drawing.Point(15, 420);
+            this.PuestoSueldo.Location = new System.Drawing.Point(15, 416);
             this.PuestoSueldo.Name = "PuestoSueldo";
-            this.PuestoSueldo.Size = new System.Drawing.Size(91, 13);
+            this.PuestoSueldo.Size = new System.Drawing.Size(119, 13);
             this.PuestoSueldo.TabIndex = 10;
-            this.PuestoSueldo.Text = "Sueldo de Puesto";
+            this.PuestoSueldo.Text = "Nivel Salarial de Puesto";
             // 
             // button2
             // 
@@ -155,17 +156,27 @@ namespace MAD_Pantallas
             // consul_sueldoneto
             // 
             this.consul_sueldoneto.AutoSize = true;
-            this.consul_sueldoneto.Location = new System.Drawing.Point(15, 444);
+            this.consul_sueldoneto.Location = new System.Drawing.Point(184, 444);
             this.consul_sueldoneto.Name = "consul_sueldoneto";
-            this.consul_sueldoneto.Size = new System.Drawing.Size(64, 13);
+            this.consul_sueldoneto.Size = new System.Drawing.Size(66, 13);
             this.consul_sueldoneto.TabIndex = 16;
-            this.consul_sueldoneto.Text = "Sueldo neto";
+            this.consul_sueldoneto.Text = "Sueldo Neto";
+            // 
+            // consul_sueldobruto
+            // 
+            this.consul_sueldobruto.AutoSize = true;
+            this.consul_sueldobruto.Location = new System.Drawing.Point(15, 444);
+            this.consul_sueldobruto.Name = "consul_sueldobruto";
+            this.consul_sueldobruto.Size = new System.Drawing.Size(68, 13);
+            this.consul_sueldobruto.TabIndex = 17;
+            this.consul_sueldobruto.Text = "Sueldo Bruto";
             // 
             // Form5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(371, 520);
+            this.Controls.Add(this.consul_sueldobruto);
             this.Controls.Add(this.consul_sueldoneto);
             this.Controls.Add(this.consul_nomina);
             this.Controls.Add(this.btn_Generar_Recibo);
@@ -202,5 +213,6 @@ namespace MAD_Pantallas
         private System.Windows.Forms.Button btn_Generar_Recibo;
         private System.Windows.Forms.Button consul_nomina;
         private System.Windows.Forms.Label consul_sueldoneto;
+        private System.Windows.Forms.Label consul_sueldobruto;
     }
 }

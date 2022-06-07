@@ -157,7 +157,7 @@ BEGIN
 			SET @SumPD = (SELECT SUM(Cantidad) FROM Asign_Empleado_Percepcion 
 			JOIN Percepcion ON Percepcion.ID_Percepcion = Asign_Empleado_Percepcion.ID_Percepcion
 			JOIN Empleado ON Empleado.CveEmpleado=Asign_Empleado_Percepcion.CveEmpleado
-			WHERE Percepcion.Es_porcentaje=1 AND (MONTH(Asign_Empleado_Percepcion.Fecha) = MONTH(@Fecha)) AND (YEAR(Asign_Empleado_Percepcion.Fecha) = YEAR(@Fecha)) AND Asign_Empleado_Percepcion.CveEmpleado=@CveEmpleado)
+			WHERE Percepcion.Es_porcentaje=1 AND Percepcion.Tipo= 'O' AND (MONTH(Asign_Empleado_Percepcion.Fecha) = MONTH(@Fecha)) AND (YEAR(Asign_Empleado_Percepcion.Fecha) = YEAR(@Fecha)) AND Asign_Empleado_Percepcion.CveEmpleado=@CveEmpleado)
 
 			IF (@SumPD IS NULL)
 			BEGIN
@@ -173,7 +173,7 @@ BEGIN
 			SET @SumPD = (SELECT SUM(Cantidad) FROM Asign_Empleado_Percepcion 
 			JOIN Percepcion ON Percepcion.ID_Percepcion = Asign_Empleado_Percepcion.ID_Percepcion
 			JOIN Empleado ON Empleado.CveEmpleado=Asign_Empleado_Percepcion.CveEmpleado
-			WHERE Percepcion.Es_porcentaje=0 AND (MONTH(Asign_Empleado_Percepcion.Fecha) = MONTH(@Fecha)) AND (YEAR(Asign_Empleado_Percepcion.Fecha) = YEAR(@Fecha)) AND Asign_Empleado_Percepcion.CveEmpleado=@CveEmpleado)
+			WHERE Percepcion.Es_porcentaje=0 AND Percepcion.Tipo= 'O' AND (MONTH(Asign_Empleado_Percepcion.Fecha) = MONTH(@Fecha)) AND (YEAR(Asign_Empleado_Percepcion.Fecha) = YEAR(@Fecha)) AND Asign_Empleado_Percepcion.CveEmpleado=@CveEmpleado)
 			
 			IF (@SumPD IS NULL)
 			BEGIN

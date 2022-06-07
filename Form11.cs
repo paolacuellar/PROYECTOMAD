@@ -104,7 +104,7 @@ namespace MAD_Pantallas
 
         private void listBoxP_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(listBoxD.SelectedIndex != -1)
+            if (listBoxD.SelectedIndex != -1)
                 listBoxD.SelectedIndex = -1;
 
             verificarAsignacion();
@@ -121,8 +121,67 @@ namespace MAD_Pantallas
 
         private void listBoxemp_SelectedIndexChanged(object sender, EventArgs e)
         {
+            EnlaceDB enlace = new EnlaceDB();
+            PD_Asignadas.Items.Clear();
+
+            int idEnte = Int32.Parse(((KeyValuePair<string, string>)listBoxemp.SelectedItem).Key.ToString());
+
+            DataTable percepcionesA = enlace.getPercepcionesAsignadas(idEnte);
+
+            DataTable deduccionesA = enlace.getDeduccionesAsignadas(idEnte);
+
             if (comboBoxdeptos.SelectedIndex != -1)
                 comboBoxdeptos.SelectedIndex = -1;
+
+            DataTable percepcionesB = enlace.getAllBasicP();
+
+            if (percepcionesA.Rows.Count > 0 && percepcionesB.Rows.Count > 0)
+            {
+                PD_Asignadas.Items.Add("PERCEPCIONES APLICADAS\n");
+                PD_Asignadas.Items.Add(" ");
+            }
+
+
+            foreach (DataRow rowPB in percepcionesB.Rows)
+            {
+                if (rowPB["Es_porcentaje"].ToString() == "True")
+                    PD_Asignadas.Items.Add(rowPB["Motivo"].ToString() + "(Porcentaje: " + rowPB["Cantidad"].ToString() + "%) - BASICA");
+                else
+                    PD_Asignadas.Items.Add(rowPB["Motivo"].ToString() + "(Valor fijo: $" + rowPB["Cantidad"].ToString() + ") - BASICA");
+            }
+
+            foreach (DataRow row in percepcionesA.Rows){
+                
+                    if (row["Es_porcentaje"].ToString() == "True")
+                        PD_Asignadas.Items.Add(row["Motivo"].ToString() + "(Porcentaje: " + row["Cantidad"].ToString() + "%) - " + row["Fecha"]);
+                    else
+                        PD_Asignadas.Items.Add(row["Motivo"].ToString() + "(Valor fijo: $" + row["Cantidad"].ToString() + ") - " + row["Fecha"]);
+            }
+
+            DataTable deduccionesB = enlace.getAllBasicD();
+
+
+            if (deduccionesA.Rows.Count > 0 && deduccionesB.Rows.Count > 0) {
+                PD_Asignadas.Items.Add(" ");
+                PD_Asignadas.Items.Add("DEDUCCIONES APLICADAS\n");
+                PD_Asignadas.Items.Add(" ");
+            }
+
+            foreach (DataRow rowDB in deduccionesB.Rows)
+            {
+                if (rowDB["Es_porcentaje"].ToString() == "True")
+                    PD_Asignadas.Items.Add(rowDB["Motivo"].ToString() + "(Porcentaje: " + rowDB["Cantidad"].ToString() + "%) - BASICA");
+                else
+                    PD_Asignadas.Items.Add(rowDB["Motivo"].ToString() + "(Valor fijo: $" + rowDB["Cantidad"].ToString() + ") - BASICA");
+            }
+
+            foreach (DataRow row in deduccionesA.Rows)
+            {               
+                    if (row["Es_porcentaje"].ToString() == "True")
+                        PD_Asignadas.Items.Add(row["Motivo"].ToString() + "(Porcentaje: " + row["Cantidad"].ToString() + "%) - " + row["Fecha"]);
+                    else
+                        PD_Asignadas.Items.Add(row["Motivo"].ToString() + "(Valor fijo: $" + row["Cantidad"].ToString() + ") - " + row["Fecha"]);
+            }
 
             verificarAsignacion();
 
@@ -191,7 +250,7 @@ namespace MAD_Pantallas
 
             operTemp += "x";
 
-            if (listBoxemp.SelectedIndex != -1 )
+            if (listBoxemp.SelectedIndex != -1)
                 operTemp += "E";
 
             if (comboBoxdeptos.SelectedIndex != -1)

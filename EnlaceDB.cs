@@ -27,7 +27,7 @@ namespace MAD_Pantallas
             }
         }
 
-        private  void conectar()
+        private void conectar()
         {
             //string cnn = ConfigurationManager.AppSettings["desarrollo1"];
 
@@ -66,13 +66,13 @@ namespace MAD_Pantallas
                 _adaptador.SelectCommand = _comandosql;
                 _adaptador.Fill(_tabla);
 
-                if(_tabla.Rows.Count > 0)
+                if (_tabla.Rows.Count > 0)
                 {
                     temp = _tabla.Rows[0];
                 }
 
             }
-            catch(SqlException e)
+            catch (SqlException e)
             {
                 msg = "Excepción de base de datos: \n";
                 msg += e.Message;
@@ -221,7 +221,7 @@ namespace MAD_Pantallas
             return puesto;
         }
 
-   
+
         //Buscamos las percepciones y las deducciones por fecha para mostrar las que fueron mostradas en cierto mes 
         //en la ventana de consultar nomina
         public DataTable getPercepcionesByDate(DateTime date)
@@ -245,7 +245,7 @@ namespace MAD_Pantallas
                 //_comandosql.Parameters.Add("@ID_Percepcion", SqlDbType.TinyInt, 10);
                 //_comandosql.Parameters.Add("@ID_ADeduccion", SqlDbType.Int, 10);
                 //_comandosql.Parameters.Add("@ID_APercepcion", SqlDbType.Int, 10);
-                
+
                 var parametro2 = _comandosql.Parameters.Add("@Fecha", SqlDbType.Date, 10);
                 parametro2.Value = date;
 
@@ -461,7 +461,7 @@ namespace MAD_Pantallas
 
                 var parametro2 = _comandosql.Parameters.Add("@Motivo", SqlDbType.VarChar, 255);
                 parametro2.Value = motivo;
-               
+
                 var parametro3 = _comandosql.Parameters.Add("@Cantidad", SqlDbType.Decimal, 10);
                 parametro3.Value = cantidad;
 
@@ -550,7 +550,7 @@ namespace MAD_Pantallas
         {
             string msg = "";
             bool seAsigno = true;
-           
+
             try
             {
                 conectar();
@@ -569,7 +569,8 @@ namespace MAD_Pantallas
                 {
                     var parametro3 = _comandosql.Parameters.Add("@CveEmpleado", SqlDbType.Int, 10);
                     parametro3.Value = idEnte;
-                } else if (tipoEnte == "D")
+                }
+                else if (tipoEnte == "D")
                 {
                     var parametro3 = _comandosql.Parameters.Add("@ID_Departamento", SqlDbType.TinyInt, 10);
                     parametro3.Value = idEnte;
@@ -580,7 +581,7 @@ namespace MAD_Pantallas
                     return false;
                 }
 
-           
+
                 var parametro4 = _comandosql.Parameters.Add("@Fecha", SqlDbType.Date, 10);
                 parametro4.Value = fechaAplicacion;
 
@@ -611,6 +612,79 @@ namespace MAD_Pantallas
             return seAsigno;
         }
 
+        public DataTable getPercepcionesAsignadas(int idEnte)
+        {
+            string msg = "";
+
+            try
+            {
+                conectar();
+                string qry = "sp_AsignacionPD";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
+                parametro1.Value = "SPxME";               
+
+                var parametro2 = _comandosql.Parameters.Add("@CveEmpleado", SqlDbType.Int, 10);
+                parametro2.Value = idEnte;
+               
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(_tabla);                
+
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+            return _tabla;
+        }
+
+        public DataTable getDeduccionesAsignadas(int idEnte)
+        {
+            string msg = "";
+
+            try
+            {
+                conectar();
+                string qry = "sp_AsignacionPD";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+                var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
+                parametro1.Value = "SDxME";
+
+                var parametro2 = _comandosql.Parameters.Add("@CveEmpleado", SqlDbType.Int, 10);
+                parametro2.Value = idEnte;
+                
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(_tabla);               
+
+
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+            return _tabla;
+        }
+
         //Obtenemos la vista de Departamentos, Empleados y Puestos para mostrarlos en los listbox correspondientes en cada ventana
         public DataTable getDeptosV()
         {
@@ -625,7 +699,7 @@ namespace MAD_Pantallas
                 _comandosql.CommandTimeout = 1200;
 
                 var parametro1 = _comandosql.Parameters.Add("@Opcion", SqlDbType.VarChar, 10);
-                parametro1.Value = "VIEW"; 
+                parametro1.Value = "VIEW";
 
 
                 _adaptador.SelectCommand = _comandosql;
@@ -742,7 +816,7 @@ namespace MAD_Pantallas
 
                 var parametro5 = _comandosql.Parameters.Add("@Contrasenia", SqlDbType.VarChar, 25);
                 parametro5.Value = contraseniaT;
-           
+
 
                 int rows = _comandosql.ExecuteNonQuery();
 
@@ -770,7 +844,7 @@ namespace MAD_Pantallas
             }
             return seActualizo;
         }
-       
+
         //Gestion de Empleados//
         public bool updateEmpleados(int id, string nombreT, string apellidopT, string apellidomT, string curpT, string nacimientoT, string emailT,
             string rfcT, string nssT, string bancoT, string numbancariaT, string calleT, int numT, string coloniaT, string estadoT, int codPostalT,
@@ -790,7 +864,7 @@ namespace MAD_Pantallas
                 parametro1.Value = "UPDATE";
 
                 var parametro2 = _comandosql.Parameters.Add("@CveEmpleado", SqlDbType.Int, 10);
-                parametro2.Value = id; 
+                parametro2.Value = id;
 
                 var parametro3 = _comandosql.Parameters.Add("@Nombre", SqlDbType.VarChar, 25);
                 parametro3.Value = nombreT;
@@ -814,10 +888,10 @@ namespace MAD_Pantallas
                 parametro9.Value = rfcT;
 
                 var parametro10 = _comandosql.Parameters.Add("@NumSeguro_Social", SqlDbType.Int, 10);
-                if(nssT == "")
+                if (nssT == "")
                     parametro10.Value = DBNull.Value;
                 else
-                    parametro10.Value = nssT;
+                    parametro10.Value = Int32.Parse(nssT);
 
                 var parametro11 = _comandosql.Parameters.Add("@Banco", SqlDbType.VarChar, 50);
                 parametro11.Value = bancoT;
@@ -826,7 +900,7 @@ namespace MAD_Pantallas
                 if (nssT == "")
                     parametro12.Value = DBNull.Value;
                 else
-                    parametro12.Value = numbancariaT;
+                    parametro12.Value = Int32.Parse(numbancariaT);
 
                 var parametro13 = _comandosql.Parameters.Add("@calle", SqlDbType.VarChar, 25);
                 parametro13.Value = calleT;
@@ -840,8 +914,8 @@ namespace MAD_Pantallas
                 var parametro16 = _comandosql.Parameters.Add("@municipio", SqlDbType.VarChar, 25);
                 parametro16.Value = estadoT;
 
-                var parametro17 = _comandosql.Parameters.Add("@codigo_postal", SqlDbType.VarChar, 25);
-                parametro17.Value = estadoT;
+                var parametro17 = _comandosql.Parameters.Add("@codigo_postal", SqlDbType.Int, 25);
+                parametro17.Value = codPostalT;
 
                 var parametro18 = _comandosql.Parameters.Add("@telefono", SqlDbType.VarChar, 18);
                 parametro18.Value = telefonoT;
@@ -884,10 +958,10 @@ namespace MAD_Pantallas
             }
             return seActualizo;
         }
-        
+
         public bool insertEmpleado(string nombreT, string apellidopT, string apellidomT, string curpT, string nacimientoT, string emailT,
-            string rfcT, string nssT, string bancoT, string numbancariaT, string calleT, int numT, string coloniaT, string estadoT, 
-            int codPostalT, string telefonoT,string contraseniaT, string operacionesT, int idPuesto, int idDepto)
+            string rfcT, string nssT, string bancoT, string numbancariaT, string calleT, int numT, string coloniaT, string estadoT,
+            int codPostalT, string telefonoT, string contraseniaT, string operacionesT, int idPuesto, int idDepto)
         {
             bool seInserto = true;
             var msg = "";
@@ -952,7 +1026,7 @@ namespace MAD_Pantallas
 
                 var parametro16 = _comandosql.Parameters.Add("@municipio", SqlDbType.VarChar, 25);
                 parametro16.Value = estadoT;
-                
+
                 var parametro17 = _comandosql.Parameters.Add("@codigo_postal", SqlDbType.Int, 10);
                 parametro17.Value = codPostalT;
 
@@ -1355,7 +1429,7 @@ namespace MAD_Pantallas
                 _comandosql.CommandTimeout = 1200;
 
                 var parametro1 = _comandosql.Parameters.Add("@Fecha", SqlDbType.DateTime, 10);
-                parametro1.Value = date;               
+                parametro1.Value = date;
 
                 int rows = _comandosql.ExecuteNonQuery();
 
@@ -1367,7 +1441,7 @@ namespace MAD_Pantallas
                 else
                 {
                     MessageBox.Show("Se calculó la Nomina!", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }                
+                }
             }
             catch (SqlException e)
             {
@@ -1400,7 +1474,7 @@ namespace MAD_Pantallas
 
                 var parametro2 = _comandosql.Parameters.Add("@CveEmpleado", SqlDbType.Int, 10);
                 parametro2.Value = idEmpleado;
-               
+
 
 
                 _adaptador.SelectCommand = _comandosql;

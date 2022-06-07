@@ -61,7 +61,7 @@ SELECT * FROM DatosPersonales;
 
 UPDATE Empleado
 SET Rol = 'GG'
-WHERE CveEmpleado = 1000004;
+WHERE CveEmpleado = 1000007;
 
 --INSERT INTO Deduccion
 INSERT INTO Deduccion(Motivo, Cantidad, Es_porcentaje)

@@ -44,6 +44,10 @@ namespace MAD_Pantallas
             this.Return = new System.Windows.Forms.Button();
             this.btn_Calculo = new System.Windows.Forms.Button();
             this.fechaCalculo = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
+            this.PD_Asignadas = new System.Windows.Forms.ListBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label_ente_pd = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listBoxP
@@ -176,16 +180,55 @@ namespace MAD_Pantallas
             // 
             // fechaCalculo
             // 
-            this.fechaCalculo.Location = new System.Drawing.Point(397, 365);
+            this.fechaCalculo.Location = new System.Drawing.Point(397, 371);
             this.fechaCalculo.Name = "fechaCalculo";
             this.fechaCalculo.Size = new System.Drawing.Size(200, 20);
             this.fechaCalculo.TabIndex = 64;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(394, 351);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(263, 13);
+            this.label5.TabIndex = 65;
+            this.label5.Text = "Seleccionar fecha de la nomina que se desea calcular";
+            // 
+            // PD_Asignadas
+            // 
+            this.PD_Asignadas.FormattingEnabled = true;
+            this.PD_Asignadas.Location = new System.Drawing.Point(776, 81);
+            this.PD_Asignadas.Name = "PD_Asignadas";
+            this.PD_Asignadas.Size = new System.Drawing.Size(342, 342);
+            this.PD_Asignadas.TabIndex = 66;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(773, 39);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(209, 13);
+            this.label6.TabIndex = 67;
+            this.label6.Text = "Percepciones y Deducciones aplicadas a :";
+            // 
+            // label_ente_pd
+            // 
+            this.label_ente_pd.AutoSize = true;
+            this.label_ente_pd.Location = new System.Drawing.Point(773, 55);
+            this.label_ente_pd.Name = "label_ente_pd";
+            this.label_ente_pd.Size = new System.Drawing.Size(10, 13);
+            this.label_ente_pd.TabIndex = 68;
+            this.label_ente_pd.Text = " ";
             // 
             // Form11
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(769, 450);
+            this.ClientSize = new System.Drawing.Size(1152, 449);
+            this.Controls.Add(this.label_ente_pd);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.PD_Asignadas);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.fechaCalculo);
             this.Controls.Add(this.btn_Calculo);
             this.Controls.Add(this.Return);
@@ -226,5 +269,9 @@ namespace MAD_Pantallas
         private System.Windows.Forms.Button Return;
         private System.Windows.Forms.Button btn_Calculo;
         private System.Windows.Forms.DateTimePicker fechaCalculo;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ListBox PD_Asignadas;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label_ente_pd;
     }
 }

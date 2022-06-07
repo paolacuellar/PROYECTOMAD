@@ -31,7 +31,7 @@ namespace MAD_Pantallas
 
                 if (usuarioTemp["Rol"].ToString() == "EM")
                 {
-                    Form2 frm = new Form2();
+                    Form3 frm = new Form3();
                     this.Hide();
                     frm.ShowDialog();
                     this.Show();

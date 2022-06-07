@@ -79,15 +79,17 @@ namespace MAD_Pantallas
 
             DataRow nomina = enlace.getNominaByDate(userIdTemp, NominaBuscar.Value.ToString());
 
-            if (nomina == null){
+            if (nomina == null)
+            {
                 MessageBox.Show("Aún no se ha calculado la nomina de ese mes", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
 
             string sueldo_bruto = nomina["Sueldo Bruto"].ToString();
             string sueldo_neto = nomina["Sueldo Neto"].ToString();
+            string sueldo_neto_nombre = nomina["Sueldo_Neto_Name"].ToString();
 
-                string ubicacion = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\Recibo.pdf";
+            string ubicacion = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\Recibo.pdf";
             try
             {
                 using (PdfWriter pdfWriter = new PdfWriter(ubicacion))
@@ -100,42 +102,84 @@ namespace MAD_Pantallas
                     document.Add(new Paragraph(nombre_emp));
                     document.Add(new Paragraph("\n" + sueldo_base));
                     document.Add(new Paragraph(nivel_salarial));
-                    
-                    if(percepciones.Rows.Count > 0 && percepcionesB.Rows.Count > 0)
+
+                    if (percepciones.Rows.Count > 0 && percepcionesB.Rows.Count > 0)
                         document.Add(new Paragraph("\n\tPERCEPCIONES APLICADAS"));
 
                     foreach (DataRow rowPB in percepcionesB.Rows)
-                            document.Add(new Paragraph(rowPB["Motivo"].ToString() + "\t $" + rowPB["Cantidad"].ToString() + " - BASICA"));
+                    {
+                        float cantidadTemp = float.Parse(rowPB["Cantidad"].ToString());
+                        float sueldo_brutoNum = float.Parse(nomina["Sueldo Bruto"].ToString());
+                        float cantidadNum = (cantidadTemp / 100) * sueldo_brutoNum;
 
-                    foreach (DataRow rowP in percepciones.Rows){
-                        if (rowP["CveEmpleado"].Equals(userIdTemp))
-                            document.Add(new Paragraph(rowP["Motivo"].ToString() + "\t $" + rowP["Cantidad"].ToString()));
+                        if (rowPB["Es_porcentaje"].ToString() == "True")
+                            document.Add(new Paragraph(rowPB["Motivo"].ToString() + "(Porcentaje: " + rowPB["Cantidad"].ToString() + "%)\t $" + cantidadNum.ToString() + " - BASICA"));
+                        else
+                            document.Add(new Paragraph(rowPB["Motivo"].ToString() + "(Valor fijo)\t $" + rowPB["Cantidad"].ToString() + " - BASICA"));
+
                     }
 
-                    
+                    foreach (DataRow rowP in percepciones.Rows)
+                    {
+                        float cantidadTemp = float.Parse(rowP["Cantidad"].ToString());
+                        float sueldo_brutoNum = float.Parse(nomina["Sueldo Bruto"].ToString());
+                        float cantidadNum = (cantidadTemp / 100) * sueldo_brutoNum;
+
+                        if (rowP["CveEmpleado"].Equals(userIdTemp))
+                        {
+                            if (rowP["Es_porcentaje"].ToString() == "True")
+                                document.Add(new Paragraph(rowP["Motivo"].ToString() + "(Porcentaje: " + rowP["Cantidad"].ToString() + "%)\t $" + cantidadNum.ToString()));
+                            else
+                                document.Add(new Paragraph(rowP["Motivo"].ToString() + "(Valor fijo)\t $" + rowP["Cantidad"].ToString()));
+                        }
+                    }
+
+
 
                     if (deducciones.Rows.Count > 0 && deduccionesB.Rows.Count > 0)
                         document.Add(new Paragraph("\n\tDEDUCCIONES APLICADAS"));
 
                     foreach (DataRow rowDB in deduccionesB.Rows)
-                            document.Add(new Paragraph(rowDB["Motivo"].ToString() + "\t $" + rowDB["Cantidad"].ToString() + " - BASICA"));
+                    {
+                        float cantidadTemp = float.Parse(rowDB["Cantidad"].ToString());
+                        float sueldo_brutoNum = float.Parse(nomina["Sueldo Bruto"].ToString());
+                        float cantidadNum = (cantidadTemp / 100) * sueldo_brutoNum;
 
-                    foreach (DataRow rowD in deducciones.Rows){
-                        if (rowD["CveEmpleado"].Equals(userIdTemp))
-                            document.Add(new Paragraph(rowD["Motivo"].ToString() + "\t $" + rowD["Cantidad"].ToString()));
+                        if (rowDB["Es_porcentaje"].ToString() == "True")
+                            document.Add(new Paragraph(rowDB["Motivo"].ToString() + "(Porcentaje: " + rowDB["Cantidad"].ToString() + "%)\t $" + cantidadNum.ToString() + " - BASICA"));
+                        else
+                            document.Add(new Paragraph(rowDB["Motivo"].ToString() + "(Valor fijo)\t $" + rowDB["Cantidad"].ToString() + " - BASICA"));
                     }
 
+                    foreach (DataRow rowD in deducciones.Rows)
+                    {
+                        float cantidadTemp = float.Parse(rowD["Cantidad"].ToString());
+                        float sueldo_brutoNum = float.Parse(nomina["Sueldo Bruto"].ToString());
+                        float cantidadNum = (cantidadTemp / 100) * sueldo_brutoNum;
+
+                        if (rowD["CveEmpleado"].Equals(userIdTemp))
+                        {
+                            if (rowD["Es_porcentaje"].ToString() == "True")
+                                document.Add(new Paragraph(rowD["Motivo"].ToString() + "(Porcentaje: " + rowD["Cantidad"].ToString() + "%)\t $" + cantidadNum.ToString()));
+                            else
+                                document.Add(new Paragraph(rowD["Motivo"].ToString() + "(Valor fijo)\t $" + rowD["Cantidad"].ToString()));
+                        }
+                    }
 
 
                     document.Add(new Paragraph("\n SUELDO BRUTO \t  $" + sueldo_bruto));
                     document.Add(new Paragraph("SUELDO NETO \t  $" + sueldo_neto));
+                    document.Add(new Paragraph("Cantidad en letra:\t " + sueldo_neto_nombre));
+
                 }
             }
-            catch (Exception ex){
+            catch (Exception ex)
+            {
                 MessageBox.Show("No se puede crear el documento" + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            finally{
+            finally
+            {
 
             }
             MessageBox.Show(ubicacion, "Se ha generado su recibo en la ruta: ", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -153,7 +197,8 @@ namespace MAD_Pantallas
 
             //Validacion si la nomina no existe
 
-            if(nomina == null){
+            if (nomina == null)
+            {
                 MessageBox.Show("Aún no se ha calculado la nomina de ese mes", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
@@ -168,18 +213,33 @@ namespace MAD_Pantallas
             listBoxPercepciones.Items.Clear();
             DataTable percepcionesB = enlace.getAllBasicP();
 
-            foreach (DataRow rowPB in percepcionesB.Rows){
-                    listBoxPercepciones.Items.Add(rowPB["Motivo"].ToString() + " - BASICA");
+            foreach (DataRow rowPB in percepcionesB.Rows)
+            {
+                float cantidadTemp = float.Parse(rowPB["Cantidad"].ToString());
+                float sueldo_bruto = float.Parse(nomina["Sueldo Bruto"].ToString());
+                float cantidadNum = (cantidadTemp / 100) * sueldo_bruto;
+
+                if (rowPB["Es_porcentaje"].ToString() == "True")
+                    listBoxPercepciones.Items.Add(rowPB["Motivo"].ToString() + "(Porcentaje: " + rowPB["Cantidad"].ToString() + "%)\t $" + cantidadNum.ToString() + " - BASICA");
+                else
+                    listBoxPercepciones.Items.Add(rowPB["Motivo"].ToString() + "(Valor fijo)\t $" + rowPB["Cantidad"].ToString() + " - BASICA");
             }
 
             DataTable percepciones = enlace.getPercepcionesByDate(NominaBuscar.Value);
 
             foreach (DataRow row in percepciones.Rows)
             {
+                float cantidadTemp = float.Parse(row["Cantidad"].ToString());
+                float sueldo_bruto = float.Parse(nomina["Sueldo Bruto"].ToString());
+                float cantidadNum = (cantidadTemp / 100) * sueldo_bruto;
+
                 if (row["CveEmpleado"].Equals(userIdTemp))
                 {
-                    //Llenar el list box
-                    listBoxPercepciones.Items.Add(row["Motivo"]);
+                    if (row["Es_porcentaje"].ToString() == "True")
+                        listBoxPercepciones.Items.Add(row["Motivo"].ToString() + "(Porcentaje: " + row["Cantidad"].ToString() + "%)\t $" + cantidadNum.ToString());
+                    else
+                        listBoxPercepciones.Items.Add(row["Motivo"].ToString() + "(Valor fijo)\t $" + row["Cantidad"].ToString());
+
                 }
             }
 
@@ -188,29 +248,43 @@ namespace MAD_Pantallas
             listBoxDeducciones.Items.Clear();
             DataTable deduccionesB = enlace.getAllBasicD();
 
-            foreach (DataRow rowDB in deduccionesB.Rows){
-                   listBoxDeducciones.Items.Add(rowDB["Motivo"].ToString() + " - BASICA");
+            foreach (DataRow rowDB in deduccionesB.Rows)
+            {
+                float cantidadTemp = float.Parse(rowDB["Cantidad"].ToString());
+                float sueldo_bruto = float.Parse(nomina["Sueldo Bruto"].ToString());
+                float cantidadNum = (cantidadTemp / 100) * sueldo_bruto;
+
+                if (rowDB["Es_porcentaje"].ToString() == "True")
+                    listBoxDeducciones.Items.Add(rowDB["Motivo"].ToString() + "(Porcentaje: " + rowDB["Cantidad"].ToString() + "%)\t $" + cantidadNum.ToString() + " - BASICA");
+                else
+                    listBoxDeducciones.Items.Add(rowDB["Motivo"].ToString() + "(Valor fijo)\t $" + rowDB["Cantidad"].ToString() + " - BASICA");
             }
 
             DataTable deducciones = enlace.getDeduccionesByDate(NominaBuscar.Value);
 
             foreach (DataRow row in deducciones.Rows)
             {
+                float cantidadTemp = float.Parse(row["Cantidad"].ToString());
+                float sueldo_bruto = float.Parse(nomina["Sueldo Bruto"].ToString());
+                float cantidadNum = (cantidadTemp / 100) * sueldo_bruto;
+
                 if (row["CveEmpleado"].Equals(userIdTemp))
                 {
-                    //Llenar el list box
-                    listBoxDeducciones.Items.Add(row["Motivo"]);
+                    if (row["Es_porcentaje"].ToString() == "True")
+                        listBoxDeducciones.Items.Add(row["Motivo"].ToString() + "(Porcentaje: " + row["Cantidad"].ToString() + "%)\t $" + cantidadNum.ToString());
+                    else
+                        listBoxDeducciones.Items.Add(row["Motivo"].ToString() + "(Valor fijo)\t $" + row["Cantidad"].ToString());
                 }
             }
 
             //Aplicar Calculos de Nomina
 
-            DataRow nom = enlace.getNominaByDate(userIdTemp, NominaBuscar.Value.ToString());
 
-            if(nom != null){
-                
-                consul_sueldoneto.Text = String.Concat("Sueldo Neto: ", nom["Sueldo Bruto"].ToString()).ToString();
-        
+            if (nomina != null){
+
+                consul_sueldoneto.Text = String.Concat("Sueldo Neto: ", nomina["Sueldo Neto"].ToString()).ToString();
+                consul_sueldobruto.Text = String.Concat("Sueldo Bruto: ", nomina["Sueldo Bruto"].ToString()).ToString();
+
             }
         }
     }
