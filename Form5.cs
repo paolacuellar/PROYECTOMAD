@@ -89,7 +89,7 @@ namespace MAD_Pantallas
             string sueldo_neto = nomina["Sueldo Neto"].ToString();
             string sueldo_neto_nombre = nomina["Sueldo_Neto_Name"].ToString();
 
-            string ubicacion = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\Recibo.pdf";
+            string ubicacion = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\Recibo_" + print_date + "_" + userIdTemp.ToString() +  ".pdf";
             try
             {
                 using (PdfWriter pdfWriter = new PdfWriter(ubicacion))

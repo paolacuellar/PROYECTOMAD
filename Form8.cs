@@ -39,8 +39,6 @@ namespace MAD_Pantallas
 
         private void Form8_Load(object sender, EventArgs e)
         {
-
-
             resetListBoxDeptos();
         }
 

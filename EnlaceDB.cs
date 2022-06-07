@@ -33,9 +33,9 @@ namespace MAD_Pantallas
 
             //String connetionString = @"Data Source=DESKTOP-MFMA6VE\SQLEXPRESS;Initial Catalog=PROYECTOMAD;Integrated Security=True;"; //ARELY
 
-            String connetionString = @"Data Source=LAPTOP-02AHRSHI\SQLEXPRESS;Initial Catalog=PROYECTOMAD;Integrated Security=True;"; //LAPTOP
+            //String connetionString = @"Data Source=LAPTOP-02AHRSHI\SQLEXPRESS;Initial Catalog=PROYECTOMAD;Integrated Security=True;"; //LAPTOP
 
-            //String connetionString = @"Data Source=DESKTOP-51SJOGN;Initial Catalog=PROYECTOMAD;Integrated Security=True;"; //KARIM
+            String connetionString = @"Data Source=DESKTOP-51SJOGN;Initial Catalog=PROYECTOMAD;Integrated Security=True;"; //KARIM
 
             //string cnn = ConfigurationManager.ConnectionStrings[connetionString].ToString();
             _conexion = new SqlConnection(connetionString);
@@ -1497,6 +1497,53 @@ namespace MAD_Pantallas
                 return null;
 
             return _tabla.Rows[0];
+        }
+
+        public DataTable getHeadcounterReport(string departamento, string date, string parte)
+        {
+            var msg = "";
+            DataTable tabla = new DataTable();
+            try
+            {
+                conectar();
+                string qry = "sp_ReporteHeadcounter";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+
+
+                var parametro1 = _comandosql.Parameters.Add("@Departamento", SqlDbType.VarChar, 25);
+                if(departamento == "TODOS")
+                    parametro1.Value = DBNull.Value;
+                else
+                    parametro1.Value = departamento;
+
+                var parametro2 = _comandosql.Parameters.Add("@Fecha", SqlDbType.Date, 10);
+                if(date == "0")
+                    parametro2.Value = DBNull.Value;
+                else
+                    parametro2.Value = date;
+
+                var parametro3 = _comandosql.Parameters.Add("@Parte", SqlDbType.Char, 1);
+                parametro3.Value = parte;
+
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(tabla);
+
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
         }
     }
 }

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.cbDeptos = new System.Windows.Forms.ComboBox();
-            this.cbYear = new System.Windows.Forms.ComboBox();
             this.cbMes = new System.Windows.Forms.ComboBox();
             this.bGenerar = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -37,6 +36,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.tbAnio = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // cbDeptos
@@ -46,14 +46,7 @@
             this.cbDeptos.Name = "cbDeptos";
             this.cbDeptos.Size = new System.Drawing.Size(169, 21);
             this.cbDeptos.TabIndex = 0;
-            // 
-            // cbYear
-            // 
-            this.cbYear.FormattingEnabled = true;
-            this.cbYear.Location = new System.Drawing.Point(384, 50);
-            this.cbYear.Name = "cbYear";
-            this.cbYear.Size = new System.Drawing.Size(169, 21);
-            this.cbYear.TabIndex = 1;
+            this.cbDeptos.SelectedIndexChanged += new System.EventHandler(this.cbDeptos_SelectedIndexChanged);
             // 
             // cbMes
             // 
@@ -71,6 +64,7 @@
             this.bGenerar.TabIndex = 3;
             this.bGenerar.Text = "Generar reporte Headcounter";
             this.bGenerar.UseVisualStyleBackColor = true;
+            this.bGenerar.Click += new System.EventHandler(this.bGenerar_Click);
             // 
             // button2
             // 
@@ -118,11 +112,19 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Año:";
             // 
+            // tbAnio
+            // 
+            this.tbAnio.Location = new System.Drawing.Point(384, 51);
+            this.tbAnio.Name = "tbAnio";
+            this.tbAnio.Size = new System.Drawing.Size(169, 20);
+            this.tbAnio.TabIndex = 9;
+            // 
             // Form12
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(565, 157);
+            this.Controls.Add(this.tbAnio);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -130,10 +132,10 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.bGenerar);
             this.Controls.Add(this.cbMes);
-            this.Controls.Add(this.cbYear);
             this.Controls.Add(this.cbDeptos);
             this.Name = "Form12";
             this.Text = "Reporte Headcounter";
+            this.Load += new System.EventHandler(this.Form12_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,7 +144,6 @@
         #endregion
 
         private System.Windows.Forms.ComboBox cbDeptos;
-        private System.Windows.Forms.ComboBox cbYear;
         private System.Windows.Forms.ComboBox cbMes;
         private System.Windows.Forms.Button bGenerar;
         private System.Windows.Forms.Button button2;
@@ -150,5 +151,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tbAnio;
     }
 }
