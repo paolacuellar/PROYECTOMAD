@@ -85,3 +85,10 @@ SELECT * FROM Percepcion;
 --INSERT INTO Asign_Empleado_Percepcion Calcular
 
 --INSERT INTO Asign_Empleado_Deduccion Calculae
+
+INSERT INTO Deduccion(Motivo, Cantidad, Es_porcentaje, Tipo)
+VALUES	('ISR', 350, 0, 'B');
+
+
+INSERT INTO Deduccion(Motivo, Cantidad, Es_porcentaje, Tipo)
+VALUES	('IMSS', 15, 1, 'B');

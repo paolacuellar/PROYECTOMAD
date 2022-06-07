@@ -60,8 +60,8 @@ BEGIN
 				RETURN;
 			END;
 
-			INSERT INTO Empleado(Contrasenia, NumEmpresa, ID_Departamento, ID_Puesto, Banco, NumCuentaBan)
-			VALUES (@Contrasenia, ISNULL(@NumEmpresa, 1), @ID_Departamento, @ID_Puesto, @Banco, @NumCuentaBan);
+			INSERT INTO Empleado(Contrasenia, NumEmpresa, ID_Departamento, ID_Puesto, Banco, NumCuentaBan, Fecha_contratacion)
+			VALUES (@Contrasenia, ISNULL(@NumEmpresa, 1), @ID_Departamento, @ID_Puesto, @Banco, @NumCuentaBan, @Fecha_contratacion);
 			SET @CveEmpleado=(SELECT @@IDENTITY);
 
 			INSERT INTO DatosPersonales(CveEmpleado, CURP, Nombre, A_Paterno, A_Materno, Fecha_nacimiento, Email, RFC, NumSeguro_Social)
@@ -130,7 +130,8 @@ BEGIN
 		ID_Departamento = ISNULL(@ID_Departamento, ID_Departamento), 
 		ID_Puesto = ISNULL(@ID_Puesto, ID_Puesto),
 		Banco = ISNULL(@Banco, Banco),
-		NumCuentaBan = ISNULL(@NumCuentaBan, NumCuentaBan)
+		NumCuentaBan = ISNULL(@NumCuentaBan, NumCuentaBan),
+		Fecha_contratacion = ISNULL(@Fecha_contratacion, Fecha_contratacion)
 		WHERE CveEmpleado=@CveEmpleado
 	END
 

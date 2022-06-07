@@ -55,6 +55,7 @@
             this.cbMes.Name = "cbMes";
             this.cbMes.Size = new System.Drawing.Size(169, 21);
             this.cbMes.TabIndex = 2;
+            this.cbMes.SelectedIndexChanged += new System.EventHandler(this.cbMes_SelectedIndexChanged);
             // 
             // bGenerar
             // 
@@ -114,6 +115,7 @@
             // 
             // tbAnio
             // 
+            this.tbAnio.Enabled = false;
             this.tbAnio.Location = new System.Drawing.Point(384, 51);
             this.tbAnio.Name = "tbAnio";
             this.tbAnio.Size = new System.Drawing.Size(169, 20);

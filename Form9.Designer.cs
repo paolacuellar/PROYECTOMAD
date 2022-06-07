@@ -52,7 +52,7 @@ namespace MAD_Pantallas
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(616, 377);
+            this.button2.Location = new System.Drawing.Point(543, 377);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(171, 42);
             this.button2.TabIndex = 113;
@@ -62,7 +62,7 @@ namespace MAD_Pantallas
             // 
             // PuestoSB
             // 
-            this.PuestoSB.Location = new System.Drawing.Point(616, 256);
+            this.PuestoSB.Location = new System.Drawing.Point(543, 256);
             this.PuestoSB.Name = "PuestoSB";
             this.PuestoSB.Size = new System.Drawing.Size(179, 20);
             this.PuestoSB.TabIndex = 112;
@@ -70,15 +70,16 @@ namespace MAD_Pantallas
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(616, 239);
+            this.label5.Location = new System.Drawing.Point(543, 239);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(67, 13);
+            this.label5.Size = new System.Drawing.Size(68, 13);
             this.label5.TabIndex = 111;
-            this.label5.Text = "Sueldo Base";
+            this.label5.Text = "Nivel Salarial";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // PuestoN
             // 
-            this.PuestoN.Location = new System.Drawing.Point(616, 202);
+            this.PuestoN.Location = new System.Drawing.Point(543, 202);
             this.PuestoN.Name = "PuestoN";
             this.PuestoN.Size = new System.Drawing.Size(179, 20);
             this.PuestoN.TabIndex = 110;
@@ -86,7 +87,7 @@ namespace MAD_Pantallas
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(616, 185);
+            this.label4.Location = new System.Drawing.Point(543, 185);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(96, 13);
             this.label4.TabIndex = 109;
@@ -95,7 +96,7 @@ namespace MAD_Pantallas
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(616, 132);
+            this.label3.Location = new System.Drawing.Point(543, 132);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(86, 13);
             this.label3.TabIndex = 107;
@@ -104,7 +105,7 @@ namespace MAD_Pantallas
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(616, 98);
+            this.label2.Location = new System.Drawing.Point(543, 98);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 13);
             this.label2.TabIndex = 106;
@@ -112,7 +113,8 @@ namespace MAD_Pantallas
             // 
             // PuestoDelete
             // 
-            this.PuestoDelete.Location = new System.Drawing.Point(393, 287);
+            this.PuestoDelete.Enabled = false;
+            this.PuestoDelete.Location = new System.Drawing.Point(320, 287);
             this.PuestoDelete.Name = "PuestoDelete";
             this.PuestoDelete.Size = new System.Drawing.Size(164, 23);
             this.PuestoDelete.TabIndex = 105;
@@ -123,7 +125,7 @@ namespace MAD_Pantallas
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(408, 255);
+            this.label24.Location = new System.Drawing.Point(335, 255);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(137, 13);
             this.label24.TabIndex = 101;
@@ -131,7 +133,8 @@ namespace MAD_Pantallas
             // 
             // PuestoUpdate
             // 
-            this.PuestoUpdate.Location = new System.Drawing.Point(390, 176);
+            this.PuestoUpdate.Enabled = false;
+            this.PuestoUpdate.Location = new System.Drawing.Point(317, 176);
             this.PuestoUpdate.Name = "PuestoUpdate";
             this.PuestoUpdate.Size = new System.Drawing.Size(164, 23);
             this.PuestoUpdate.TabIndex = 100;
@@ -142,7 +145,7 @@ namespace MAD_Pantallas
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(408, 141);
+            this.label20.Location = new System.Drawing.Point(335, 141);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(128, 13);
             this.label20.TabIndex = 96;
@@ -150,7 +153,7 @@ namespace MAD_Pantallas
             // 
             // PuestoAdd
             // 
-            this.PuestoAdd.Location = new System.Drawing.Point(435, 86);
+            this.PuestoAdd.Location = new System.Drawing.Point(362, 86);
             this.PuestoAdd.Name = "PuestoAdd";
             this.PuestoAdd.Size = new System.Drawing.Size(75, 23);
             this.PuestoAdd.TabIndex = 95;
@@ -161,7 +164,7 @@ namespace MAD_Pantallas
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(346, 70);
+            this.label11.Location = new System.Drawing.Point(273, 70);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(252, 13);
             this.label11.TabIndex = 94;
@@ -170,7 +173,7 @@ namespace MAD_Pantallas
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(416, 51);
+            this.label7.Location = new System.Drawing.Point(343, 51);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(112, 13);
             this.label7.TabIndex = 93;
@@ -181,7 +184,7 @@ namespace MAD_Pantallas
             this.listBoxPuestos.FormattingEnabled = true;
             this.listBoxPuestos.Location = new System.Drawing.Point(6, 30);
             this.listBoxPuestos.Name = "listBoxPuestos";
-            this.listBoxPuestos.Size = new System.Drawing.Size(334, 407);
+            this.listBoxPuestos.Size = new System.Drawing.Size(237, 407);
             this.listBoxPuestos.TabIndex = 92;
             this.listBoxPuestos.SelectedIndexChanged += new System.EventHandler(this.listBoxPuestos_SelectedIndexChanged);
             // 
@@ -197,7 +200,7 @@ namespace MAD_Pantallas
             // PuestoC
             // 
             this.PuestoC.AutoSize = true;
-            this.PuestoC.Location = new System.Drawing.Point(616, 150);
+            this.PuestoC.Location = new System.Drawing.Point(543, 150);
             this.PuestoC.Name = "PuestoC";
             this.PuestoC.Size = new System.Drawing.Size(86, 13);
             this.PuestoC.TabIndex = 114;
@@ -206,7 +209,7 @@ namespace MAD_Pantallas
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(387, 160);
+            this.label19.Location = new System.Drawing.Point(314, 160);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(160, 13);
             this.label19.TabIndex = 115;
@@ -216,7 +219,7 @@ namespace MAD_Pantallas
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(390, 271);
+            this.label6.Location = new System.Drawing.Point(317, 271);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(160, 13);
             this.label6.TabIndex = 116;
@@ -226,7 +229,7 @@ namespace MAD_Pantallas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(743, 450);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.PuestoC);

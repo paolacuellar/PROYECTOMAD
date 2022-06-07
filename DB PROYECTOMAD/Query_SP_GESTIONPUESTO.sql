@@ -8,7 +8,7 @@ CREATE PROCEDURE sp_GestionPuesto(
 	@Opcion VARCHAR(10) = NULL,
 	@ID_Puesto TINYINT = NULL, 
 	@Nombre VARCHAR(25) = NULL, 
-	@Nivel_Salarial DECIMAL(10,1) = NULL
+	@Nivel_Salarial DECIMAL(10,5) = NULL
 )
 AS
 BEGIN

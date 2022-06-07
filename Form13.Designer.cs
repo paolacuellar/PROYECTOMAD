@@ -34,7 +34,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.bGenerar = new System.Windows.Forms.Button();
             this.cbMes = new System.Windows.Forms.ComboBox();
-            this.cbYear = new System.Windows.Forms.ComboBox();
+            this.tbAnio = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label4
@@ -82,6 +82,7 @@
             this.bGenerar.TabIndex = 11;
             this.bGenerar.Text = "Generar reporte General de Nomina";
             this.bGenerar.UseVisualStyleBackColor = true;
+            this.bGenerar.Click += new System.EventHandler(this.bGenerar_Click);
             // 
             // cbMes
             // 
@@ -90,29 +91,30 @@
             this.cbMes.Name = "cbMes";
             this.cbMes.Size = new System.Drawing.Size(169, 21);
             this.cbMes.TabIndex = 10;
+            this.cbMes.SelectedIndexChanged += new System.EventHandler(this.cbMes_SelectedIndexChanged);
             // 
-            // cbYear
+            // tbAnio
             // 
-            this.cbYear.FormattingEnabled = true;
-            this.cbYear.Location = new System.Drawing.Point(202, 47);
-            this.cbYear.Name = "cbYear";
-            this.cbYear.Size = new System.Drawing.Size(169, 21);
-            this.cbYear.TabIndex = 9;
+            this.tbAnio.Location = new System.Drawing.Point(202, 48);
+            this.tbAnio.Name = "tbAnio";
+            this.tbAnio.Size = new System.Drawing.Size(169, 20);
+            this.tbAnio.TabIndex = 16;
             // 
             // Form13
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(385, 150);
+            this.Controls.Add(this.tbAnio);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.bGenerar);
             this.Controls.Add(this.cbMes);
-            this.Controls.Add(this.cbYear);
             this.Name = "Form13";
             this.Text = "Reporte General de Nomina";
+            this.Load += new System.EventHandler(this.Form13_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -126,6 +128,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button bGenerar;
         private System.Windows.Forms.ComboBox cbMes;
-        private System.Windows.Forms.ComboBox cbYear;
+        private System.Windows.Forms.TextBox tbAnio;
     }
 }

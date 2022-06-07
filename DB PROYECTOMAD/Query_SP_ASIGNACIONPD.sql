@@ -109,7 +109,7 @@ INSERT INTO Asign_Empleado_Deduccion(CveEmpleado, ID_Deduccion, Fecha)
 			SELECT P.ID_Percepcion, P.Motivo, P.Tipo, P.Cantidad, P.Es_porcentaje, AP.CveEmpleado, AP.Fecha FROM Percepcion P
 			JOIN Asign_Empleado_Percepcion AP
 			ON AP.ID_Percepcion = P.ID_Percepcion
-			WHERE AP.CveEmpleado = @CveEmpleado
+			WHERE AP.CveEmpleado = @CveEmpleado 
 		END
 		
 			IF @Opcion = 'SDxME'

@@ -100,6 +100,7 @@ namespace MAD_Pantallas
             }
 
             FechaAplicarConcepto.Value = Convert.ToDateTime("01/01/2022");
+            PD_Asignadas.Items.Clear();
         }
 
         private void listBoxP_SelectedIndexChanged(object sender, EventArgs e)
@@ -135,7 +136,7 @@ namespace MAD_Pantallas
 
             DataTable percepcionesB = enlace.getAllBasicP();
 
-            if (percepcionesA.Rows.Count > 0 && percepcionesB.Rows.Count > 0)
+            if (percepcionesA.Rows.Count > 0 || percepcionesB.Rows.Count > 0)
             {
                 PD_Asignadas.Items.Add("PERCEPCIONES APLICADAS\n");
                 PD_Asignadas.Items.Add(" ");
@@ -150,18 +151,18 @@ namespace MAD_Pantallas
                     PD_Asignadas.Items.Add(rowPB["Motivo"].ToString() + "(Valor fijo: $" + rowPB["Cantidad"].ToString() + ") - BASICA");
             }
 
-            foreach (DataRow row in percepcionesA.Rows){
+            foreach (DataRow rowP in percepcionesA.Rows){
                 
-                    if (row["Es_porcentaje"].ToString() == "True")
-                        PD_Asignadas.Items.Add(row["Motivo"].ToString() + "(Porcentaje: " + row["Cantidad"].ToString() + "%) - " + row["Fecha"]);
+                    if (rowP["Es_porcentaje"].ToString() == "True")
+                        PD_Asignadas.Items.Add(rowP["Motivo"].ToString() + "(Porcentaje: " + rowP["Cantidad"].ToString() + "%) - " + rowP["Fecha"]);
                     else
-                        PD_Asignadas.Items.Add(row["Motivo"].ToString() + "(Valor fijo: $" + row["Cantidad"].ToString() + ") - " + row["Fecha"]);
+                        PD_Asignadas.Items.Add(rowP["Motivo"].ToString() + "(Valor fijo: $" + rowP["Cantidad"].ToString() + ") - " + rowP["Fecha"]);
             }
 
             DataTable deduccionesB = enlace.getAllBasicD();
 
 
-            if (deduccionesA.Rows.Count > 0 && deduccionesB.Rows.Count > 0) {
+            if (deduccionesA.Rows.Count > 0 || deduccionesB.Rows.Count > 0) {
                 PD_Asignadas.Items.Add(" ");
                 PD_Asignadas.Items.Add("DEDUCCIONES APLICADAS\n");
                 PD_Asignadas.Items.Add(" ");
@@ -175,12 +176,12 @@ namespace MAD_Pantallas
                     PD_Asignadas.Items.Add(rowDB["Motivo"].ToString() + "(Valor fijo: $" + rowDB["Cantidad"].ToString() + ") - BASICA");
             }
 
-            foreach (DataRow row in deduccionesA.Rows)
+            foreach (DataRow rowD in deduccionesA.Rows)
             {               
-                    if (row["Es_porcentaje"].ToString() == "True")
-                        PD_Asignadas.Items.Add(row["Motivo"].ToString() + "(Porcentaje: " + row["Cantidad"].ToString() + "%) - " + row["Fecha"]);
+                    if (rowD["Es_porcentaje"].ToString() == "True")
+                        PD_Asignadas.Items.Add(rowD["Motivo"].ToString() + "(Porcentaje: " + rowD["Cantidad"].ToString() + "%) - " + rowD["Fecha"]);
                     else
-                        PD_Asignadas.Items.Add(row["Motivo"].ToString() + "(Valor fijo: $" + row["Cantidad"].ToString() + ") - " + row["Fecha"]);
+                        PD_Asignadas.Items.Add(rowD["Motivo"].ToString() + "(Valor fijo: $" + rowD["Cantidad"].ToString() + ") - " + rowD["Fecha"]);
             }
 
             verificarAsignacion();

@@ -8,8 +8,8 @@ END
 GO
 
 CREATE FUNCTION fn_SalarioDiario(
-	@Sueldo_BaseD DECIMAL,
-	@Nivel_SalarialP DECIMAL(10,1)
+	@Sueldo_BaseD INT,
+	@Nivel_SalarialP DECIMAL(10,5)
 )
 RETURNS DECIMAL(18,2)
 AS
@@ -80,10 +80,17 @@ RETURNS INT
 AS
 BEGIN
 
-	RETURN CASE WHEN MONTH(@Fecha) IN ( 1, 3, 5, 7, 8, 10, 12) THEN 31
-				WHEN MONTH(@Fecha) IN ( 4, 6, 9, 11) THEN 30
-				ELSE dbo.fn_EsBisiesto(@Fecha) + 28
-		END
+	DECLARE @Dias INT;
+
+	
+
+	 
+	 IF MONTH(@Fecha) IN ( 1, 3, 5, 7, 8, 10, 12)BEGIN SET @Dias = 31; END
+				ELSE IF MONTH(@Fecha) IN ( 4, 6, 9, 11)BEGIN SET @Dias = 30; END
+				ELSE IF MONTH(@Fecha)=2 BEGIN SET @Dias = dbo.fn_EsBisiesto(@Fecha) + 28 END
+		
+
+	RETURN @Dias
 END
 GO
 
@@ -226,6 +233,98 @@ BEGIN
 	RETURN @ValoraSumPD
 END
 
+GO
+IF OBJECT_ID ('fn_SumPDB') IS NOT NULL
+BEGIN
+	DROP FUNCTION fn_SumPDB
+END
+GO
+
+CREATE FUNCTION fn_SumPDB(
+	@Opcion VARCHAR(10),
+	@Es_porcentaje BIT,
+	@Sueldo_Bruto DECIMAL(18,2)
+)
+RETURNS INT
+AS
+BEGIN
+-- Es percepcion
+	-- Es Fijo
+	-- Es Porcentaje
+
+--Es Deduccion
+	-- Es Fijo
+	-- Es Porcentaje
+	DECLARE @SumPDB DECIMAL(18,2)
+	DECLARE @ValoraSumPDB DECIMAL(18,2)
+	
+	IF @Opcion='P' -- Es una percepcion
+	BEGIN
+
+		IF @Es_porcentaje=1 -- El valor es porcentaje
+		BEGIN
+			SET @SumPDB = (SELECT SUM(Cantidad) FROM Percepcion 
+			WHERE Percepcion.Es_porcentaje=1 AND Percepcion.Tipo = 'B');
+
+			IF (@SumPDB IS NULL)
+			BEGIN
+				SET @ValoraSumPDB = 0
+			END
+			ELSE
+			BEGIN
+				SET @ValoraSumPDB = @Sueldo_Bruto*(@SumPDB/100)
+			END
+		END
+		ELSE -- El valor es fijo
+		BEGIN
+			SET @SumPDB = (SELECT SUM(Cantidad) FROM Percepcion 
+			WHERE Percepcion.Es_porcentaje=0 AND Percepcion.Tipo = 'B');
+
+			IF (@SumPDB IS NULL)
+			BEGIN
+				SET @ValoraSumPDB = 0
+			END
+			ELSE
+			BEGIN
+				SET @ValoraSumPDB = @SumPDB
+			END
+		END
+	END
+
+	IF @Opcion='D' -- Es una deduccion
+	BEGIN
+
+		IF @Es_porcentaje=1 -- El valor es porcentaje
+		BEGIN
+			SET @SumPDB = (SELECT SUM(Cantidad) FROM Deduccion 
+			WHERE Deduccion.Es_porcentaje=1 AND Deduccion.Tipo = 'B');
+			IF (@SumPDB IS NULL)
+			BEGIN
+				SET @ValoraSumPDB = 0
+			END
+			ELSE
+			BEGIN
+			SET @ValoraSumPDB = @Sueldo_Bruto*(@SumPDB/100)
+			END
+		END
+		ELSE -- El valor es fijo
+		BEGIN
+			SET @SumPDB = (SELECT SUM(Cantidad) FROM Deduccion 
+			WHERE Deduccion.Es_porcentaje=0 AND Deduccion.Tipo = 'B');
+
+			IF (@SumPDB IS NULL)
+			BEGIN
+				SET @ValoraSumPDB = 0
+			END
+			ELSE
+			BEGIN
+				SET @ValoraSumPDB = @SumPDB
+			END
+		END
+	END
+
+	RETURN @ValoraSumPDB
+END
 
 ---------Calculo Sueldo Neto, el que se deposita a su cuenta, tomando en cuenta todas las percepciones y deducciones que apliquen
 

@@ -54,12 +54,11 @@ BEGIN
 
 			-- Calcular Sueldo Bruto
 			--SELECT @SueldoBruto = dbo.fn_SueldoBruto(dbo.fn_SalarioDiario(Departamento.Sueldo_Base, Puesto.Nivel_Salarial), 20),
-			SELECT @SueldoBruto = dbo.fn_SueldoBruto(dbo.fn_SalarioDiario(Departamento.Sueldo_Base, Puesto.Nivel_Salarial), dbo.fn_NumDiasTrabajados(@Fecha,@Fecha_Ingreso)),
-			 @SalarioDiario = dbo.fn_SalarioDiario(Departamento.Sueldo_Base, Puesto.Nivel_Salarial)  FROM Empleado 
+			SELECT @SueldoBruto = dbo.fn_SueldoBruto(dbo.fn_SalarioDiario(Departamento.Sueldo_Base, Puesto.Nivel_Salarial), dbo.fn_NumDiasMes(@Fecha)),
+			 @SalarioDiario = dbo.fn_SalarioDiario(Departamento.Sueldo_Base, Puesto.Nivel_Salarial) FROM Empleado 
 			JOIN Departamento ON Departamento.ID_Departamento=Empleado.ID_Departamento
-			JOIN Puesto ON Puesto.ID_Puesto=Empleado.ID_Puesto;
-						 
-			--WHERE CveEmpleado=@CveEmpleado
+			JOIN Puesto ON Puesto.ID_Puesto=Empleado.ID_Puesto					 
+			WHERE CveEmpleado=@CveEmpleado;
 
 			-- En este momento nuestro Sueldo Neto es igual al Sueldo Bruto
 			SELECT @SueldoNeto=@SueldoBruto;
@@ -79,15 +78,42 @@ BEGIN
 			WHERE Empleado.CveEmpleado=@CveEmpleado AND (MONTH(Asign_Empleado_Deduccion.Fecha)=MONTH(@Fecha) AND YEAR(Asign_Empleado_Deduccion.Fecha)=YEAR(@Fecha))*/
 
 			-- Calcular percepciones basicas
-			SELECT @SumPercepcionesBasicas=SUM(Cantidad) FROM Percepcion WHERE Tipo='B'
+			--SELECT @SumPercepcionesBasicas=SUM(Cantidad) FROM Percepcion WHERE Tipo='B';
+			SELECT @SumPercepcionesBasicas = dbo.fn_SumPDB('P', 0, @SueldoBruto) + dbo.fn_SumPDB('P', 1, @SueldoBruto)
+
+			IF @SumPercepcionesBasicas IS NULL
+			BEGIN
+				SET @SumPercepcionesBasicas = 0;
+			END
+
+			IF @TotalPercepciones IS NULL
+			BEGIN
+				SET @TotalPercepciones = 0;
+			END
+
 			SELECT @TotalPercepciones = @TotalPercepciones+@SumPercepcionesBasicas;
 
+
+
 			-- Calcular deducciones basicas
-			SELECT @SumDeduccionesBasicas=SUM(Cantidad) FROM Deduccion WHERE Tipo='B'
+			-- SELECT @SumDeduccionesBasicas=SUM(Cantidad) FROM Deduccion WHERE Tipo='B';
+			SELECT @SumDeduccionesBasicas = dbo.fn_SumPDB('D', 0, @SueldoBruto) + dbo.fn_SumPDB('D', 1, @SueldoBruto)
+
+			IF @SumDeduccionesBasicas IS NULL
+			BEGIN
+				SET @SumDeduccionesBasicas = 0;
+			END
+
+			IF @TotalDeducciones IS NULL
+			BEGIN
+				SET @TotalDeducciones = 0;
+			END
+
 			SELECT @TotalDeducciones = @TotalDeducciones+@SumDeduccionesBasicas;
 
+			
 
-			SELECT @SueldoNeto=@SueldoBruto+@TotalDeducciones-@TotalPercepciones;
+			SELECT @SueldoNeto=@SueldoBruto-@TotalDeducciones+@TotalPercepciones;
 
 			INSERT INTO Nomina (CveEmpleado, Salario_Diario, Sueldo_Bruto, Sueldo_Neto, Fecha)
 			VALUES (@CveEmpleado, @SalarioDiario, @SueldoBruto, @SueldoNeto, @Fecha);

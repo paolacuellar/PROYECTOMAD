@@ -117,14 +117,14 @@ namespace MAD_Pantallas
                 return;
             }
 
-            string docName = "";
+            string docDate = "";
 
             if (year != "")
-                docName = "_" + year;
+                docDate = "_" + year;
             if(monthName != "")
-                docName = "_" + monthName;
+                docDate = "_" + monthName;
 
-            string ubicacion = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\Headcounter_" + deptoName + docName + ".pdf";
+            string ubicacion = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\Headcounter_" + deptoName + docDate + ".pdf";
             try
             {
                 using (PdfWriter pdfWriter = new PdfWriter(ubicacion))
@@ -132,6 +132,15 @@ namespace MAD_Pantallas
                 using (Document document = new Document(pdfDocument))
                 {
                     document.Add(new Paragraph("\tREPORTE HEADCOUNTER"));
+                    if (deptoName == "TODOS")
+                        document.Add(new Paragraph("\tTODOS LOS DEPARTAMENTOS"));
+                    else 
+                        document.Add(new Paragraph("\t" + deptoName));
+                        
+
+                    if (docDate != "")
+                        document.Add(new Paragraph("\t" + docDate));
+
                     document.Add(new Paragraph("\n\tCANTIDAD DE EMPLEADOS POR PUESTO"));
 
 
@@ -188,6 +197,14 @@ namespace MAD_Pantallas
             MessageBox.Show(ubicacion, "Se ha generado el reporte en la ruta: ", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
+        }
+
+        private void cbMes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbMes.SelectedIndex != -1)
+                tbAnio.Enabled = true;
+            else
+                tbAnio.Enabled = false;
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,6 +56,10 @@ namespace MAD_Pantallas
             PuestoN.Text = ((KeyValuePair<string, string>)listBoxPuestos.SelectedItem).Value.ToString();
             PuestoC.Text = puestoTem["ID_Puesto"].ToString();
             PuestoSB.Text = puestoTem["Nivel Salarial"].ToString();
+
+            PuestoAdd.Enabled = false;
+            PuestoUpdate.Enabled = true;
+            PuestoDelete.Enabled = true;
         }
 
         private void PuestoAdd_Click(object sender, EventArgs e)
@@ -62,7 +67,7 @@ namespace MAD_Pantallas
             EnlaceDB enlace = new EnlaceDB();
 
             string nombreT = PuestoN.Text;
-            float sueldo_baseT = float.Parse(PuestoSB.Text);
+            float sueldo_baseT = float.Parse(PuestoSB.Text, CultureInfo.InvariantCulture.NumberFormat);
 
             if (enlace.insertPuestos(nombreT, sueldo_baseT))
             {
@@ -82,13 +87,15 @@ namespace MAD_Pantallas
 
             string nombreT = PuestoN.Text;
 
-            float nivel_salarialT = float.Parse(PuestoSB.Text);
+            float nivel_salarialT = float.Parse(PuestoSB.Text, CultureInfo.InvariantCulture.NumberFormat);
 
             if (enlace.updatePuestos(idPuestoTemp, nombreT, nivel_salarialT))
             {
                 resetListBoxPuestos();
+                resetDataPuestos();
             }
         }
+
         private void PuestoDelete_Click(object sender, EventArgs e)
         {
             EnlaceDB enlace = new EnlaceDB();
@@ -112,6 +119,7 @@ namespace MAD_Pantallas
                 //do nothing
             }
         }
+
         private void resetListBoxPuestos()
         {
             EnlaceDB enlace = new EnlaceDB();
@@ -147,6 +155,9 @@ namespace MAD_Pantallas
 
         }
 
-        
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

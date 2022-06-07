@@ -52,7 +52,8 @@ namespace MAD_Pantallas
             // 
             // DeptoDelete
             // 
-            this.DeptoDelete.Location = new System.Drawing.Point(388, 317);
+            this.DeptoDelete.Enabled = false;
+            this.DeptoDelete.Location = new System.Drawing.Point(295, 304);
             this.DeptoDelete.Name = "DeptoDelete";
             this.DeptoDelete.Size = new System.Drawing.Size(164, 23);
             this.DeptoDelete.TabIndex = 82;
@@ -63,7 +64,7 @@ namespace MAD_Pantallas
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(385, 282);
+            this.label24.Location = new System.Drawing.Point(292, 269);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(170, 13);
             this.label24.TabIndex = 78;
@@ -71,7 +72,8 @@ namespace MAD_Pantallas
             // 
             // DeptoUpdate
             // 
-            this.DeptoUpdate.Location = new System.Drawing.Point(387, 168);
+            this.DeptoUpdate.Enabled = false;
+            this.DeptoUpdate.Location = new System.Drawing.Point(295, 211);
             this.DeptoUpdate.Name = "DeptoUpdate";
             this.DeptoUpdate.Size = new System.Drawing.Size(164, 23);
             this.DeptoUpdate.TabIndex = 77;
@@ -82,7 +84,7 @@ namespace MAD_Pantallas
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(373, 142);
+            this.label19.Location = new System.Drawing.Point(281, 185);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(193, 13);
             this.label19.TabIndex = 74;
@@ -92,7 +94,7 @@ namespace MAD_Pantallas
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(390, 126);
+            this.label20.Location = new System.Drawing.Point(298, 169);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(161, 13);
             this.label20.TabIndex = 73;
@@ -100,7 +102,7 @@ namespace MAD_Pantallas
             // 
             // DeptoAdd
             // 
-            this.DeptoAdd.Location = new System.Drawing.Point(433, 81);
+            this.DeptoAdd.Location = new System.Drawing.Point(340, 80);
             this.DeptoAdd.Name = "DeptoAdd";
             this.DeptoAdd.Size = new System.Drawing.Size(75, 23);
             this.DeptoAdd.TabIndex = 72;
@@ -111,7 +113,7 @@ namespace MAD_Pantallas
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(344, 65);
+            this.label11.Location = new System.Drawing.Point(251, 64);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(252, 13);
             this.label11.TabIndex = 71;
@@ -120,7 +122,7 @@ namespace MAD_Pantallas
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(398, 46);
+            this.label7.Location = new System.Drawing.Point(305, 45);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(145, 13);
             this.label7.TabIndex = 70;
@@ -131,7 +133,7 @@ namespace MAD_Pantallas
             this.listBoxDeptos.FormattingEnabled = true;
             this.listBoxDeptos.Location = new System.Drawing.Point(4, 25);
             this.listBoxDeptos.Name = "listBoxDeptos";
-            this.listBoxDeptos.Size = new System.Drawing.Size(334, 407);
+            this.listBoxDeptos.Size = new System.Drawing.Size(222, 407);
             this.listBoxDeptos.TabIndex = 69;
             this.listBoxDeptos.SelectedIndexChanged += new System.EventHandler(this.listBoxDeptos_SelectedIndexChanged);
             // 
@@ -147,7 +149,7 @@ namespace MAD_Pantallas
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(614, 93);
+            this.label2.Location = new System.Drawing.Point(521, 92);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(120, 13);
             this.label2.TabIndex = 83;
@@ -156,7 +158,7 @@ namespace MAD_Pantallas
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(615, 126);
+            this.label3.Location = new System.Drawing.Point(522, 125);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(119, 13);
             this.label3.TabIndex = 84;
@@ -165,7 +167,7 @@ namespace MAD_Pantallas
             // 
             // deptoN
             // 
-            this.deptoN.Location = new System.Drawing.Point(614, 185);
+            this.deptoN.Location = new System.Drawing.Point(521, 184);
             this.deptoN.Name = "deptoN";
             this.deptoN.Size = new System.Drawing.Size(179, 20);
             this.deptoN.TabIndex = 87;
@@ -173,7 +175,7 @@ namespace MAD_Pantallas
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(614, 168);
+            this.label4.Location = new System.Drawing.Point(521, 167);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(131, 13);
             this.label4.TabIndex = 86;
@@ -181,7 +183,7 @@ namespace MAD_Pantallas
             // 
             // deptoSB
             // 
-            this.deptoSB.Location = new System.Drawing.Point(614, 239);
+            this.deptoSB.Location = new System.Drawing.Point(521, 238);
             this.deptoSB.Name = "deptoSB";
             this.deptoSB.Size = new System.Drawing.Size(179, 20);
             this.deptoSB.TabIndex = 89;
@@ -189,7 +191,7 @@ namespace MAD_Pantallas
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(614, 222);
+            this.label5.Location = new System.Drawing.Point(521, 221);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 13);
             this.label5.TabIndex = 88;
@@ -197,7 +199,7 @@ namespace MAD_Pantallas
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(614, 372);
+            this.button2.Location = new System.Drawing.Point(521, 371);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(171, 42);
             this.button2.TabIndex = 90;
@@ -208,7 +210,7 @@ namespace MAD_Pantallas
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(373, 299);
+            this.label6.Location = new System.Drawing.Point(280, 286);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(193, 13);
             this.label6.TabIndex = 91;
@@ -217,7 +219,7 @@ namespace MAD_Pantallas
             // deptoC
             // 
             this.deptoC.AutoSize = true;
-            this.deptoC.Location = new System.Drawing.Point(614, 139);
+            this.deptoC.Location = new System.Drawing.Point(521, 142);
             this.deptoC.Name = "deptoC";
             this.deptoC.Size = new System.Drawing.Size(119, 13);
             this.deptoC.TabIndex = 92;
@@ -227,7 +229,7 @@ namespace MAD_Pantallas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 446);
+            this.ClientSize = new System.Drawing.Size(719, 446);
             this.Controls.Add(this.deptoC);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button2);

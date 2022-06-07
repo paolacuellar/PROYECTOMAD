@@ -54,6 +54,7 @@ namespace MAD_Pantallas
             DataRow temp = null;
             try
             {
+                _tabla = new DataTable();
                 conectar();
                 string qry = "sp_ValidaUsuario";
                 _comandosql = new SqlCommand(qry, _conexion);
@@ -617,6 +618,7 @@ namespace MAD_Pantallas
         public DataTable getPercepcionesAsignadas(int idEnte)
         {
             string msg = "";
+            _tabla = new DataTable();
 
             try
             {
@@ -653,6 +655,7 @@ namespace MAD_Pantallas
         public DataTable getDeduccionesAsignadas(int idEnte)
         {
             string msg = "";
+            _tabla = new DataTable();
 
             try
             {
@@ -1269,7 +1272,7 @@ namespace MAD_Pantallas
 
         //Gestion de Puestos//
 
-        public bool insertPuestos(string nombreT, float sueldo_baseT)
+        public bool insertPuestos(string nombreT, float nivel_salarialT)
         {
             bool seInserto = true;
             var msg = "";
@@ -1290,8 +1293,10 @@ namespace MAD_Pantallas
                 var parametro3 = _comandosql.Parameters.Add("@Nombre", SqlDbType.VarChar, 25);
                 parametro3.Value = nombreT;
 
-                var parametro4 = _comandosql.Parameters.Add("@Nivel_Salarial", SqlDbType.VarChar, 25);
-                parametro4.Value = sueldo_baseT;
+                var parametro4 = _comandosql.Parameters.Add("@Nivel_Salarial", SqlDbType.Decimal);
+                parametro4.Precision = 10;
+                parametro4.Scale = 5;
+                parametro4.Value = nivel_salarialT;
 
                 int rows = _comandosql.ExecuteNonQuery();
 
@@ -1341,7 +1346,9 @@ namespace MAD_Pantallas
                 var parametro3 = _comandosql.Parameters.Add("@Nombre", SqlDbType.VarChar, 25);
                 parametro3.Value = nombreT;
 
-                var parametro4 = _comandosql.Parameters.Add("@Nivel_Salarial", SqlDbType.Decimal, 10);
+                var parametro4 = _comandosql.Parameters.Add("@Nivel_Salarial", SqlDbType.Decimal);
+                parametro4.Precision = 10;
+                parametro4.Scale = 5;
                 parametro4.Value = nivel_salarialT;
 
                 int rows = _comandosql.ExecuteNonQuery();
@@ -1526,6 +1533,44 @@ namespace MAD_Pantallas
 
                 var parametro3 = _comandosql.Parameters.Add("@Parte", SqlDbType.Char, 1);
                 parametro3.Value = parte;
+
+
+                _adaptador.SelectCommand = _comandosql;
+                _adaptador.Fill(tabla);
+
+            }
+            catch (SqlException e)
+            {
+                msg = "Excepción de base de datos: \n";
+                msg += e.Message;
+                MessageBox.Show(msg, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return tabla;
+        }
+
+        public DataTable getGeneralReport(string date)
+        {
+            var msg = "";
+            DataTable tabla = new DataTable();
+            try
+            {
+                conectar();
+                string qry = "sp_ReporteGeneralNomina";
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.CommandType = CommandType.StoredProcedure;
+                _comandosql.CommandTimeout = 1200;
+               
+
+                var parametro1 = _comandosql.Parameters.Add("@Fecha", SqlDbType.Date, 10);
+                if (date == "0")
+                    parametro1.Value = DBNull.Value;
+                else
+                    parametro1.Value = date;
 
 
                 _adaptador.SelectCommand = _comandosql;

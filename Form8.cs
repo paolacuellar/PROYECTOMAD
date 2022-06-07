@@ -74,6 +74,7 @@ namespace MAD_Pantallas
                 resetListBoxDeptos();
                 resetDataDeptos();
             }
+          
         } 
 
         private void listBoxDeptos_SelectedIndexChanged(object sender, EventArgs e)
@@ -91,6 +92,9 @@ namespace MAD_Pantallas
             deptoC.Text = deptoTem["ID_Departamento"].ToString();
             deptoSB.Text = deptoTem["Sueldo Base"].ToString();
 
+            DeptoAdd.Enabled = false;
+            DeptoUpdate.Enabled = true;
+            DeptoDelete.Enabled = true;
         }
 
         private void DeptoDelete_Click(object sender, EventArgs e)
@@ -138,7 +142,7 @@ namespace MAD_Pantallas
         private void resetDataDeptos()
         {
             deptoN.Text = "";
-            deptoC.Text = "";
+            deptoC.Text = "Clave departamento";
             deptoSB.Text = "";
 
 
