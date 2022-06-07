@@ -64,7 +64,7 @@ namespace MAD_Pantallas
             string nombreT = PuestoN.Text;
             float sueldo_baseT = float.Parse(PuestoSB.Text);
 
-            if (enlace.insertDeptos(nombreT, sueldo_baseT))
+            if (enlace.insertPuestos(nombreT, sueldo_baseT))
             {
                 resetListBoxPuestos();
                 resetDataPuestos();

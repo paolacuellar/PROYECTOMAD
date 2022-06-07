@@ -47,18 +47,18 @@ namespace MAD_Pantallas
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(18, 210);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(63, 13);
+            this.label5.Size = new System.Drawing.Size(228, 13);
             this.label5.TabIndex = 94;
-            this.label5.Text = "Sueldo total";
+            this.label5.Text = "Sueldo Bruto(Sin percepciones y deducciones)";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(18, 132);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(93, 13);
+            this.label4.Size = new System.Drawing.Size(121, 13);
             this.label4.TabIndex = 92;
-            this.label4.Text = "Sueldo por puesto";
+            this.label4.Text = "Nivel Salarial por puesto";
             // 
             // label3
             // 

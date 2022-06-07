@@ -36,9 +36,10 @@ namespace MAD_Pantallas
             this.DepartamentosGestion = new System.Windows.Forms.Button();
             this.PeryDed = new System.Windows.Forms.Button();
             this.PuestosGestion = new System.Windows.Forms.Button();
-            this.Organigrama = new System.Windows.Forms.Button();
             this.Salir1 = new System.Windows.Forms.Button();
             this.NominaGestion = new System.Windows.Forms.Button();
+            this.Rheadcounter = new System.Windows.Forms.Button();
+            this.Rgeneralnomina = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -110,15 +111,6 @@ namespace MAD_Pantallas
             this.PuestosGestion.UseVisualStyleBackColor = true;
             this.PuestosGestion.Click += new System.EventHandler(this.PuestosGestion_Click);
             // 
-            // Organigrama
-            // 
-            this.Organigrama.Location = new System.Drawing.Point(12, 233);
-            this.Organigrama.Name = "Organigrama";
-            this.Organigrama.Size = new System.Drawing.Size(208, 40);
-            this.Organigrama.TabIndex = 7;
-            this.Organigrama.Text = "Organigrama de la Empresa";
-            this.Organigrama.UseVisualStyleBackColor = true;
-            // 
             // Salir1
             // 
             this.Salir1.Location = new System.Drawing.Point(248, 398);
@@ -138,14 +130,35 @@ namespace MAD_Pantallas
             this.NominaGestion.UseVisualStyleBackColor = true;
             this.NominaGestion.Click += new System.EventHandler(this.NominaGestion_Click);
             // 
+            // Rheadcounter
+            // 
+            this.Rheadcounter.Location = new System.Drawing.Point(12, 233);
+            this.Rheadcounter.Name = "Rheadcounter";
+            this.Rheadcounter.Size = new System.Drawing.Size(208, 40);
+            this.Rheadcounter.TabIndex = 7;
+            this.Rheadcounter.Text = "Reporte Headcounter";
+            this.Rheadcounter.UseVisualStyleBackColor = true;
+            this.Rheadcounter.Click += new System.EventHandler(this.Rheadcounter_Click);
+            // 
+            // Rgeneralnomina
+            // 
+            this.Rgeneralnomina.Location = new System.Drawing.Point(12, 299);
+            this.Rgeneralnomina.Name = "Rgeneralnomina";
+            this.Rgeneralnomina.Size = new System.Drawing.Size(208, 40);
+            this.Rgeneralnomina.TabIndex = 10;
+            this.Rgeneralnomina.Text = "Reporte general de Nómina";
+            this.Rgeneralnomina.UseVisualStyleBackColor = true;
+            this.Rgeneralnomina.Click += new System.EventHandler(this.Rgeneralnomina_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(468, 450);
+            this.Controls.Add(this.Rgeneralnomina);
             this.Controls.Add(this.NominaGestion);
             this.Controls.Add(this.Salir1);
-            this.Controls.Add(this.Organigrama);
+            this.Controls.Add(this.Rheadcounter);
             this.Controls.Add(this.PeryDed);
             this.Controls.Add(this.PuestosGestion);
             this.Controls.Add(this.DepartamentosGestion);
@@ -169,8 +182,9 @@ namespace MAD_Pantallas
         private System.Windows.Forms.Button DepartamentosGestion;
         private System.Windows.Forms.Button PeryDed;
         private System.Windows.Forms.Button PuestosGestion;
-        private System.Windows.Forms.Button Organigrama;
         private System.Windows.Forms.Button Salir1;
         private System.Windows.Forms.Button NominaGestion;
+        private System.Windows.Forms.Button Rheadcounter;
+        private System.Windows.Forms.Button Rgeneralnomina;
     }
 }

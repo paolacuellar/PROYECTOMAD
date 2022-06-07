@@ -86,8 +86,27 @@ namespace MAD_Pantallas
             frm.ShowDialog();
             this.Show();
         }
+        //Boton para entrar a la pagina de Crear Reporte Headcounter
+        private void Rheadcounter_Click(object sender, EventArgs e)
+        {
+            Form12 frm = new Form12();
 
-        //Boton para entrar a la pantalla de Organigrama, aun no hay pantalla. todo bn.
+            this.Hide();
+            frm.ShowDialog();
+            this.Show();
+        }
+
+        private void Rgeneralnomina_Click(object sender, EventArgs e)
+        {
+            Form13 frm = new Form13();
+
+            this.Hide();
+            frm.ShowDialog();
+            this.Show();
+        }
+
+        //Boton para entrar a la pagina de Crear Reporte General de Nomina
+
 
 
     }

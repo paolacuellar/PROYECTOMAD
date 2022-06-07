@@ -203,8 +203,8 @@ namespace MAD_Pantallas
                 return;
             }
 
-            PuestoSueldo.Text = String.Concat("Sueldo de Puesto: ", empleado["Sueldo_Base"].ToString()).ToString();
-            DeptoSueldo.Text = String.Concat("Sueldo de Departamento: ", empleado["Nivel_Salarial"].ToString()).ToString();
+            PuestoSueldo.Text = String.Concat("Sueldo de Departameno: ", empleado["Sueldo_Base"].ToString()).ToString();
+            DeptoSueldo.Text = String.Concat("Nivel Salarial por Puesto: ", empleado["Nivel_Salarial"].ToString()).ToString();
 
             string sueldo_neto = nomina["Sueldo Neto"].ToString();
             consul_sueldoneto.Text = String.Concat("Sueldo Neto: ", sueldo_neto).ToString();
