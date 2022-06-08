@@ -33,9 +33,9 @@ namespace MAD_Pantallas
 
             //String connetionString = @"Data Source=DESKTOP-MFMA6VE\SQLEXPRESS;Initial Catalog=PROYECTOMAD;Integrated Security=True;"; //ARELY
 
-            //String connetionString = @"Data Source=LAPTOP-02AHRSHI\SQLEXPRESS;Initial Catalog=PROYECTOMAD;Integrated Security=True;"; //LAPTOP
+            String connetionString = @"Data Source=LAPTOP-02AHRSHI\SQLEXPRESS;Initial Catalog=PROYECTOMAD;Integrated Security=True;"; //LAPTOP
 
-            String connetionString = @"Data Source=DESKTOP-51SJOGN;Initial Catalog=PROYECTOMAD;Integrated Security=True;"; //KARIM
+            //String connetionString = @"Data Source=DESKTOP-51SJOGN;Initial Catalog=PROYECTOMAD;Integrated Security=True;"; //KARIM
 
             //string cnn = ConfigurationManager.ConnectionStrings[connetionString].ToString();
             _conexion = new SqlConnection(connetionString);

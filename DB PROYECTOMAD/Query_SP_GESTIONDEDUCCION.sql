@@ -69,3 +69,5 @@ BEGIN
 		WHERE Tipo = 'B'
 	END
 END
+
+SELECT*FROM Deduccion

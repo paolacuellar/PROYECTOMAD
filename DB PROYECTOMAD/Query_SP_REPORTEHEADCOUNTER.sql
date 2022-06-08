@@ -64,7 +64,7 @@ BEGIN
 				Puesto,  
 				COUNT(CveEmpleado) 'Cantidad de empleados'
 				FROM vw_HeadcounterP1
-				WHERE MONTH([Fecha de contratacion])=MONTH(@Fecha) AND YEAR([Fecha de contratacion])=YEAR(@Fecha)
+				WHERE MONTH([Fecha de contratacion])<=MONTH(@Fecha) AND YEAR([Fecha de contratacion])<=YEAR(@Fecha)
 				GROUP BY Departamento, Puesto, [Fecha de contratacion]
 				ORDER BY Departamento,Puesto
 		---------------------------------------------
@@ -76,7 +76,7 @@ BEGIN
 				Departamento,     
 				COUNT(CveEmpleado) 'Cantidad de empleados'
 				FROM vw_HeadcounterP2
-				WHERE MONTH([Fecha de contratacion])=MONTH(@Fecha) AND YEAR([Fecha de contratacion])=YEAR(@Fecha)
+				WHERE MONTH([Fecha de contratacion])<=MONTH(@Fecha) AND YEAR([Fecha de contratacion])<=YEAR(@Fecha)
 				GROUP BY Departamento, [Fecha de contratacion]
 				ORDER BY Departamento
 			---------------------------------------------
@@ -132,7 +132,7 @@ BEGIN
 					COUNT(CveEmpleado) 'Cantidad de empleados',
 					[Fecha de contratacion]
 				FROM vw_HeadcounterP1
-				WHERE Departamento=@Departamento AND (MONTH([Fecha de contratacion])=MONTH(@Fecha) AND YEAR([Fecha de contratacion])=YEAR(@Fecha))
+				WHERE Departamento=@Departamento AND (MONTH([Fecha de contratacion])<=MONTH(@Fecha) AND YEAR([Fecha de contratacion])<=YEAR(@Fecha))
 				GROUP BY Departamento, Puesto, [Fecha de contratacion]
 				ORDER BY Departamento,Puesto
 			---------------------------------------------
@@ -145,7 +145,7 @@ BEGIN
 					COUNT(CveEmpleado) 'Cantidad de empleados',
 					[Fecha de contratacion]
 				FROM vw_HeadcounterP2
-				WHERE Departamento=@Departamento AND (MONTH([Fecha de contratacion])=MONTH(@Fecha) AND YEAR([Fecha de contratacion])=YEAR(@Fecha))
+				WHERE Departamento=@Departamento AND (MONTH([Fecha de contratacion])<=MONTH(@Fecha) AND YEAR([Fecha de contratacion])<=YEAR(@Fecha))
 				GROUP BY Departamento, [Fecha de contratacion]
 				ORDER BY Departamento
 			---------------------------------------------

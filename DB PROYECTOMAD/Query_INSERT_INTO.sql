@@ -8,7 +8,7 @@ cualquier tipo de consultas donde se utilice el
 SELECT, ni para tablas ni para vistas, se deben de
 especificar siempre los campos a mostrar*/
 
-USE PROYECTOMAD
+USE PROYECTOMAD;
 
 --INSERT INTO Empresa
 INSERT INTO Empresa(RFC, Nombre, Razon_social, Fecha_Operaciones)

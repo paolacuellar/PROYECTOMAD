@@ -30,7 +30,7 @@ namespace MAD_Pantallas
             CSDeptoSueldo.Text = empleado["Nivel_Salarial"].ToString();
 
 
-            float Sueldito = float.Parse(empleado["Sueldo_Base"].ToString()) + float.Parse(empleado["Nivel_Salarial"].ToString());
+            float Sueldito = float.Parse(empleado["Sueldo_Base"].ToString()) * float.Parse(empleado["Nivel_Salarial"].ToString());
             CSsueldo.Text = Sueldito.ToString();
 
         }

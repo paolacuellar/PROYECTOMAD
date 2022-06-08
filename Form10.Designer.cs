@@ -47,9 +47,9 @@ namespace MAD_Pantallas
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(18, 210);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(228, 13);
+            this.label5.Size = new System.Drawing.Size(70, 13);
             this.label5.TabIndex = 94;
-            this.label5.Text = "Sueldo Bruto(Sin percepciones y deducciones)";
+            this.label5.Text = "Sueldo Diario";
             // 
             // label4
             // 

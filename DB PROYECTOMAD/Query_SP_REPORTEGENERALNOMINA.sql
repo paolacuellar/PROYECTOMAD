@@ -18,8 +18,10 @@ BEGIN
 				CONCAT (A_Paterno, ' ', A_Materno) AS [Nombre del empleado],
 				[Fecha de contratacion],
 				DATEDIFF(yy, Fecha_nacimiento, GETDATE()) Edad,
-				[Salario Diario]
-		FROM vw_ReporteGeneralNomina
+				[Salario Diario],
+				CveEmpleado
+		FROM vw_ReporteGeneralNomina		
+		--GROUP BY CveEmpleado, A_Materno, A_Paterno, Departamento, Puesto, [Fecha de contratacion],Fecha_nacimiento, [Salario Diario]
 		ORDER BY Departamento, Puesto, [Nombre del empleado]
 			--ORDER BY Departamento, Puesto, A_Paterno
 	END
@@ -32,9 +34,12 @@ BEGIN
 				CONCAT (A_Paterno, ' ', A_Materno) AS [Nombre del empleado],
 				[Fecha de contratacion],
 				DATEDIFF(yy, Fecha_nacimiento, GETDATE()) Edad,
-				[Salario Diario]
+				[Salario Diario],
+				CveEmpleado
 		FROM vw_ReporteGeneralNomina
-		WHERE MONTH([Fecha de contratacion])=MONTH(@Fecha) AND YEAR([Fecha de contratacion])=YEAR(@Fecha)
+		WHERE MONTH([Fecha Nomina])=MONTH(@Fecha) AND YEAR([Fecha Nomina])=YEAR(@Fecha)
+		GROUP BY CveEmpleado, A_Materno, A_Paterno, Departamento, Puesto, [Fecha de contratacion],Fecha_nacimiento, [Salario Diario]
 		ORDER BY Departamento, Puesto, [Nombre del empleado]
+	
 	END
 END

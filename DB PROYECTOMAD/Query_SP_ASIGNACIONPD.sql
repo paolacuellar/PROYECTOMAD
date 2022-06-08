@@ -120,3 +120,6 @@ INSERT INTO Asign_Empleado_Deduccion(CveEmpleado, ID_Deduccion, Fecha)
 			WHERE AD.CveEmpleado = @CveEmpleado
 		END
 END
+
+	SELECT *FROM Nomina
+	SELECT *FROM Asign_Empleado_Deduccion

@@ -96,6 +96,8 @@ namespace MAD_Pantallas
                 using (PdfDocument pdfDocument = new PdfDocument(pdfWriter))
                 using (Document document = new Document(pdfDocument))
                 {
+                    document.Add(new Paragraph("Monsters, Inc."));
+                    document.Add(new Paragraph("MonsterWorlds Business"));
                     document.Add(new Paragraph("RECIBO NOMINA"));
                     document.Add(new Paragraph("\n\tFecha: " + print_date));
                     document.Add(new Paragraph("\n" + id_emp));

@@ -241,3 +241,5 @@ C:\Users\Arely Lara\Desktop\PROYECTOMAD\obj\Debug\MAD-Pantallas.exe
 C:\Users\Arely Lara\Desktop\PROYECTOMAD\obj\Debug\MAD-Pantallas.pdb
 D:\RESPALDO\ESCUELA\Arely\MAD\PROYECTOMAD\obj\Debug\MAD_Pantallas.Form12.resources
 D:\RESPALDO\ESCUELA\Arely\MAD\PROYECTOMAD\obj\Debug\MAD_Pantallas.Form13.resources
+C:\Users\Arely Lara\Desktop\PROYECTOMAD\obj\Debug\MAD_Pantallas.Form12.resources
+C:\Users\Arely Lara\Desktop\PROYECTOMAD\obj\Debug\MAD_Pantallas.Form13.resources
